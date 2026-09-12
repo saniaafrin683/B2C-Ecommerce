@@ -1,0 +1,86 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 30 source files with javac [debug parameters release 17] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory F:\MyProjectttttt\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-04-24T17:14:59.540+06:00  INFO 13008 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 13008 (F:\MyProjectttttt\backend\target\classes started by USER in F:\MyProjectttttt\backend)
+2026-04-24T17:14:59.544+06:00  INFO 13008 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-04-24T17:15:00.039+06:00  INFO 13008 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-24T17:15:00.057+06:00  INFO 13008 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 JPA repository interfaces.
+2026-04-24T17:15:00.449+06:00  INFO 13008 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-04-24T17:15:00.463+06:00  INFO 13008 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-24T17:15:00.464+06:00  INFO 13008 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-24T17:15:00.506+06:00  INFO 13008 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 920 ms
+2026-04-24T17:15:00.656+06:00  INFO 13008 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-24T17:15:00.696+06:00  INFO 13008 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-24T17:15:01.011+06:00  INFO 13008 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-24T17:15:01.044+06:00  INFO 13008 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-24T17:15:01.300+06:00  INFO 13008 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b6b487c
+2026-04-24T17:15:01.305+06:00  INFO 13008 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-24T17:15:01.350+06:00  WARN 13008 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-24T17:15:01.365+06:00  INFO 13008 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-24T17:15:02.114+06:00  INFO 13008 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-24T17:15:02.174+06:00  INFO 13008 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-24T17:15:02.312+06:00  WARN 13008 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-24T17:15:02.615+06:00  INFO 13008 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-04-24T17:15:02.625+06:00  INFO 13008 --- [           main] com.styleora.BackendApplication          : Started BackendApplication in 3.461 seconds (process running for 3.777)
+2026-04-24T17:15:17.487+06:00  INFO 13008 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-24T17:15:17.492+06:00  INFO 13008 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-24T17:15:17.494+06:00  INFO 13008 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+CREATE PURCHASE REQUEST: com.styleora.model.Purchase@1bc26450
+Hibernate: insert into purchases (discount,due_amount,items,notes,order_by,paid_amount,payment_method,payment_status,purchase_date,purchase_id,purchase_status,shipping_cost,subtotal,supplier_address,supplier_email,supplier_phone,tax,total) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 order by p1_0.id desc
+CREATE PURCHASE REQUEST: com.styleora.model.Purchase@90f89c2
+Hibernate: insert into purchases (discount,due_amount,items,notes,order_by,paid_amount,payment_method,payment_status,purchase_date,purchase_id,purchase_status,shipping_cost,subtotal,supplier_address,supplier_email,supplier_phone,tax,total) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 order by p1_0.id desc
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 where p1_0.id=?
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 order by p1_0.id desc
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 where p1_0.id=?
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 where p1_0.id=?
+Hibernate: update purchases set discount=?,due_amount=?,items=?,notes=?,order_by=?,paid_amount=?,payment_method=?,payment_status=?,purchase_date=?,purchase_id=?,purchase_status=?,shipping_cost=?,subtotal=?,supplier_address=?,supplier_email=?,supplier_phone=?,tax=?,total=? where id=?
+Hibernate: select p1_0.id,p1_0.discount,p1_0.due_amount,p1_0.items,p1_0.notes,p1_0.order_by,p1_0.paid_amount,p1_0.payment_method,p1_0.payment_status,p1_0.purchase_date,p1_0.purchase_id,p1_0.purchase_status,p1_0.shipping_cost,p1_0.subtotal,p1_0.supplier_address,p1_0.supplier_email,p1_0.supplier_phone,p1_0.tax,p1_0.total from purchases p1_0 order by p1_0.id desc

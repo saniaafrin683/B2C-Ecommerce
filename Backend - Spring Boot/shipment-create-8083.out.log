@@ -1,0 +1,642 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory F:\My Project\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-05-07T21:56:40.432+06:00  INFO 17376 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 17376 (F:\My Project\backend\target\classes started by USER in F:\My Project\backend)
+2026-05-07T21:56:40.439+06:00  INFO 17376 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-05-07T21:56:41.078+06:00  INFO 17376 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-07T21:56:41.102+06:00  INFO 17376 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 JPA repository interfaces.
+2026-05-07T21:56:41.545+06:00  INFO 17376 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8083 (http)
+2026-05-07T21:56:41.561+06:00  INFO 17376 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-07T21:56:41.561+06:00  INFO 17376 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-07T21:56:41.593+06:00  INFO 17376 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1109 ms
+2026-05-07T21:56:41.735+06:00  INFO 17376 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-07T21:56:41.799+06:00  INFO 17376 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-07T21:56:42.132+06:00  INFO 17376 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-07T21:56:42.164+06:00  INFO 17376 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-07T21:56:42.402+06:00  INFO 17376 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e9ea32f
+2026-05-07T21:56:42.402+06:00  INFO 17376 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-07T21:56:42.449+06:00  WARN 17376 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-07T21:56:42.471+06:00  INFO 17376 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-07T21:56:43.677+06:00  INFO 17376 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-07T21:56:43.780+06:00  INFO 17376 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-07T21:56:44.010+06:00  WARN 17376 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-07T21:56:44.102+06:00  WARN 17376 --- [           main] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3cf08a81-4630-457b-8d9a-e3d60a482fd8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-07T21:56:44.107+06:00  INFO 17376 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-07T21:56:44.248+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AppSettingController:
+	{POST [/settings/save]}: saveSetting(AppSetting)
+	{DELETE [/settings/delete/{id}]}: deleteSetting(Long)
+	{GET [/settings]}: getCurrentSetting()
+	{PUT [/settings/update/{id}]}: updateSetting(Long,AppSetting)
+	{GET [/settings/current]}: getCurrentSettingLegacy()
+2026-05-07T21:56:44.264+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeController:
+	{GET [/attributes/{id}]}: getAttributeById(Long)
+	{POST [/attributes/create]}: createAttribute(Attribute)
+	{GET [/attributes/list]}: getAllAttributes()
+	{PUT [/attributes/update/{id}]}: updateAttribute(Long,Attribute)
+	{DELETE [/attributes/delete/{id}]}: deleteAttribute(Long)
+2026-05-07T21:56:44.264+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeValueController:
+	{GET [/attribute-values/{id}]}: getAttributeValueById(Long)
+	{GET [/attribute-values/by-attribute/{attributeId}]}: getAttributeValuesByAttributeId(Long)
+	{DELETE [/attribute-values/delete/{id}]}: deleteAttributeValue(Long)
+	{PUT [/attribute-values/update/{id}]}: updateAttributeValue(Long,AttributeValue)
+	{GET [/attribute-values/list]}: getAllAttributeValues()
+	{POST [/attribute-values/create]}: createAttributeValue(AttributeValue)
+2026-05-07T21:56:44.280+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AuthController:
+	{POST [/auth/login]}: login(AdminLoginRequest)
+2026-05-07T21:56:44.280+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CategoryController:
+	{GET [/categories/list]}: getAllCategories()
+	{DELETE [/categories/delete/{id}]}: deleteCategory(Long)
+	{POST [/categories/create]}: createCategory(Category)
+	{PUT [/categories/update/{id}]}: updateCategory(Long,Category)
+	{GET [/categories/{id}]}: getCategoryById(Long)
+2026-05-07T21:56:44.280+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CouponController:
+	{POST [/coupons/apply]}: applyCoupon(ApplyCouponRequest)
+	{GET [/coupons/list]}: getAllCoupons()
+	{PUT [/coupons/update/{id}]}: updateCoupon(Long,Coupon)
+	{POST [/coupons/create]}: createCoupon(Coupon)
+	{GET [/coupons/{id}]}: getCouponById(Long)
+	{DELETE [/coupons/delete/{id}]}: deleteCoupon(Long)
+2026-05-07T21:56:44.296+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CustomerController:
+	{POST [/customers/register]}: register(CustomerRegisterRequest)
+	{GET [/customers/profile]}: getProfile(AuthenticatedUser)
+	{GET [/customers/{id}]}: getCustomerById(Long)
+	{PUT [/customers/update/{id}]}: updateCustomer(Long,Customer)
+	{POST [/customers/create]}: createCustomer(Customer)
+	{PUT [/customers/restore/{id}]}: restoreCustomer(Long)
+	{DELETE [/customers/delete/{id}]}: deleteCustomer(Long)
+	{GET [/customers/list]}: getAllCustomers()
+	{POST [/customers/login]}: login(CustomerLoginRequest)
+	{GET [/customers/deleted]}: getDeletedCustomers()
+	{DELETE [/customers/permanent/{id}]}: permanentlyDeleteCustomer(Long)
+2026-05-07T21:56:44.296+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.HealthController:
+	{GET [/health]}: health()
+2026-05-07T21:56:44.296+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.InvoiceController:
+	{GET [/invoices/{id}]}: getInvoiceById(Long)
+	{PUT [/invoices/update/{id}]}: updateInvoice(Long,Invoice)
+	{DELETE [/invoices/delete/{id}]}: deleteInvoice(Long)
+	{POST [/invoices/create]}: createInvoice(Invoice)
+	{GET [/invoices/list]}: getAllInvoices()
+	{GET [/invoices/by-order/{orderId}]}: getInvoicesByOrderId(Long)
+2026-05-07T21:56:44.296+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.OrderController:
+	{GET [/orders/{id}]}: getOrderById(Long)
+	{GET [/orders/my]}: getMyOrders(AuthenticatedUser)
+	{PUT [/orders/status/{id}]}: updateOrderStatus(Long,OrderStatusUpdateRequest)
+	{POST [/orders/create]}: createOrder(OrderRequest,AuthenticatedUser)
+	{DELETE [/orders/delete/{id}]}: deleteOrder(Long)
+	{PUT [/orders/update/{id}]}: updateOrder(Long,OrderRequest)
+	{GET [/orders/list]}: getAllOrders()
+	{GET [/orders/my/reference/{orderId}]}: getMyOrderByReference(String,AuthenticatedUser)
+	{PUT [/orders/update]}: updateOrderLegacy(OrderRequest)
+	{GET [/orders/my/{id}]}: getMyOrderById(Long,AuthenticatedUser)
+2026-05-07T21:56:44.312+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PaymentController:
+	{GET [/payments/by-order/{orderId}]}: getPaymentsByOrderId(Long)
+	{GET [/payments/by-invoice/{invoiceId}]}: getPaymentsByInvoiceId(Long)
+	{PUT [/payments/update/{id}]}: updatePayment(Long,Payment)
+	{GET [/payments/{id}]}: getPaymentById(Long)
+	{DELETE [/payments/delete/{id}]}: deletePayment(Long)
+	{POST [/payments/create]}: createPayment(Payment)
+	{GET [/payments/list]}: getAllPayments()
+2026-05-07T21:56:44.312+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ProductController:
+	{POST [/products/create-upload], consumes [multipart/form-data]}: createProductWithUpload(ProductUploadRequest)
+	{GET [/products/low-stock]}: getLowStockProducts()
+	{PUT [/products/update-upload/{id}], consumes [multipart/form-data]}: updateProductWithUpload(Long,ProductUploadRequest)
+	{DELETE [/products/delete/{id}]}: deleteProduct(Long)
+	{POST [/products/create]}: createProduct(Product)
+	{GET [/products/search]}: searchProducts(String,String,String,String,String,BigDecimal,BigDecimal,int,int,String,String)
+	{GET [/products/list]}: getAllProducts()
+	{POST [/products/{id}/reserve-stock]}: reserveStock(Long,ProductStockAdjustmentRequest)
+	{POST [/products/{id}/release-stock]}: releaseStock(Long,ProductStockAdjustmentRequest)
+	{GET [/products/{id}]}: getProductById(Long)
+	{PUT [/products/update/{id}]}: updateProduct(Long,Product)
+	{GET [/products/page]}: getProductsPage(int,int,String,String)
+2026-05-07T21:56:44.317+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseController:
+	{PUT [/purchases/update/{id}]}: updatePurchase(Long,Purchase)
+	{GET [/purchases/{id}]}: getPurchaseById(Long)
+	{POST [/purchases/create]}: createPurchase(Purchase)
+	{GET [/purchases/list]}: getAllPurchases()
+	{DELETE [/purchases/delete/{id}]}: deletePurchase(Long)
+2026-05-07T21:56:44.317+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseOrderController:
+	{GET [/purchase-orders/{id}]}: getPurchaseOrderById(Long)
+	{PUT [/purchase-orders/update/{id}]}: updatePurchaseOrder(Long,PurchaseOrder)
+	{GET [/purchase-orders/list]}: getAllPurchaseOrders()
+	{POST [/purchase-orders/create]}: createPurchaseOrder(PurchaseOrder)
+	{DELETE [/purchase-orders/delete/{id}]}: deletePurchaseOrder(Long)
+2026-05-07T21:56:44.327+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseReturnController:
+	{GET [/purchase-returns/{id}]}: getPurchaseReturnById(Long)
+	{GET [/purchase-returns/list]}: getAllPurchaseReturns()
+	{PUT [/purchase-returns/update/{id}]}: updatePurchaseReturn(Long,PurchaseReturn)
+	{POST [/purchase-returns/create]}: createPurchaseReturn(PurchaseReturn)
+	{DELETE [/purchase-returns/delete/{id}]}: deletePurchaseReturn(Long)
+2026-05-07T21:56:44.327+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReceivedOrderController:
+	{PUT [/inventory/received-orders/update || /received-orders/update || /inventory/received-orders/update/{id} || /received-orders/update/{id}]}: updateReceivedOrder(Long,ReceivedOrder)
+	{DELETE [/inventory/received-orders/delete/{id} || /received-orders/delete/{id}]}: deleteReceivedOrder(Long)
+	{PUT [/inventory/received-orders/status/{id} || /received-orders/status/{id}]}: updateReceivedOrderStatus(Long,ReceivedOrderStatusUpdateRequest)
+	{GET [/inventory/received-orders/list || /inventory/received-orders || /received-orders/list || /received-orders]}: getAllReceivedOrders()
+	{GET [/inventory/received-orders/{id} || /received-orders/{id}]}: getReceivedOrderById(Long)
+	{POST [/inventory/received-orders/create || /inventory/received-orders || /received-orders/create || /received-orders]}: createReceivedOrder(ReceivedOrder)
+2026-05-07T21:56:44.327+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReportController:
+	{GET [/reports/export/csv]}: exportCsv(String)
+	{GET [/reports/orders/monthly]}: getMonthlyOrders(String)
+	{GET [/reports/summary]}: getSummary(String)
+	{GET [/reports/top-products]}: getTopProducts(String)
+	{GET [/reports/top-customers]}: getTopCustomers(String)
+	{GET [/reports/revenue/monthly]}: getMonthlyRevenue(String)
+2026-05-07T21:56:44.327+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReturnRequestController:
+	{GET [/returns/list || /returns]}: getAllReturnRequests()
+	{POST [/returns/create]}: createReturnRequest(ReturnRequestCreateRequest)
+	{GET [/returns/customer/{customerId}]}: getCustomerReturnRequests(Long,AuthenticatedUser)
+	{GET [/returns/{id}]}: getReturnRequestById(Long)
+	{DELETE [/returns/delete/{id}]}: deleteReturnRequest(Long)
+	{PUT [/returns/status/{id}]}: updateReturnRequestStatus(Long,ReturnRequestStatusUpdateRequest)
+	{PUT [/returns/update/{id}]}: updateReturnRequest(Long,ReturnRequestStatusUpdateRequest)
+	{POST [/returns/request]}: requestReturn(ReturnRequestCreateRequest,AuthenticatedUser)
+2026-05-07T21:56:44.327+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReviewController:
+	{POST [/reviews/create]}: createReview(Review)
+	{GET [/reviews/list]}: getAllReviews()
+	{GET [/reviews/{id}]}: getReviewById(Long)
+	{PUT [/reviews/reject/{id}]}: rejectReview(Long)
+	{DELETE [/reviews/delete/{id}]}: deleteReview(Long)
+	{PUT [/reviews/update/{id}]}: updateReview(Long,Review)
+	{PUT [/reviews/approve/{id}]}: approveReview(Long)
+2026-05-07T21:56:44.327+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.RoleController:
+	{GET [/roles/list]}: getAllRoles()
+	{POST [/roles/create]}: createRole(Role)
+	{PUT [/roles/update/{id}]}: updateRole(Long,Role)
+	{GET [/roles/{id}]}: getRoleById(Long)
+	{DELETE [/roles/delete/{id}]}: deleteRole(Long)
+2026-05-07T21:56:44.343+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShipmentController:
+	{PUT [/shipments/status/{id}]}: updateShipmentStatus(Long,ShipmentStatusUpdateRequest)
+	{GET [/shipments/order/{orderId}]}: getShipmentByOrderId(Long,AuthenticatedUser)
+	{POST [/shipments/create || /shipments]}: createShipment(Shipment)
+	{GET [/shipments/{id}]}: getShipmentById(Long)
+	{GET [/shipments/list || /shipments]}: getAllShipments()
+	{DELETE [/shipments/delete/{id} || /shipments/{id}]}: deleteShipment(Long)
+	{PUT [/shipments/update/{id} || /shipments/{id}]}: updateShipment(Long,Shipment)
+2026-05-07T21:56:44.343+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShippingMethodController:
+	{GET [/shipping-methods/{id}]}: getShippingMethodById(Long)
+	{POST [/shipping-methods/create]}: createShippingMethod(ShippingMethod)
+	{PUT [/shipping-methods/update/{id}]}: updateShippingMethod(Long,ShippingMethod)
+	{GET [/shipping-methods/list]}: getAllShippingMethods()
+	{DELETE [/shipping-methods/delete/{id}]}: deleteShippingMethod(Long)
+2026-05-07T21:56:44.343+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.SubCategoryController:
+	{GET [/sub-categories/list]}: getAllSubCategories()
+	{DELETE [/sub-categories/delete/{id}]}: deleteSubCategory(Long)
+	{GET [/sub-categories/{id}]}: getSubCategoryById(Long)
+	{POST [/sub-categories/create]}: createSubCategory(SubCategory)
+	{PUT [/sub-categories/update/{id}]}: updateSubCategory(Long,SubCategory)
+2026-05-07T21:56:44.343+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.UserController:
+	{DELETE [/users/delete/{id}]}: deleteUser(Long)
+	{PUT [/users/update/{id}]}: updateUser(Long,User)
+	{GET [/users/{id}]}: getUserById(Long)
+	{GET [/users/list]}: getAllUsers()
+	{POST [/users/create]}: createUser(User)
+2026-05-07T21:56:44.343+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.WarehouseController:
+	{GET [/warehouses/{id}]}: getWarehouseById(Long)
+	{DELETE [/warehouses/delete/{id}]}: deleteWarehouse(Long)
+	{PUT [/warehouses/update]}: updateWarehouse(Warehouse)
+	{GET [/warehouses/list]}: getAllWarehouses()
+	{POST [/warehouses/create]}: createWarehouse(Warehouse)
+2026-05-07T21:56:44.343+06:00 TRACE 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.w.a.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2026-05-07T21:56:44.343+06:00 DEBUG 17376 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 151 mappings in 'requestMappingHandlerMapping'
+2026-05-07T21:56:44.554+06:00  INFO 17376 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8083 (http) with context path '/'
+2026-05-07T21:56:44.554+06:00  INFO 17376 --- [           main] com.styleora.BackendApplication          : Started BackendApplication in 4.483 seconds (process running for 4.796)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: update admin_users set email=?,password=? where id=?
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(c1_0.email)=lower(?) and (c1_0.status is null or lower(c1_0.status)<>'deleted') limit ?
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(coalesce(c1_0.email,'')) like ? escape '' order by c1_0.id desc
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+Hibernate: select count(r1_0.id) from reviews r1_0 where (r1_0.customer_id is not null and r1_0.customer_id=?) or (? is not null and lower(coalesce(r1_0.customer_email,''))=lower(?))
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: delete from customers where id=?
+Hibernate: select count(c1_0.id) from customers c1_0
+2026-05-07T21:56:45.407+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: sample customers inserted=0, orphaned demo customers removed=12, total=3
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0 where lower(w1_0.warehouse_id)=lower(?)
+Hibernate: select count(w1_0.id) from warehouses w1_0
+2026-05-07T21:56:45.442+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: warehouses inserted=0, total=10
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0 where lower(sm1_0.name)=lower(?)
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0 where lower(sm1_0.name)=lower(?)
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0 where lower(sm1_0.name)=lower(?)
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0 where lower(sm1_0.name)=lower(?)
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0 where lower(sm1_0.name)=lower(?)
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0 where lower(sm1_0.name)=lower(?)
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0
+2026-05-07T21:56:45.453+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: shipping methods inserted=0, total=6
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0 where lower(p1_0.purchase_id)=lower(?)
+Hibernate: select count(p1_0.id) from purchases p1_0
+2026-05-07T21:56:45.501+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: purchases inserted=0, total=12
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0 where lower(po1_0.purchase_order_id)=lower(?)
+Hibernate: select count(po1_0.id) from purchase_orders po1_0
+2026-05-07T21:56:45.532+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: purchase orders inserted=0, total=10
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0 where lower(pr1_0.return_id)=lower(?)
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0
+2026-05-07T21:56:45.564+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: purchase returns inserted=0, total=10
+Hibernate: select count(o1_0.id) from orders o1_0
+2026-05-07T21:56:45.568+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: orders skipped because the orders table already contains data.
+Hibernate: select count(i1_0.id) from invoices i1_0
+2026-05-07T21:56:45.568+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: invoices skipped because the invoices table already contains data.
+Hibernate: delete p1_0 from payments p1_0 where p1_0.transaction_id in (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select count(p1_0.id) from payments p1_0
+2026-05-07T21:56:45.579+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: removed seeded demo payments count=0, remainingTotal=2
+Hibernate: select count(c1_0.id) from coupons c1_0
+2026-05-07T21:56:45.597+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: coupons skipped because the coupons table already contains data.
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select p1_0.id from products p1_0 where lower(p1_0.tag_number)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select c1_0.id from customers c1_0 where lower(c1_0.customer_code)=lower(?)
+Hibernate: select count(r1_0.id) from reviews r1_0
+2026-05-07T21:56:45.658+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed: reviews inserted=0, total=0
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select s1_0.id from shipments s1_0 where lower(coalesce(s1_0.tracking_number,''))=lower(?)
+Hibernate: select count(c1_0.id) from customers c1_0
+Hibernate: select count(p1_0.id) from products p1_0
+Hibernate: select count(w1_0.id) from warehouses w1_0
+Hibernate: select count(sm1_0.id) from shipping_methods sm1_0
+Hibernate: select count(p1_0.id) from purchases p1_0
+Hibernate: select count(po1_0.id) from purchase_orders po1_0
+Hibernate: select count(pr1_0.id) from purchase_returns pr1_0
+Hibernate: select count(o1_0.id) from orders o1_0
+Hibernate: select count(i1_0.id) from invoices i1_0
+Hibernate: select count(p1_0.id) from payments p1_0
+Hibernate: select count(c1_0.id) from coupons c1_0
+Hibernate: select count(r1_0.id) from reviews r1_0
+Hibernate: select count(s1_0.id) from shipments s1_0
+2026-05-07T21:56:45.737+06:00  INFO 17376 --- [           main] c.s.service.AdminSampleDataSeedService   : Sample seed totals => customers=3, products=16, warehouses=10, shippingMethods=6, purchases=12, purchaseOrders=10, purchaseReturns=10, orders=14, invoices=18, payments=2, coupons=1, reviews=0, shipments=3
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select count(c1_0.id) from category c1_0 where lower(c1_0.category_title)=lower(?)
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select c1_0.id,c1_0.category_title,c1_0.created_by,c1_0.description,c1_0.image_url,c1_0.stock,c1_0.tag_id from category c1_0 where lower(c1_0.category_title)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0 where lower(sc1_0.sub_category_name)=lower(?) and sc1_0.category_id=?
+2026-05-07T21:56:46.661+06:00  INFO 17376 --- [nio-8083-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-07T21:56:46.661+06:00  INFO 17376 --- [nio-8083-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-07T21:56:46.661+06:00  INFO 17376 --- [nio-8083-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-07T21:56:46.681+06:00  WARN 17376 --- [nio-8083-exec-3] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/auth/login' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-05-07T21:56:46.694+06:00 TRACE 17376 --- [nio-8083-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:06.533+06:00 TRACE 17376 --- [nio-8083-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:06.557+06:00 TRACE 17376 --- [nio-8083-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#login(CustomerLoginRequest)
+2026-05-07T21:57:06.557+06:00  INFO 17376 --- [nio-8083-exec-1] com.styleora.service.CustomerService     : Customer login attempt email=customer@styleora.com
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(c1_0.email)=lower(?) and (c1_0.status is null or lower(c1_0.status)<>'deleted') limit ?
+2026-05-07T21:57:06.578+06:00  INFO 17376 --- [nio-8083-exec-1] com.styleora.service.CustomerService     : Customer login lookup email=customer@styleora.com found=true
+2026-05-07T21:57:06.578+06:00  INFO 17376 --- [nio-8083-exec-1] com.styleora.service.CustomerService     : Customer login password format email=customer@styleora.com bcryptHash=true
+2026-05-07T21:57:06.582+06:00 TRACE 17376 --- [nio-8083-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:06.886+06:00  INFO 17376 --- [nio-8083-exec-1] com.styleora.service.CustomerService     : Customer login password match email=customer@styleora.com matches=true
+2026-05-07T21:57:06.886+06:00 TRACE 17376 --- [nio-8083-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getDeletedCustomers()
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(coalesce(c1_0.status,''))='deleted' and lower(coalesce(c1_0.email,'')) not like '%@styleora.test' escape '' and lower(coalesce(c1_0.email,''))<>'customer@styleora.com' and lower(coalesce(c1_0.customer_code,''))<>'cus-styleora-001' order by c1_0.id desc
+2026-05-07T21:57:06.912+06:00 TRACE 17376 --- [nio-8083-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getAllCustomers()
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where (c1_0.status is null or lower(c1_0.status)<>'deleted') and lower(coalesce(c1_0.email,'')) not like '%@styleora.test' escape '' and lower(coalesce(c1_0.email,''))<>'customer@styleora.com' and lower(coalesce(c1_0.customer_code,''))<>'cus-styleora-001' order by c1_0.id desc
+2026-05-07T21:57:24.518+06:00 TRACE 17376 --- [nio-8083-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:24.808+06:00 TRACE 17376 --- [nio-8083-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#permanentlyDeleteCustomer(Long)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where c1_0.id=?
+Hibernate: select count(o1_0.id) from orders o1_0 where (o1_0.customer_id is not null and o1_0.customer_id=?) or (? is not null and lower(coalesce(o1_0.customer_email,''))=lower(?))
+Hibernate: select count(rr1_0.id) from return_requests rr1_0 where rr1_0.customer_id=?
+2026-05-07T21:57:25.949+06:00 TRACE 17376 --- [nio-8083-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+2026-05-07T21:57:25.949+06:00 TRACE 17376 --- [nio-8083-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:26.282+06:00 TRACE 17376 --- [nio-8083-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#restoreCustomer(Long)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where c1_0.id=?
+Hibernate: update customers set address=?,city=?,country=?,customer_code=?,date_of_birth=?,email=?,full_name=?,gender=?,notes=?,password=?,phone=?,registered_at=?,status=?,total_orders=?,total_spend=? where id=?
+2026-05-07T21:57:26.295+06:00 TRACE 17376 --- [nio-8083-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#deleteCustomer(Long)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where c1_0.id=?
+2026-05-07T21:57:26.314+06:00 TRACE 17376 --- [io-8083-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getDeletedCustomers()
+2026-05-07T21:57:26.314+06:00 TRACE 17376 --- [nio-8083-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getAllCustomers()
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(coalesce(c1_0.status,''))='deleted' and lower(coalesce(c1_0.email,'')) not like '%@styleora.test' escape '' and lower(coalesce(c1_0.email,''))<>'customer@styleora.com' and lower(coalesce(c1_0.customer_code,''))<>'cus-styleora-001' order by c1_0.id desc
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where (c1_0.status is null or lower(c1_0.status)<>'deleted') and lower(coalesce(c1_0.email,'')) not like '%@styleora.test' escape '' and lower(coalesce(c1_0.email,''))<>'customer@styleora.com' and lower(coalesce(c1_0.customer_code,''))<>'cus-styleora-001' order by c1_0.id desc
+2026-05-07T21:57:38.602+06:00 TRACE 17376 --- [nio-8083-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:38.620+06:00 TRACE 17376 --- [nio-8083-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:38.918+06:00 TRACE 17376 --- [nio-8083-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getAllCustomers()
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where (c1_0.status is null or lower(c1_0.status)<>'deleted') and lower(coalesce(c1_0.email,'')) not like '%@styleora.test' escape '' and lower(coalesce(c1_0.email,''))<>'customer@styleora.com' and lower(coalesce(c1_0.customer_code,''))<>'cus-styleora-001' order by c1_0.id desc
+2026-05-07T21:57:38.949+06:00 TRACE 17376 --- [nio-8083-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getCustomerById(Long)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where c1_0.id=?
+2026-05-07T21:57:53.150+06:00 TRACE 17376 --- [io-8083-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:53.414+06:00 TRACE 17376 --- [nio-8083-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#deleteCustomer(Long)
+2026-05-07T21:57:53.423+06:00 TRACE 17376 --- [nio-8083-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where c1_0.id=?
+Hibernate: update customers set address=?,city=?,country=?,customer_code=?,date_of_birth=?,email=?,full_name=?,gender=?,notes=?,password=?,phone=?,registered_at=?,status=?,total_orders=?,total_spend=? where id=?
+Hibernate: select au1_0.id,au1_0.email,au1_0.password from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-07T21:57:53.733+06:00 TRACE 17376 --- [nio-8083-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getCustomerById(Long)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where c1_0.id=?
+2026-05-07T21:57:54.452+06:00 TRACE 17376 --- [nio-8083-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.CustomerController#getDeletedCustomers()
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(coalesce(c1_0.status,''))='deleted' and lower(coalesce(c1_0.email,'')) not like '%@styleora.test' escape '' and lower(coalesce(c1_0.email,''))<>'customer@styleora.com' and lower(coalesce(c1_0.customer_code,''))<>'cus-styleora-001' order by c1_0.id desc

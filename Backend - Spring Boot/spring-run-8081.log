@@ -1,0 +1,94 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory F:\MyProjectttttt\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-04-24T15:55:55.437+06:00  INFO 21900 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 21900 (F:\MyProjectttttt\backend\target\classes started by USER in F:\MyProjectttttt\backend)
+2026-04-24T15:55:55.442+06:00  INFO 21900 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-04-24T15:55:55.983+06:00  INFO 21900 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-24T15:55:56.008+06:00  INFO 21900 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 JPA repository interfaces.
+2026-04-24T15:55:56.455+06:00  INFO 21900 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-04-24T15:55:56.471+06:00  INFO 21900 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-24T15:55:56.472+06:00  INFO 21900 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-24T15:55:56.521+06:00  INFO 21900 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1026 ms
+2026-04-24T15:55:56.682+06:00  INFO 21900 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-24T15:55:56.723+06:00  INFO 21900 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-24T15:55:57.076+06:00  INFO 21900 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-24T15:55:57.113+06:00  INFO 21900 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-24T15:55:57.390+06:00  INFO 21900 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a54c92e
+2026-04-24T15:55:57.396+06:00  INFO 21900 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-24T15:55:57.442+06:00  WARN 21900 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-24T15:55:57.458+06:00  INFO 21900 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-24T15:55:58.275+06:00  INFO 21900 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-24T15:55:58.338+06:00  INFO 21900 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-24T15:55:58.491+06:00  WARN 21900 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-24T15:55:58.852+06:00  INFO 21900 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-04-24T15:55:58.858+06:00  INFO 21900 --- [           main] com.styleora.BackendApplication          : Started BackendApplication in 3.797 seconds (process running for 4.188)
+2026-04-24T15:56:02.749+06:00  INFO 21900 --- [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-24T15:56:02.754+06:00  INFO 21900 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-24T15:56:02.756+06:00  INFO 21900 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.created_at,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.items,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_status,o1_0.priority,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: select oi1_0.id,oi1_0.color,oi1_0.line_total,oi1_0.order_id,oi1_0.product_image,oi1_0.product_name,oi1_0.quantity,oi1_0.size,oi1_0.unit_price from order_items oi1_0 where oi1_0.order_id=? order by oi1_0.id
+ORDER UPDATE REQUEST: OrderRequest{id=9, orderId='ORD-23208687', createdAt=2026-04-24, customerName='Swarna Updated', customerEmail='swarna@example.com', customerPhone='01788997763', shippingAddress='House 10, Road 12, Dhanmondi, Dhaka', billingAddress='House 10, Road 12, Dhanmondi, Dhaka', priority='High', subtotal=1615.0, tax=250.0, discount=60.0, shippingCost=61.54, totalAmount=1866.54, paymentMethod='Credit Card', paymentStatus='Paid', items=7, deliveryNumber='01788997763', trackingNumber='TRK-9001', orderStatus='Confirmed', orderItemsCount=1}
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.created_at,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.items,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_status,o1_0.priority,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: update orders set billing_address=?,created_at=?,customer_email=?,customer_name=?,customer_phone=?,delivery_number=?,discount=?,items=?,order_id=?,order_status=?,payment_method=?,payment_status=?,priority=?,shipping_address=?,shipping_cost=?,subtotal=?,tax=?,total_amount=?,tracking_number=? where id=?
+Hibernate: delete oi1_0 from order_items oi1_0 where oi1_0.order_id=?
+Hibernate: insert into order_items (color,line_total,order_id,product_image,product_name,quantity,size,unit_price) values (?,?,?,?,?,?,?,?)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.created_at,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.items,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_status,o1_0.priority,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: select oi1_0.id,oi1_0.color,oi1_0.line_total,oi1_0.order_id,oi1_0.product_image,oi1_0.product_name,oi1_0.quantity,oi1_0.size,oi1_0.unit_price from order_items oi1_0 where oi1_0.order_id=? order by oi1_0.id
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  35.751 s
+[INFO] Finished at: 2026-04-24T15:56:28+06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.5:run (default-cli) on project backend: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -1,0 +1,430 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-05-17T23:50:16.979+06:00  INFO 19956 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 19956 (F:\My Project\backend\target\classes started by USER in F:\My Project\backend)
+2026-05-17T23:50:16.982+06:00  INFO 19956 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-05-17T23:50:17.643+06:00  INFO 19956 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-17T23:50:17.659+06:00  INFO 19956 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JPA repository interfaces.
+2026-05-17T23:50:18.164+06:00  INFO 19956 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-05-17T23:50:18.180+06:00  INFO 19956 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-17T23:50:18.180+06:00  INFO 19956 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-17T23:50:18.234+06:00  INFO 19956 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1221 ms
+2026-05-17T23:50:18.397+06:00  INFO 19956 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-17T23:50:18.446+06:00  INFO 19956 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-17T23:50:18.836+06:00  INFO 19956 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-17T23:50:18.862+06:00  INFO 19956 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-17T23:50:19.099+06:00  INFO 19956 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c9b5e62
+2026-05-17T23:50:19.105+06:00  INFO 19956 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-17T23:50:19.147+06:00  WARN 19956 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-17T23:50:19.168+06:00  INFO 19956 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-17T23:50:22.207+06:00  INFO 19956 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-17T23:50:22.415+06:00  INFO 19956 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17T23:50:23.098+06:00  WARN 19956 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-17T23:50:23.273+06:00  WARN 19956 --- [           main] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 7cde21e1-c5c8-4098-80d7-613e683d7f69
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-17T23:50:23.315+06:00  INFO 19956 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-17T23:50:23.751+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AppSettingController:
+	{GET [/settings/current]}: getCurrentSettingLegacy()
+	{POST [/settings/save]}: saveSetting(AppSetting)
+	{GET [/settings]}: getCurrentSetting()
+	{PUT [/settings/update/{id}]}: updateSetting(Long,AppSetting)
+	{DELETE [/settings/delete/{id}]}: deleteSetting(Long)
+2026-05-17T23:50:23.771+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeController:
+	{POST [/attributes/create]}: createAttribute(Attribute)
+	{GET [/attributes/list]}: getAllAttributes()
+	{GET [/attributes/{id}]}: getAttributeById(Long)
+	{PUT [/attributes/update/{id}]}: updateAttribute(Long,Attribute)
+	{DELETE [/attributes/delete/{id}]}: deleteAttribute(Long)
+2026-05-17T23:50:23.784+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeValueController:
+	{DELETE [/attribute-values/delete/{id}]}: deleteAttributeValue(Long)
+	{GET [/attribute-values/by-attribute/{attributeId}]}: getAttributeValuesByAttributeId(Long)
+	{PUT [/attribute-values/update/{id}]}: updateAttributeValue(Long,AttributeValue)
+	{GET [/attribute-values/{id}]}: getAttributeValueById(Long)
+	{GET [/attribute-values/list]}: getAllAttributeValues()
+	{POST [/attribute-values/create]}: createAttributeValue(AttributeValue)
+2026-05-17T23:50:23.784+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AuthController:
+	{POST [/auth/login]}: login(AdminLoginRequest)
+2026-05-17T23:50:23.798+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CategoryController:
+	{GET [/categories/{id}]}: getCategoryById(Long)
+	{GET [/categories/list]}: getAllCategories()
+	{PUT [/categories/update/{id}]}: updateCategory(Long,Category)
+	{DELETE [/categories/delete/{id}]}: deleteCategory(Long)
+	{POST [/categories/create]}: createCategory(Category)
+2026-05-17T23:50:23.806+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CouponController:
+	{POST [/coupons/create]}: createCoupon(Coupon)
+	{POST [/coupons/apply]}: applyCoupon(ApplyCouponRequest)
+	{GET [/coupons/list]}: getAllCoupons()
+	{DELETE [/coupons/delete/{id}]}: deleteCoupon(Long)
+	{GET [/coupons/{id}]}: getCouponById(Long)
+	{PUT [/coupons/update/{id}]}: updateCoupon(Long,Coupon)
+2026-05-17T23:50:23.822+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CustomerController:
+	{GET [/customers/profile]}: getProfile(AuthenticatedUser)
+	{POST [/customers/register]}: register(CustomerRegisterRequest)
+	{POST [/customers/login]}: login(CustomerLoginRequest)
+	{DELETE [/customers/permanent/{id}]}: permanentlyDeleteCustomer(Long)
+	{GET [/customers/deleted]}: getDeletedCustomers()
+	{DELETE [/customers/delete-by-name]}: deleteCustomersByName(String)
+	{GET [/customers/list]}: getAllCustomers()
+	{POST [/customers/create]}: createCustomer(Customer)
+	{PUT [/customers/update/{id}]}: updateCustomer(Long,Customer)
+	{GET [/customers/{id}]}: getCustomerById(Long)
+	{DELETE [/customers/delete/{id}]}: deleteCustomer(Long)
+	{PUT [/customers/restore/{id}]}: restoreCustomer(Long)
+2026-05-17T23:50:23.834+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.HealthController:
+	{GET [/health]}: health()
+2026-05-17T23:50:23.834+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.InventoryController:
+	{GET [/inventory/current-stock]}: getCurrentStock()
+2026-05-17T23:50:23.841+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.InvoiceController:
+	{GET [/invoices/by-order/{orderId}]}: getInvoicesByOrderId(Long)
+	{DELETE [/invoices/delete/{id}]}: deleteInvoice(Long)
+	{PUT [/invoices/update/{id}]}: updateInvoice(Long,Invoice)
+	{GET [/invoices/{id}]}: getInvoiceById(Long)
+	{POST [/invoices/create]}: createInvoice(Invoice)
+	{GET [/invoices/list]}: getAllInvoices()
+2026-05-17T23:50:23.848+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.NotificationController:
+	{GET [/notifications/admin]}: getAdminNotifications()
+2026-05-17T23:50:23.850+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.OrderController:
+	{GET [/orders/my/reference/{orderId}]}: getMyOrderByReference(String,AuthenticatedUser)
+	{DELETE [/orders/delete/{id}]}: deleteOrder(Long)
+	{POST [/orders/create]}: createOrder(OrderRequest,AuthenticatedUser)
+	{GET [/orders/my/{id}]}: getMyOrderById(Long,AuthenticatedUser)
+	{PUT [/orders/status/{id}]}: updateOrderStatus(Long,OrderStatusUpdateRequest)
+	{GET [/orders/{id}]}: getOrderById(Long)
+	{PUT [/orders/update/{id}]}: updateOrder(Long,OrderRequest)
+	{GET [/orders/my]}: getMyOrders(AuthenticatedUser)
+	{GET [/orders/list]}: getAllOrders()
+	{PUT [/orders/update]}: updateOrderLegacy(OrderRequest)
+2026-05-17T23:50:23.862+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PaymentController:
+	{GET [/payments/by-order/{orderId}]}: getPaymentsByOrderId(Long)
+	{GET [/payments/by-invoice/{invoiceId}]}: getPaymentsByInvoiceId(Long)
+	{PUT [/payments/update/{id}]}: updatePayment(Long,Payment)
+	{POST [/payments/create]}: createPayment(Payment)
+	{DELETE [/payments/delete/{id}]}: deletePayment(Long)
+	{GET [/payments/list]}: getAllPayments()
+	{GET [/payments/{id}]}: getPaymentById(Long)
+2026-05-17T23:50:23.881+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ProductController:
+	{GET [/products/by-subcategory/{subCategoryId}]}: getProductsBySubCategory(Long)
+	{GET [/products/low-stock]}: getLowStockProducts()
+	{PUT [/products/update-upload/{id}], consumes [multipart/form-data]}: updateProductWithUpload(Long,ProductUploadRequest)
+	{POST [/products/create-upload], consumes [multipart/form-data]}: createProductWithUpload(ProductUploadRequest)
+	{PUT [/products/update/{id}]}: updateProduct(Long,Product)
+	{GET [/products/list]}: getAllProducts()
+	{GET [/products/page]}: getProductsPage(int,int,String,String)
+	{DELETE [/products/delete/{id}]}: deleteProduct(Long)
+	{POST [/products/create]}: createProduct(Product)
+	{POST [/products/{id}/reserve-stock]}: reserveStock(Long,ProductStockAdjustmentRequest)
+	{POST [/products/{id}/release-stock]}: releaseStock(Long,ProductStockAdjustmentRequest)
+	{GET [/products/{id}]}: getProductById(Long)
+	{GET [/products/search]}: searchProducts(String,String,String,String,String,BigDecimal,BigDecimal,int,int,String,String)
+2026-05-17T23:50:23.896+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseController:
+	{GET [/purchases/list]}: getAllPurchases()
+	{DELETE [/purchases/delete/{id}]}: deletePurchase(Long)
+	{GET [/purchases/details/{id} || /purchases/{id}]}: getPurchaseById(Long)
+	{PUT [/purchases/update/{id}]}: updatePurchase(Long,PurchaseRequest)
+	{POST [/purchases/create]}: createPurchase(PurchaseRequest)
+2026-05-17T23:50:23.896+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseOrderController:
+	{GET [/purchase-orders/list]}: getAllPurchaseOrders()
+	{GET [/purchase-orders/{id}]}: getPurchaseOrderById(Long)
+	{DELETE [/purchase-orders/delete/{id}]}: deletePurchaseOrder(Long)
+	{PUT [/purchase-orders/update/{id}]}: updatePurchaseOrder(Long,PurchaseOrder)
+	{POST [/purchase-orders/create]}: createPurchaseOrder(PurchaseOrder)
+2026-05-17T23:50:23.908+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseReturnController:
+	{DELETE [/purchase-returns/delete/{id}]}: deletePurchaseReturn(Long)
+	{GET [/purchase-returns/{id}]}: getPurchaseReturnById(Long)
+	{PUT [/purchase-returns/update/{id}]}: updatePurchaseReturn(Long,PurchaseReturn)
+	{POST [/purchase-returns/create]}: createPurchaseReturn(PurchaseReturn)
+	{GET [/purchase-returns/list]}: getAllPurchaseReturns()
+2026-05-17T23:50:23.910+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReceivedOrderController:
+	{PUT [/inventory/received-orders/status/{id} || /received-orders/status/{id}]}: updateReceivedOrderStatus(Long,ReceivedOrderStatusUpdateRequest)
+	{GET [/inventory/received-orders/{id} || /received-orders/{id}]}: getReceivedOrderById(Long)
+	{PUT [/inventory/received-orders/update || /received-orders/update || /inventory/received-orders/update/{id} || /received-orders/update/{id}]}: updateReceivedOrder(Long,ReceivedOrder)
+	{DELETE [/inventory/received-orders/delete/{id} || /received-orders/delete/{id}]}: deleteReceivedOrder(Long)
+	{POST [/inventory/received-orders/create || /inventory/received-orders || /received-orders/create || /received-orders]}: createReceivedOrder(ReceivedOrder)
+	{GET [/inventory/received-orders/list || /inventory/received-orders || /received-orders/list || /received-orders]}: getAllReceivedOrders()
+2026-05-17T23:50:23.910+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReportController:
+	{GET [/reports/summary]}: getSummary(String)
+	{GET [/reports/orders/monthly]}: getMonthlyOrders(String)
+	{GET [/reports/top-customers]}: getTopCustomers(String)
+	{GET [/reports/export/csv]}: exportCsv(String)
+	{GET [/reports/top-products]}: getTopProducts(String)
+	{GET [/reports/revenue/monthly]}: getMonthlyRevenue(String)
+2026-05-17T23:50:23.929+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReturnRequestController:
+	{GET [/returns/{id}]}: getReturnRequestById(Long)
+	{PUT [/returns/status/{id}]}: updateReturnRequestStatus(Long,ReturnRequestStatusUpdateRequest)
+	{DELETE [/returns/delete/{id}]}: deleteReturnRequest(Long)
+	{PUT [/returns/update/{id}]}: updateReturnRequest(Long,ReturnRequestStatusUpdateRequest)
+	{GET [/returns/customer/{customerId}]}: getCustomerReturnRequests(Long,AuthenticatedUser)
+	{POST [/returns/create]}: createReturnRequest(ReturnRequestCreateRequest)
+	{GET [/returns/list || /returns]}: getAllReturnRequests()
+	{POST [/returns/request]}: requestReturn(ReturnRequestCreateRequest,AuthenticatedUser)
+2026-05-17T23:50:23.931+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReviewController:
+	{GET [/reviews/my/order/{orderId}]}: getCustomerReviewsForOrder(Long,AuthenticatedUser)
+	{POST [/reviews/create]}: createReview(Review)
+	{POST [/reviews/submit]}: submitReview(ReviewSubmitRequest,AuthenticatedUser)
+	{GET [/reviews/list]}: getAllReviews()
+	{GET [/reviews/approved]}: getApprovedReviews(int)
+	{DELETE [/reviews/delete/{id}]}: deleteReview(Long)
+	{PUT [/reviews/approve/{id}]}: approveReview(Long)
+	{PUT [/reviews/reject/{id}]}: rejectReview(Long)
+	{PUT [/reviews/update/{id}]}: updateReview(Long,Review)
+	{GET [/reviews/my]}: getCustomerReviews(AuthenticatedUser)
+	{GET [/reviews/{id}]}: getReviewById(Long)
+	{GET [/reviews/product/{productId}/approved]}: getApprovedReviewsByProduct(Long,int)
+2026-05-17T23:50:23.943+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.RoleController:
+	{GET [/roles/list]}: getAllRoles()
+	{GET [/roles/{id}]}: getRoleById(Long)
+	{PUT [/roles/update/{id}]}: updateRole(Long,Role)
+	{POST [/roles/create]}: createRole(Role)
+	{DELETE [/roles/delete/{id}]}: deleteRole(Long)
+2026-05-17T23:50:23.943+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShipmentController:
+	{PUT [/shipments/update/{id} || /shipments/{id}]}: updateShipment(Long,Shipment)
+	{DELETE [/shipments/delete/{id} || /shipments/{id}]}: deleteShipment(Long)
+	{POST [/shipments/create || /shipments]}: createShipment(Shipment)
+	{GET [/shipments/{id}]}: getShipmentById(Long)
+	{GET [/shipments/list || /shipments]}: getAllShipments()
+	{GET [/shipments/order/{orderId}]}: getShipmentByOrderId(Long,AuthenticatedUser)
+	{PUT [/shipments/status/{id}]}: updateShipmentStatus(Long,ShipmentStatusUpdateRequest)
+2026-05-17T23:50:23.963+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShippingMethodController:
+	{GET [/shipping-methods/list]}: getAllShippingMethods()
+	{GET [/shipping-methods/{id}]}: getShippingMethodById(Long)
+	{DELETE [/shipping-methods/delete/{id}]}: deleteShippingMethod(Long)
+	{PUT [/shipping-methods/update/{id}]}: updateShippingMethod(Long,ShippingMethod)
+	{POST [/shipping-methods/create]}: createShippingMethod(ShippingMethod)
+2026-05-17T23:50:23.967+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.SubCategoryController:
+	{POST [/sub-categories/create || /subcategories/create]}: createSubCategory(SubCategory)
+	{GET [/sub-categories/{id} || /subcategories/{id}]}: getSubCategoryById(Long)
+	{PUT [/sub-categories/update/{id} || /subcategories/update/{id}]}: updateSubCategory(Long,SubCategory)
+	{DELETE [/sub-categories/delete/{id} || /subcategories/delete/{id}]}: deleteSubCategory(Long)
+	{GET [/sub-categories/list || /subcategories/list]}: getAllSubCategories()
+	{GET [/sub-categories/by-category/{categoryId} || /subcategories/by-category/{categoryId}]}: getSubCategoriesByCategory(Long)
+2026-05-17T23:50:23.972+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.UserController:
+	{DELETE [/users/delete/{id}]}: deleteUser(Long)
+	{POST [/users/create]}: createUser(User)
+	{PUT [/users/update/{id}]}: updateUser(Long,User)
+	{GET [/users/{id}]}: getUserById(Long)
+	{GET [/users/list]}: getAllUsers()
+2026-05-17T23:50:23.975+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.WarehouseController:
+	{GET [/warehouses/{id}]}: getWarehouseById(Long)
+	{PUT [/warehouses/update]}: updateWarehouse(Warehouse)
+	{GET [/warehouses/list]}: getAllWarehouses()
+	{DELETE [/warehouses/delete/{id}]}: deleteWarehouse(Long)
+	{POST [/warehouses/create]}: createWarehouse(Warehouse)
+2026-05-17T23:50:23.975+06:00 TRACE 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.w.a.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2026-05-17T23:50:23.990+06:00 DEBUG 19956 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 161 mappings in 'requestMappingHandlerMapping'
+2026-05-17T23:50:24.559+06:00  INFO 19956 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-05-17T23:50:24.571+06:00  INFO 19956 --- [           main] com.styleora.BackendApplication          : Started BackendApplication in 7.945 seconds (process running for 8.287)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: update admin_users set email=?,password=?,role=? where id=?
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(c1_0.email)=lower(?) limit ?
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0
+Hibernate: select count(c1_0.id) from category c1_0
+Hibernate: update customers c1_0 set status='ACTIVE' where c1_0.status is null or trim(BOTH from c1_0.status)=''
+2026-05-17T23:50:26.389+06:00  INFO 19956 --- [           main] c.s.s.DataConsistencyStartupService      : Startup customer status cleanup normalized=0
+Hibernate: select sm1_0.id,sm1_0.cost,sm1_0.courier_name,sm1_0.coverage_area,sm1_0.description,sm1_0.estimated_days,sm1_0.is_free_shipping,sm1_0.max_weight_kg,sm1_0.min_order_amount,sm1_0.name,sm1_0.sort_order,sm1_0.status from shipping_methods sm1_0 order by sm1_0.sort_order,sm1_0.id desc
+Hibernate: select sm1_0.id,sm1_0.cost,sm1_0.courier_name,sm1_0.coverage_area,sm1_0.description,sm1_0.estimated_days,sm1_0.is_free_shipping,sm1_0.max_weight_kg,sm1_0.min_order_amount,sm1_0.name,sm1_0.sort_order,sm1_0.status from shipping_methods sm1_0 where upper(coalesce(sm1_0.status,'ACTIVE'))='ACTIVE' order by sm1_0.sort_order,sm1_0.id desc
+2026-05-17T23:50:26.548+06:00  INFO 19956 --- [           main] c.s.s.DataConsistencyStartupService      : Startup shipping method cleanup activeCount=3
+2026-05-17T23:50:58.288+06:00  INFO 19956 --- [nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-17T23:50:58.290+06:00  INFO 19956 --- [nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-17T23:50:58.292+06:00  INFO 19956 --- [nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-17T23:50:58.320+06:00  WARN 19956 --- [nio-8081-exec-3] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/auth/login' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-05-17T23:50:58.354+06:00 TRACE 19956 --- [nio-8081-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-17T23:50:58.983+06:00 TRACE 19956 --- [nio-8081-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.OrderController#updateOrderStatus(Long, OrderStatusUpdateRequest)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.coupon_code,o1_0.coupon_discount,o1_0.created_at,o1_0.customer_id,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_sender_number,o1_0.payment_status,o1_0.payment_transaction_id,o1_0.priority,o1_0.product_discount_total,o1_0.regular_subtotal,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.subtotal_after_product_discount,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: update orders set billing_address=?,coupon_code=?,coupon_discount=?,created_at=?,customer_id=?,customer_email=?,customer_name=?,customer_phone=?,delivery_number=?,discount=?,order_id=?,order_status=?,payment_method=?,payment_sender_number=?,payment_status=?,payment_transaction_id=?,priority=?,product_discount_total=?,regular_subtotal=?,shipping_address=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=?,tracking_number=? where id=?
+2026-05-17T23:50:59.039+06:00  INFO 19956 --- [nio-8081-exec-4] com.styleora.service.OrderService        : Order status updated id=27, orderId=ORD-33981159, previousStatus=Confirmed, newStatus=Confirmed
+Hibernate: select i1_0.id,i1_0.billing_address,i1_0.coupon_code,i1_0.coupon_discount,i1_0.customer_email,i1_0.customer_name,i1_0.customer_phone,i1_0.discount,i1_0.due_date,i1_0.invoice_number,i1_0.issue_date,i1_0.notes,i1_0.order_id,i1_0.order_reference,i1_0.payment_method,i1_0.payment_status,i1_0.product_discount_total,i1_0.regular_subtotal,i1_0.shipping_cost,i1_0.subtotal,i1_0.subtotal_after_product_discount,i1_0.tax,i1_0.total_amount from invoices i1_0 where i1_0.order_id=? order by i1_0.id desc limit ?
+Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.customer_name,p1_0.invoice_id,p1_0.notes,p1_0.order_id,p1_0.payment_date,p1_0.payment_method,p1_0.payment_status,p1_0.transaction_id,p1_0.updated_at from payments p1_0 where p1_0.order_id=? order by p1_0.id desc limit ?
+2026-05-17T23:50:59.634+06:00 TRACE 19956 --- [nio-8081-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.OrderController#getOrderById(Long)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.coupon_code,o1_0.coupon_discount,o1_0.created_at,o1_0.customer_id,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_sender_number,o1_0.payment_status,o1_0.payment_transaction_id,o1_0.priority,o1_0.product_discount_total,o1_0.regular_subtotal,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.subtotal_after_product_discount,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: select oi1_0.id,oi1_0.color,oi1_0.discounted_unit_price,oi1_0.line_total,oi1_0.order_id,oi1_0.original_line_total,oi1_0.original_unit_price,oi1_0.product_id,oi1_0.product_discount_amount,oi1_0.product_discount_line_total,oi1_0.product_discount_rate,oi1_0.product_image,oi1_0.product_name,oi1_0.quantity,oi1_0.size,oi1_0.unit_price from order_items oi1_0 where oi1_0.order_id=? order by oi1_0.id
+Hibernate: select s1_0.id,s1_0.courier_name,s1_0.delivered_date,s1_0.dispatch_date,s1_0.estimated_delivery_date,s1_0.order_id,s1_0.remarks,s1_0.shipping_method_id,s1_0.status,s1_0.tracking_number from shipments s1_0 where s1_0.order_id=? order by case when s1_0.estimated_delivery_date is null then 1 else 0 end,s1_0.estimated_delivery_date desc,case when s1_0.dispatch_date is null then 1 else 0 end,s1_0.dispatch_date desc,s1_0.id desc limit ?
+2026-05-17T23:51:08.359+06:00 TRACE 19956 --- [nio-8081-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-17T23:51:08.625+06:00 TRACE 19956 --- [nio-8081-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.OrderController#updateOrderStatus(Long, OrderStatusUpdateRequest)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.coupon_code,o1_0.coupon_discount,o1_0.created_at,o1_0.customer_id,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_sender_number,o1_0.payment_status,o1_0.payment_transaction_id,o1_0.priority,o1_0.product_discount_total,o1_0.regular_subtotal,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.subtotal_after_product_discount,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: update orders set billing_address=?,coupon_code=?,coupon_discount=?,created_at=?,customer_id=?,customer_email=?,customer_name=?,customer_phone=?,delivery_number=?,discount=?,order_id=?,order_status=?,payment_method=?,payment_sender_number=?,payment_status=?,payment_transaction_id=?,priority=?,product_discount_total=?,regular_subtotal=?,shipping_address=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=?,tracking_number=? where id=?
+2026-05-17T23:51:08.640+06:00  INFO 19956 --- [nio-8081-exec-8] com.styleora.service.OrderService        : Order status updated id=27, orderId=ORD-33981159, previousStatus=Delivered, newStatus=Delivered
+Hibernate: select i1_0.id,i1_0.billing_address,i1_0.coupon_code,i1_0.coupon_discount,i1_0.customer_email,i1_0.customer_name,i1_0.customer_phone,i1_0.discount,i1_0.due_date,i1_0.invoice_number,i1_0.issue_date,i1_0.notes,i1_0.order_id,i1_0.order_reference,i1_0.payment_method,i1_0.payment_status,i1_0.product_discount_total,i1_0.regular_subtotal,i1_0.shipping_cost,i1_0.subtotal,i1_0.subtotal_after_product_discount,i1_0.tax,i1_0.total_amount from invoices i1_0 where i1_0.order_id=? order by i1_0.id desc limit ?
+Hibernate: update invoices set billing_address=?,coupon_code=?,coupon_discount=?,customer_email=?,customer_name=?,customer_phone=?,discount=?,due_date=?,invoice_number=?,issue_date=?,notes=?,order_id=?,order_reference=?,payment_method=?,payment_status=?,product_discount_total=?,regular_subtotal=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=? where id=?
+Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.customer_name,p1_0.invoice_id,p1_0.notes,p1_0.order_id,p1_0.payment_date,p1_0.payment_method,p1_0.payment_status,p1_0.transaction_id,p1_0.updated_at from payments p1_0 where p1_0.order_id=? order by p1_0.id desc limit ?
+Hibernate: update payments set amount=?,created_at=?,customer_name=?,invoice_id=?,notes=?,order_id=?,payment_date=?,payment_method=?,payment_status=?,transaction_id=?,updated_at=? where id=?
+Hibernate: update orders set billing_address=?,coupon_code=?,coupon_discount=?,created_at=?,customer_id=?,customer_email=?,customer_name=?,customer_phone=?,delivery_number=?,discount=?,order_id=?,order_status=?,payment_method=?,payment_sender_number=?,payment_status=?,payment_transaction_id=?,priority=?,product_discount_total=?,regular_subtotal=?,shipping_address=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=?,tracking_number=? where id=?
+2026-05-17T23:51:09.405+06:00 TRACE 19956 --- [nio-8081-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.OrderController#getOrderById(Long)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.coupon_code,o1_0.coupon_discount,o1_0.created_at,o1_0.customer_id,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_sender_number,o1_0.payment_status,o1_0.payment_transaction_id,o1_0.priority,o1_0.product_discount_total,o1_0.regular_subtotal,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.subtotal_after_product_discount,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: select oi1_0.id,oi1_0.color,oi1_0.discounted_unit_price,oi1_0.line_total,oi1_0.order_id,oi1_0.original_line_total,oi1_0.original_unit_price,oi1_0.product_id,oi1_0.product_discount_amount,oi1_0.product_discount_line_total,oi1_0.product_discount_rate,oi1_0.product_image,oi1_0.product_name,oi1_0.quantity,oi1_0.size,oi1_0.unit_price from order_items oi1_0 where oi1_0.order_id=? order by oi1_0.id
+Hibernate: select s1_0.id,s1_0.courier_name,s1_0.delivered_date,s1_0.dispatch_date,s1_0.estimated_delivery_date,s1_0.order_id,s1_0.remarks,s1_0.shipping_method_id,s1_0.status,s1_0.tracking_number from shipments s1_0 where s1_0.order_id=? order by case when s1_0.estimated_delivery_date is null then 1 else 0 end,s1_0.estimated_delivery_date desc,case when s1_0.dispatch_date is null then 1 else 0 end,s1_0.dispatch_date desc,s1_0.id desc limit ?
+2026-05-17T23:51:09.445+06:00 TRACE 19956 --- [io-8081-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.InvoiceController#getInvoicesByOrderId(Long)
+Hibernate: select i1_0.id,i1_0.billing_address,i1_0.coupon_code,i1_0.coupon_discount,i1_0.customer_email,i1_0.customer_name,i1_0.customer_phone,i1_0.discount,i1_0.due_date,i1_0.invoice_number,i1_0.issue_date,i1_0.notes,i1_0.order_id,i1_0.order_reference,i1_0.payment_method,i1_0.payment_status,i1_0.product_discount_total,i1_0.regular_subtotal,i1_0.shipping_cost,i1_0.subtotal,i1_0.subtotal_after_product_discount,i1_0.tax,i1_0.total_amount from invoices i1_0 where i1_0.order_id=? order by i1_0.id desc
+2026-05-17T23:51:09.473+06:00 TRACE 19956 --- [nio-8081-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.PaymentController#getPaymentsByOrderId(Long)
+Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.customer_name,p1_0.invoice_id,p1_0.notes,p1_0.order_id,p1_0.payment_date,p1_0.payment_method,p1_0.payment_status,p1_0.transaction_id,p1_0.updated_at from payments p1_0 where p1_0.order_id=? order by p1_0.id desc
+2026-05-17T23:51:19.826+06:00 TRACE 19956 --- [nio-8081-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.AuthController#login(AdminLoginRequest)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+2026-05-17T23:51:20.093+06:00 TRACE 19956 --- [nio-8081-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.OrderController#updateOrderStatus(Long, OrderStatusUpdateRequest)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.coupon_code,o1_0.coupon_discount,o1_0.created_at,o1_0.customer_id,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_sender_number,o1_0.payment_status,o1_0.payment_transaction_id,o1_0.priority,o1_0.product_discount_total,o1_0.regular_subtotal,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.subtotal_after_product_discount,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: update orders set billing_address=?,coupon_code=?,coupon_discount=?,created_at=?,customer_id=?,customer_email=?,customer_name=?,customer_phone=?,delivery_number=?,discount=?,order_id=?,order_status=?,payment_method=?,payment_sender_number=?,payment_status=?,payment_transaction_id=?,priority=?,product_discount_total=?,regular_subtotal=?,shipping_address=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=?,tracking_number=? where id=?
+2026-05-17T23:51:20.112+06:00  INFO 19956 --- [nio-8081-exec-4] com.styleora.service.OrderService        : Order status updated id=27, orderId=ORD-33981159, previousStatus=Cancelled, newStatus=Cancelled
+Hibernate: select i1_0.id,i1_0.billing_address,i1_0.coupon_code,i1_0.coupon_discount,i1_0.customer_email,i1_0.customer_name,i1_0.customer_phone,i1_0.discount,i1_0.due_date,i1_0.invoice_number,i1_0.issue_date,i1_0.notes,i1_0.order_id,i1_0.order_reference,i1_0.payment_method,i1_0.payment_status,i1_0.product_discount_total,i1_0.regular_subtotal,i1_0.shipping_cost,i1_0.subtotal,i1_0.subtotal_after_product_discount,i1_0.tax,i1_0.total_amount from invoices i1_0 where i1_0.order_id=? order by i1_0.id desc limit ?
+Hibernate: update invoices set billing_address=?,coupon_code=?,coupon_discount=?,customer_email=?,customer_name=?,customer_phone=?,discount=?,due_date=?,invoice_number=?,issue_date=?,notes=?,order_id=?,order_reference=?,payment_method=?,payment_status=?,product_discount_total=?,regular_subtotal=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=? where id=?
+Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.customer_name,p1_0.invoice_id,p1_0.notes,p1_0.order_id,p1_0.payment_date,p1_0.payment_method,p1_0.payment_status,p1_0.transaction_id,p1_0.updated_at from payments p1_0 where p1_0.order_id=? order by p1_0.id desc limit ?
+Hibernate: update payments set amount=?,created_at=?,customer_name=?,invoice_id=?,notes=?,order_id=?,payment_date=?,payment_method=?,payment_status=?,transaction_id=?,updated_at=? where id=?
+Hibernate: update orders set billing_address=?,coupon_code=?,coupon_discount=?,created_at=?,customer_id=?,customer_email=?,customer_name=?,customer_phone=?,delivery_number=?,discount=?,order_id=?,order_status=?,payment_method=?,payment_sender_number=?,payment_status=?,payment_transaction_id=?,priority=?,product_discount_total=?,regular_subtotal=?,shipping_address=?,shipping_cost=?,subtotal=?,subtotal_after_product_discount=?,tax=?,total_amount=?,tracking_number=? where id=?
+2026-05-17T23:51:20.875+06:00 TRACE 19956 --- [nio-8081-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.OrderController#getOrderById(Long)
+Hibernate: select o1_0.id,o1_0.billing_address,o1_0.coupon_code,o1_0.coupon_discount,o1_0.created_at,o1_0.customer_id,o1_0.customer_email,o1_0.customer_name,o1_0.customer_phone,o1_0.delivery_number,o1_0.discount,o1_0.order_id,o1_0.order_status,o1_0.payment_method,o1_0.payment_sender_number,o1_0.payment_status,o1_0.payment_transaction_id,o1_0.priority,o1_0.product_discount_total,o1_0.regular_subtotal,o1_0.shipping_address,o1_0.shipping_cost,o1_0.subtotal,o1_0.subtotal_after_product_discount,o1_0.tax,o1_0.total_amount,o1_0.tracking_number from orders o1_0 where o1_0.id=?
+Hibernate: select oi1_0.id,oi1_0.color,oi1_0.discounted_unit_price,oi1_0.line_total,oi1_0.order_id,oi1_0.original_line_total,oi1_0.original_unit_price,oi1_0.product_id,oi1_0.product_discount_amount,oi1_0.product_discount_line_total,oi1_0.product_discount_rate,oi1_0.product_image,oi1_0.product_name,oi1_0.quantity,oi1_0.size,oi1_0.unit_price from order_items oi1_0 where oi1_0.order_id=? order by oi1_0.id
+Hibernate: select s1_0.id,s1_0.courier_name,s1_0.delivered_date,s1_0.dispatch_date,s1_0.estimated_delivery_date,s1_0.order_id,s1_0.remarks,s1_0.shipping_method_id,s1_0.status,s1_0.tracking_number from shipments s1_0 where s1_0.order_id=? order by case when s1_0.estimated_delivery_date is null then 1 else 0 end,s1_0.estimated_delivery_date desc,case when s1_0.dispatch_date is null then 1 else 0 end,s1_0.dispatch_date desc,s1_0.id desc limit ?
+2026-05-17T23:51:20.915+06:00 TRACE 19956 --- [nio-8081-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.InvoiceController#getInvoicesByOrderId(Long)
+Hibernate: select i1_0.id,i1_0.billing_address,i1_0.coupon_code,i1_0.coupon_discount,i1_0.customer_email,i1_0.customer_name,i1_0.customer_phone,i1_0.discount,i1_0.due_date,i1_0.invoice_number,i1_0.issue_date,i1_0.notes,i1_0.order_id,i1_0.order_reference,i1_0.payment_method,i1_0.payment_status,i1_0.product_discount_total,i1_0.regular_subtotal,i1_0.shipping_cost,i1_0.subtotal,i1_0.subtotal_after_product_discount,i1_0.tax,i1_0.total_amount from invoices i1_0 where i1_0.order_id=? order by i1_0.id desc
+2026-05-17T23:51:20.931+06:00 TRACE 19956 --- [nio-8081-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.styleora.controller.PaymentController#getPaymentsByOrderId(Long)
+Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.customer_name,p1_0.invoice_id,p1_0.notes,p1_0.order_id,p1_0.payment_date,p1_0.payment_method,p1_0.payment_status,p1_0.transaction_id,p1_0.updated_at from payments p1_0 where p1_0.order_id=? order by p1_0.id desc
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:20 min
+[INFO] Finished at: 2026-05-17T23:51:34+06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.5:run (default-cli) on project backend: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -1,0 +1,323 @@
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml
+Progress (1): 249 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml (249 B at 485 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml
+Progress (1): 255 B                   Downloaded from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml (255 B at 416 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml
+Progress (1): 398 BProgress (2): 398 B | 234 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml (398 B at 1.5 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml
+Downloaded from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml (234 B at 298 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml
+Progress (1): 394 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml (394 B at 4.3 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
+Progress (1): 375 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml (375 B at 1.4 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Progress (1): 3.4 kBProgress (1): 7.3 kBProgress (1): 12 kB Progress (1): 16 kBProgress (1): 20 kBProgress (1): 21 kBProgress (2): 21 kB | 242 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml (242 B at 1.5 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (21 kB at 172 kB/s)
+Progress (1): 243 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml (243 B at 229 B/s)
+Progress (1): 4.6 kBProgress (1): 9.7 kBProgress (1): 14 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (14 kB at 48 kB/s)
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory F:\My Project\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-05-06T20:34:28.131+06:00  INFO 13628 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 13628 (F:\My Project\backend\target\classes started by USER in F:\My Project\backend)
+2026-05-06T20:34:28.137+06:00  INFO 13628 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-05-06T20:34:28.984+06:00  INFO 13628 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-06T20:34:29.016+06:00  INFO 13628 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JPA repository interfaces.
+2026-05-06T20:34:29.612+06:00  INFO 13628 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-05-06T20:34:29.637+06:00  INFO 13628 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-06T20:34:29.637+06:00  INFO 13628 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-06T20:34:29.712+06:00  INFO 13628 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1533 ms
+2026-05-06T20:34:29.903+06:00  INFO 13628 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-06T20:34:29.960+06:00  INFO 13628 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-06T20:34:30.578+06:00  INFO 13628 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-06T20:34:30.669+06:00  INFO 13628 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-06T20:34:31.388+06:00  INFO 13628 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2095c331
+2026-05-06T20:34:31.393+06:00  INFO 13628 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-06T20:34:31.517+06:00  WARN 13628 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-06T20:34:31.565+06:00  INFO 13628 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-06T20:34:34.761+06:00  INFO 13628 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-06T20:34:34.980+06:00  INFO 13628 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-06T20:34:35.570+06:00  WARN 13628 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-06T20:34:35.737+06:00  WARN 13628 --- [           main] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3dd08e93-f7a6-435d-b78e-ae6e8ee35703
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-06T20:34:35.760+06:00  INFO 13628 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-06T20:34:36.188+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AppSettingController:
+	{GET [/settings/current]}: getCurrentSettingLegacy()
+	{PUT [/settings/update/{id}]}: updateSetting(Long,AppSetting)
+	{DELETE [/settings/delete/{id}]}: deleteSetting(Long)
+	{POST [/settings/save]}: saveSetting(AppSetting)
+	{GET [/settings]}: getCurrentSetting()
+2026-05-06T20:34:36.204+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeController:
+	{DELETE [/attributes/delete/{id}]}: deleteAttribute(Long)
+	{GET [/attributes/{id}]}: getAttributeById(Long)
+	{GET [/attributes/list]}: getAllAttributes()
+	{PUT [/attributes/update/{id}]}: updateAttribute(Long,Attribute)
+	{POST [/attributes/create]}: createAttribute(Attribute)
+2026-05-06T20:34:36.213+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeValueController:
+	{GET [/attribute-values/list]}: getAllAttributeValues()
+	{POST [/attribute-values/create]}: createAttributeValue(AttributeValue)
+	{DELETE [/attribute-values/delete/{id}]}: deleteAttributeValue(Long)
+	{PUT [/attribute-values/update/{id}]}: updateAttributeValue(Long,AttributeValue)
+	{GET [/attribute-values/{id}]}: getAttributeValueById(Long)
+	{GET [/attribute-values/by-attribute/{attributeId}]}: getAttributeValuesByAttributeId(Long)
+2026-05-06T20:34:36.221+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AuthController:
+	{POST [/auth/login]}: login(AdminLoginRequest)
+2026-05-06T20:34:36.229+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CategoryController:
+	{GET [/categories/{id}]}: getCategoryById(Long)
+	{PUT [/categories/update/{id}]}: updateCategory(Long,Category)
+	{GET [/categories/list]}: getAllCategories()
+	{POST [/categories/create]}: createCategory(Category)
+	{DELETE [/categories/delete/{id}]}: deleteCategory(Long)
+2026-05-06T20:34:36.237+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CouponController:
+	{POST [/coupons/create]}: createCoupon(Coupon)
+	{POST [/coupons/apply]}: applyCoupon(ApplyCouponRequest)
+	{GET [/coupons/list]}: getAllCoupons()
+	{GET [/coupons/{id}]}: getCouponById(Long)
+	{PUT [/coupons/update/{id}]}: updateCoupon(Long,Coupon)
+	{DELETE [/coupons/delete/{id}]}: deleteCoupon(Long)
+2026-05-06T20:34:36.246+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CustomerController:
+	{POST [/customers/register]}: register(CustomerRegisterRequest)
+	{GET [/customers/profile]}: getProfile(AuthenticatedUser)
+	{POST [/customers/login]}: login(CustomerLoginRequest)
+	{GET [/customers/deleted]}: getDeletedCustomers()
+	{DELETE [/customers/delete/{id}]}: deleteCustomer(Long)
+	{POST [/customers/create]}: createCustomer(Customer)
+	{GET [/customers/{id}]}: getCustomerById(Long)
+	{PUT [/customers/restore/{id}]}: restoreCustomer(Long)
+	{PUT [/customers/update/{id}]}: updateCustomer(Long,Customer)
+	{GET [/customers/list]}: getAllCustomers()
+2026-05-06T20:34:36.257+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.HealthController:
+	{GET [/health]}: health()
+2026-05-06T20:34:36.262+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.InvoiceController:
+	{GET [/invoices/by-order/{orderId}]}: getInvoicesByOrderId(Long)
+	{DELETE [/invoices/delete/{id}]}: deleteInvoice(Long)
+	{PUT [/invoices/update/{id}]}: updateInvoice(Long,Invoice)
+	{GET [/invoices/list]}: getAllInvoices()
+	{POST [/invoices/create]}: createInvoice(Invoice)
+	{GET [/invoices/{id}]}: getInvoiceById(Long)
+2026-05-06T20:34:36.270+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.OrderController:
+	{GET [/orders/my/reference/{orderId}]}: getMyOrderByReference(String,AuthenticatedUser)
+	{PUT [/orders/update/{id}]}: updateOrder(Long,OrderRequest)
+	{GET [/orders/{id}]}: getOrderById(Long)
+	{POST [/orders/create]}: createOrder(OrderRequest,AuthenticatedUser)
+	{GET [/orders/list]}: getAllOrders()
+	{PUT [/orders/status/{id}]}: updateOrderStatus(Long,OrderStatusUpdateRequest)
+	{GET [/orders/my]}: getMyOrders(AuthenticatedUser)
+	{DELETE [/orders/delete/{id}]}: deleteOrder(Long)
+	{GET [/orders/my/{id}]}: getMyOrderById(Long,AuthenticatedUser)
+	{PUT [/orders/update]}: updateOrderLegacy(OrderRequest)
+2026-05-06T20:34:36.278+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PaymentController:
+	{GET [/payments/by-order/{orderId}]}: getPaymentsByOrderId(Long)
+	{GET [/payments/by-invoice/{invoiceId}]}: getPaymentsByInvoiceId(Long)
+	{PUT [/payments/update/{id}]}: updatePayment(Long,Payment)
+	{POST [/payments/create]}: createPayment(Payment)
+	{GET [/payments/{id}]}: getPaymentById(Long)
+	{DELETE [/payments/delete/{id}]}: deletePayment(Long)
+	{GET [/payments/list]}: getAllPayments()
+2026-05-06T20:34:36.295+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ProductController:
+	{POST [/products/create-upload], consumes [multipart/form-data]}: createProductWithUpload(ProductUploadRequest)
+	{GET [/products/low-stock]}: getLowStockProducts()
+	{PUT [/products/update-upload/{id}], consumes [multipart/form-data]}: updateProductWithUpload(Long,ProductUploadRequest)
+	{PUT [/products/update/{id}]}: updateProduct(Long,Product)
+	{GET [/products/search]}: searchProducts(String,String,String,String,String,BigDecimal,BigDecimal,int,int,String,String)
+	{DELETE [/products/delete/{id}]}: deleteProduct(Long)
+	{GET [/products/list]}: getAllProducts()
+	{GET [/products/page]}: getProductsPage(int,int,String,String)
+	{GET [/products/{id}]}: getProductById(Long)
+	{POST [/products/create]}: createProduct(Product)
+2026-05-06T20:34:36.312+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseController:
+	{PUT [/purchases/update/{id}]}: updatePurchase(Long,Purchase)
+	{POST [/purchases/create]}: createPurchase(Purchase)
+	{DELETE [/purchases/delete/{id}]}: deletePurchase(Long)
+	{GET [/purchases/list]}: getAllPurchases()
+	{GET [/purchases/{id}]}: getPurchaseById(Long)
+2026-05-06T20:34:36.312+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseOrderController:
+	{GET [/purchase-orders/{id}]}: getPurchaseOrderById(Long)
+	{DELETE [/purchase-orders/delete/{id}]}: deletePurchaseOrder(Long)
+	{PUT [/purchase-orders/update/{id}]}: updatePurchaseOrder(Long,PurchaseOrder)
+	{POST [/purchase-orders/create]}: createPurchaseOrder(PurchaseOrder)
+	{GET [/purchase-orders/list]}: getAllPurchaseOrders()
+2026-05-06T20:34:36.320+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseReturnController:
+	{POST [/purchase-returns/create]}: createPurchaseReturn(PurchaseReturn)
+	{GET [/purchase-returns/{id}]}: getPurchaseReturnById(Long)
+	{GET [/purchase-returns/list]}: getAllPurchaseReturns()
+	{DELETE [/purchase-returns/delete/{id}]}: deletePurchaseReturn(Long)
+	{PUT [/purchase-returns/update/{id}]}: updatePurchaseReturn(Long,PurchaseReturn)
+2026-05-06T20:34:36.331+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReceivedOrderController:
+	{PUT [/received-orders/update]}: updateReceivedOrder(ReceivedOrder)
+	{GET [/received-orders/{id}]}: getReceivedOrderById(Long)
+	{POST [/received-orders/create]}: createReceivedOrder(ReceivedOrder)
+	{DELETE [/received-orders/delete/{id}]}: deleteReceivedOrder(Long)
+	{GET [/received-orders/list]}: getAllReceivedOrders()
+2026-05-06T20:34:36.336+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReportController:
+	{GET [/reports/revenue/monthly]}: getMonthlyRevenue(String)
+	{GET [/reports/orders/monthly]}: getMonthlyOrders(String)
+	{GET [/reports/summary]}: getSummary(String)
+	{GET [/reports/export/csv]}: exportCsv(String)
+	{GET [/reports/top-customers]}: getTopCustomers(String)
+	{GET [/reports/top-products]}: getTopProducts(String)
+2026-05-06T20:34:36.336+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReturnRequestController:
+	{POST [/returns/create]}: createReturnRequest(ReturnRequest)
+	{GET [/returns/list]}: getAllReturnRequests()
+	{GET [/returns/{id}]}: getReturnRequestById(Long)
+	{PUT [/returns/update/{id}]}: updateReturnRequest(Long,ReturnRequest)
+	{DELETE [/returns/delete/{id}]}: deleteReturnRequest(Long)
+2026-05-06T20:34:36.354+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReviewController:
+	{GET [/reviews/{id}]}: getReviewById(Long)
+	{DELETE [/reviews/delete/{id}]}: deleteReview(Long)
+	{PUT [/reviews/reject/{id}]}: rejectReview(Long)
+	{PUT [/reviews/approve/{id}]}: approveReview(Long)
+	{POST [/reviews/create]}: createReview(Review)
+	{PUT [/reviews/update/{id}]}: updateReview(Long,Review)
+	{GET [/reviews/list]}: getAllReviews()
+2026-05-06T20:34:36.361+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.RoleController:
+	{GET [/roles/list]}: getAllRoles()
+	{GET [/roles/{id}]}: getRoleById(Long)
+	{PUT [/roles/update/{id}]}: updateRole(Long,Role)
+	{DELETE [/roles/delete/{id}]}: deleteRole(Long)
+	{POST [/roles/create]}: createRole(Role)
+2026-05-06T20:34:36.367+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShipmentController:
+	{DELETE [/shipments/delete/{id}]}: deleteShipment(Long)
+	{GET [/shipments/list]}: getAllShipments()
+	{GET [/shipments/{id}]}: getShipmentById(Long)
+	{POST [/shipments/create]}: createShipment(Shipment)
+	{PUT [/shipments/update/{id}]}: updateShipment(Long,Shipment)
+2026-05-06T20:34:36.370+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShippingMethodController:
+	{POST [/shipping-methods/create]}: createShippingMethod(ShippingMethod)
+	{DELETE [/shipping-methods/delete/{id}]}: deleteShippingMethod(Long)
+	{GET [/shipping-methods/{id}]}: getShippingMethodById(Long)
+	{GET [/shipping-methods/list]}: getAllShippingMethods()
+	{PUT [/shipping-methods/update/{id}]}: updateShippingMethod(Long,ShippingMethod)
+2026-05-06T20:34:36.378+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.SubCategoryController:
+	{GET [/sub-categories/list]}: getAllSubCategories()
+	{PUT [/sub-categories/update/{id}]}: updateSubCategory(Long,SubCategory)
+	{DELETE [/sub-categories/delete/{id}]}: deleteSubCategory(Long)
+	{POST [/sub-categories/create]}: createSubCategory(SubCategory)
+	{GET [/sub-categories/{id}]}: getSubCategoryById(Long)
+2026-05-06T20:34:36.386+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.UserController:
+	{PUT [/users/update/{id}]}: updateUser(Long,User)
+	{DELETE [/users/delete/{id}]}: deleteUser(Long)
+	{GET [/users/list]}: getAllUsers()
+	{GET [/users/{id}]}: getUserById(Long)
+	{POST [/users/create]}: createUser(User)
+2026-05-06T20:34:36.386+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.WarehouseController:
+	{PUT [/warehouses/update]}: updateWarehouse(Warehouse)
+	{GET [/warehouses/list]}: getAllWarehouses()
+	{POST [/warehouses/create]}: createWarehouse(Warehouse)
+	{GET [/warehouses/{id}]}: getWarehouseById(Long)
+	{DELETE [/warehouses/delete/{id}]}: deleteWarehouse(Long)
+2026-05-06T20:34:36.394+06:00 TRACE 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.w.a.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2026-05-06T20:34:36.402+06:00 DEBUG 13628 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 142 mappings in 'requestMappingHandlerMapping'
+2026-05-06T20:34:36.916+06:00  WARN 13628 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-05-06T20:34:36.932+06:00  INFO 13628 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-06T20:34:36.937+06:00  INFO 13628 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-06T20:34:36.949+06:00  INFO 13628 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-06T20:34:36.973+06:00  INFO 13628 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-06T20:34:37.007+06:00 ERROR 13628 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.376 s
+[INFO] Finished at: 2026-05-06T20:34:37+06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.5:run (default-cli) on project backend: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

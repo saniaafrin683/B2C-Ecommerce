@@ -1,0 +1,8 @@
+{
+    "blockedDelete":  "unexpected success",
+    "createdCustomerId":  23,
+    "deletedBeforeContains":  true,
+    "deletedAfterContains":  false,
+    "deletedCountBefore":  19,
+    "deletedCountAfter":  18
+}

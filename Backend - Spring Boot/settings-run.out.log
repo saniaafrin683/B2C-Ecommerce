@@ -1,0 +1,91 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] skip non existing resourceDirectory F:\MyProjectttttt\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-04-24T22:32:34.237+06:00  INFO 22212 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 22212 (F:\MyProjectttttt\backend\target\classes started by USER in F:\MyProjectttttt\backend)
+2026-04-24T22:32:34.237+06:00  INFO 22212 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-04-24T22:32:34.785+06:00  INFO 22212 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-24T22:32:34.821+06:00  INFO 22212 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 JPA repository interfaces.
+2026-04-24T22:32:35.193+06:00  INFO 22212 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-04-24T22:32:35.213+06:00  INFO 22212 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-24T22:32:35.213+06:00  INFO 22212 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-24T22:32:35.257+06:00  INFO 22212 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 971 ms
+2026-04-24T22:32:35.398+06:00  INFO 22212 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-24T22:32:35.446+06:00  INFO 22212 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-24T22:32:35.774+06:00  INFO 22212 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-24T22:32:35.810+06:00  INFO 22212 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-24T22:32:36.055+06:00  INFO 22212 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23bd2f6e
+2026-04-24T22:32:36.071+06:00  INFO 22212 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-24T22:32:36.104+06:00  WARN 22212 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-24T22:32:36.121+06:00  INFO 22212 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-24T22:32:38.291+06:00  INFO 22212 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-24T22:32:38.505+06:00  INFO 22212 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-24T22:32:39.090+06:00  WARN 22212 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-24T22:32:39.924+06:00  INFO 22212 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-04-24T22:32:39.935+06:00  INFO 22212 --- [           main] com.styleora.BackendApplication          : Started BackendApplication in 6.097 seconds (process running for 6.456)
+2026-04-24T22:32:51.614+06:00  INFO 22212 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-24T22:32:51.614+06:00  INFO 22212 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-24T22:32:51.614+06:00  INFO 22212 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+Hibernate: select as1_0.id,as1_0.business_address,as1_0.created_at,as1_0.currency,as1_0.favicon_url,as1_0.invoice_prefix,as1_0.logo_url,as1_0.maintenance_mode,as1_0.order_prefix,as1_0.payment_methods,as1_0.shipping_charge,as1_0.store_name,as1_0.store_tagline,as1_0.support_email,as1_0.support_phone,as1_0.tax_rate,as1_0.updated_at from app_settings as1_0 order by as1_0.id desc limit ?
+Hibernate: select as1_0.id,as1_0.business_address,as1_0.created_at,as1_0.currency,as1_0.favicon_url,as1_0.invoice_prefix,as1_0.logo_url,as1_0.maintenance_mode,as1_0.order_prefix,as1_0.payment_methods,as1_0.shipping_charge,as1_0.store_name,as1_0.store_tagline,as1_0.support_email,as1_0.support_phone,as1_0.tax_rate,as1_0.updated_at from app_settings as1_0 order by as1_0.id desc limit ?
+Hibernate: insert into app_settings (business_address,created_at,currency,favicon_url,invoice_prefix,logo_url,maintenance_mode,order_prefix,payment_methods,shipping_charge,store_name,store_tagline,support_email,support_phone,tax_rate,updated_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select as1_0.id,as1_0.business_address,as1_0.created_at,as1_0.currency,as1_0.favicon_url,as1_0.invoice_prefix,as1_0.logo_url,as1_0.maintenance_mode,as1_0.order_prefix,as1_0.payment_methods,as1_0.shipping_charge,as1_0.store_name,as1_0.store_tagline,as1_0.support_email,as1_0.support_phone,as1_0.tax_rate,as1_0.updated_at from app_settings as1_0 order by as1_0.id desc limit ?
+Hibernate: select as1_0.id,as1_0.business_address,as1_0.created_at,as1_0.currency,as1_0.favicon_url,as1_0.invoice_prefix,as1_0.logo_url,as1_0.maintenance_mode,as1_0.order_prefix,as1_0.payment_methods,as1_0.shipping_charge,as1_0.store_name,as1_0.store_tagline,as1_0.support_email,as1_0.support_phone,as1_0.tax_rate,as1_0.updated_at from app_settings as1_0 where as1_0.id=?
+Hibernate: update app_settings set business_address=?,created_at=?,currency=?,favicon_url=?,invoice_prefix=?,logo_url=?,maintenance_mode=?,order_prefix=?,payment_methods=?,shipping_charge=?,store_name=?,store_tagline=?,support_email=?,support_phone=?,tax_rate=?,updated_at=? where id=?
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  59.983 s
+[INFO] Finished at: 2026-04-24T22:33:30+06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.5:run (default-cli) on project backend: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

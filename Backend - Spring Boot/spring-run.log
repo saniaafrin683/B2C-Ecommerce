@@ -1,0 +1,394 @@
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml
+Progress (1): 255 BProgress (2): 255 B | 234 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/flywaydb/maven-metadata.xml (234 B at 444 B/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/io/github/git-commit-id/maven-metadata.xml (255 B at 482 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml
+Progress (1): 249 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/springframework/boot/maven-metadata.xml (249 B at 437 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml
+Progress (1): 243 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml (243 B at 419 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml
+Progress (1): 375 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/maven-metadata.xml (375 B at 6.5 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
+Progress (1): 4.6 kBProgress (1): 9.7 kBProgress (1): 14 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (14 kB at 172 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Progress (1): 394 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/liquibase/maven-metadata.xml (394 B at 3.0 kB/s)
+Progress (1): 3.1 kBProgress (1): 7.7 kBProgress (1): 12 kB Progress (1): 17 kBProgress (1): 20 kBProgress (1): 21 kBProgress (2): 21 kB | 242 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/graalvm/buildtools/maven-metadata.xml (242 B at 1.5 kB/s)
+Progress (2): 21 kB | 398 B                           Downloaded from central: https://repo.maven.apache.org/maven2/org/jooq/maven-metadata.xml (398 B at 1.3 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (21 kB at 117 kB/s)
+[INFO] 
+[INFO] ------------------------< com.styleora:backend >------------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.5:run (default-cli) > test-compile @ backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.5:run (default-cli) < test-compile @ backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.5:run (default-cli) @ backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-05-12T14:43:44.694+06:00  INFO 18660 --- [           main] com.styleora.BackendApplication          : Starting BackendApplication using Java 17.0.18 with PID 18660 (F:\My Project\backend\target\classes started by USER in F:\My Project\backend)
+2026-05-12T14:43:44.696+06:00  INFO 18660 --- [           main] com.styleora.BackendApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-05-12T14:43:45.388+06:00  INFO 18660 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-12T14:43:45.411+06:00  INFO 18660 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 JPA repository interfaces.
+2026-05-12T14:43:45.886+06:00  INFO 18660 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-05-12T14:43:45.895+06:00  INFO 18660 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-12T14:43:45.895+06:00  INFO 18660 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-12T14:43:45.945+06:00  INFO 18660 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1207 ms
+2026-05-12T14:43:46.088+06:00  INFO 18660 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-12T14:43:46.122+06:00  INFO 18660 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-12T14:43:46.446+06:00  INFO 18660 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-12T14:43:46.472+06:00  INFO 18660 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-12T14:43:46.718+06:00  INFO 18660 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6614289a
+2026-05-12T14:43:46.720+06:00  INFO 18660 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-12T14:43:46.771+06:00  WARN 18660 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-12T14:43:46.784+06:00  INFO 18660 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/orabackend]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: orabackend/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-12T14:43:48.024+06:00  INFO 18660 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-12T14:43:48.131+06:00  INFO 18660 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-12T14:43:48.398+06:00  WARN 18660 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-12T14:43:48.459+06:00  WARN 18660 --- [           main] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 83a2e0df-0d64-4836-8bd9-8e4ccab52148
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-12T14:43:48.465+06:00  INFO 18660 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-12T14:43:48.631+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AppSettingController:
+	{POST [/settings/save]}: saveSetting(AppSetting)
+	{DELETE [/settings/delete/{id}]}: deleteSetting(Long)
+	{GET [/settings]}: getCurrentSetting()
+	{PUT [/settings/update/{id}]}: updateSetting(Long,AppSetting)
+	{GET [/settings/current]}: getCurrentSettingLegacy()
+2026-05-12T14:43:48.639+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeController:
+	{GET [/attributes/list]}: getAllAttributes()
+	{DELETE [/attributes/delete/{id}]}: deleteAttribute(Long)
+	{GET [/attributes/{id}]}: getAttributeById(Long)
+	{PUT [/attributes/update/{id}]}: updateAttribute(Long,Attribute)
+	{POST [/attributes/create]}: createAttribute(Attribute)
+2026-05-12T14:43:48.642+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AttributeValueController:
+	{DELETE [/attribute-values/delete/{id}]}: deleteAttributeValue(Long)
+	{POST [/attribute-values/create]}: createAttributeValue(AttributeValue)
+	{GET [/attribute-values/by-attribute/{attributeId}]}: getAttributeValuesByAttributeId(Long)
+	{GET [/attribute-values/list]}: getAllAttributeValues()
+	{GET [/attribute-values/{id}]}: getAttributeValueById(Long)
+	{PUT [/attribute-values/update/{id}]}: updateAttributeValue(Long,AttributeValue)
+2026-05-12T14:43:48.644+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.AuthController:
+	{POST [/auth/login]}: login(AdminLoginRequest)
+2026-05-12T14:43:48.646+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CategoryController:
+	{GET [/categories/list]}: getAllCategories()
+	{GET [/categories/{id}]}: getCategoryById(Long)
+	{PUT [/categories/update/{id}]}: updateCategory(Long,Category)
+	{DELETE [/categories/delete/{id}]}: deleteCategory(Long)
+	{POST [/categories/create]}: createCategory(Category)
+2026-05-12T14:43:48.648+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CouponController:
+	{GET [/coupons/{id}]}: getCouponById(Long)
+	{PUT [/coupons/update/{id}]}: updateCoupon(Long,Coupon)
+	{DELETE [/coupons/delete/{id}]}: deleteCoupon(Long)
+	{POST [/coupons/create]}: createCoupon(Coupon)
+	{POST [/coupons/apply]}: applyCoupon(ApplyCouponRequest)
+	{GET [/coupons/list]}: getAllCoupons()
+2026-05-12T14:43:48.653+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.CustomerController:
+	{POST [/customers/register]}: register(CustomerRegisterRequest)
+	{GET [/customers/profile]}: getProfile(AuthenticatedUser)
+	{POST [/customers/login]}: login(CustomerLoginRequest)
+	{DELETE [/customers/permanent/{id}]}: permanentlyDeleteCustomer(Long)
+	{GET [/customers/deleted]}: getDeletedCustomers()
+	{GET [/customers/list]}: getAllCustomers()
+	{DELETE [/customers/delete/{id}]}: deleteCustomer(Long)
+	{POST [/customers/create]}: createCustomer(Customer)
+	{PUT [/customers/update/{id}]}: updateCustomer(Long,Customer)
+	{GET [/customers/{id}]}: getCustomerById(Long)
+	{PUT [/customers/restore/{id}]}: restoreCustomer(Long)
+2026-05-12T14:43:48.656+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.HealthController:
+	{GET [/health]}: health()
+2026-05-12T14:43:48.656+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.InventoryController:
+	{GET [/inventory/current-stock]}: getCurrentStock()
+2026-05-12T14:43:48.658+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.InvoiceController:
+	{GET [/invoices/by-order/{orderId}]}: getInvoicesByOrderId(Long)
+	{GET [/invoices/{id}]}: getInvoiceById(Long)
+	{POST [/invoices/create]}: createInvoice(Invoice)
+	{PUT [/invoices/update/{id}]}: updateInvoice(Long,Invoice)
+	{DELETE [/invoices/delete/{id}]}: deleteInvoice(Long)
+	{GET [/invoices/list]}: getAllInvoices()
+2026-05-12T14:43:48.659+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.NotificationController:
+	{GET [/notifications/admin]}: getAdminNotifications()
+2026-05-12T14:43:48.662+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.OrderController:
+	{GET [/orders/my/reference/{orderId}]}: getMyOrderByReference(String,AuthenticatedUser)
+	{POST [/orders/create]}: createOrder(OrderRequest,AuthenticatedUser)
+	{GET [/orders/{id}]}: getOrderById(Long)
+	{GET [/orders/my]}: getMyOrders(AuthenticatedUser)
+	{PUT [/orders/update/{id}]}: updateOrder(Long,OrderRequest)
+	{GET [/orders/list]}: getAllOrders()
+	{GET [/orders/my/{id}]}: getMyOrderById(Long,AuthenticatedUser)
+	{PUT [/orders/update]}: updateOrderLegacy(OrderRequest)
+	{PUT [/orders/status/{id}]}: updateOrderStatus(Long,OrderStatusUpdateRequest)
+	{DELETE [/orders/delete/{id}]}: deleteOrder(Long)
+2026-05-12T14:43:48.666+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PaymentController:
+	{GET [/payments/by-order/{orderId}]}: getPaymentsByOrderId(Long)
+	{GET [/payments/by-invoice/{invoiceId}]}: getPaymentsByInvoiceId(Long)
+	{GET [/payments/{id}]}: getPaymentById(Long)
+	{POST [/payments/create]}: createPayment(Payment)
+	{PUT [/payments/update/{id}]}: updatePayment(Long,Payment)
+	{GET [/payments/list]}: getAllPayments()
+	{DELETE [/payments/delete/{id}]}: deletePayment(Long)
+2026-05-12T14:43:48.669+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ProductController:
+	{GET [/products/low-stock]}: getLowStockProducts()
+	{GET [/products/by-subcategory/{subCategoryId}]}: getProductsBySubCategory(Long)
+	{POST [/products/create-upload], consumes [multipart/form-data]}: createProductWithUpload(ProductUploadRequest)
+	{GET [/products/{id}]}: getProductById(Long)
+	{GET [/products/list]}: getAllProducts()
+	{GET [/products/page]}: getProductsPage(int,int,String,String)
+	{POST [/products/create]}: createProduct(Product)
+	{POST [/products/{id}/reserve-stock]}: reserveStock(Long,ProductStockAdjustmentRequest)
+	{GET [/products/search]}: searchProducts(String,String,String,String,String,BigDecimal,BigDecimal,int,int,String,String)
+	{POST [/products/{id}/release-stock]}: releaseStock(Long,ProductStockAdjustmentRequest)
+	{DELETE [/products/delete/{id}]}: deleteProduct(Long)
+	{PUT [/products/update/{id}]}: updateProduct(Long,Product)
+	{PUT [/products/update-upload/{id}], consumes [multipart/form-data]}: updateProductWithUpload(Long,ProductUploadRequest)
+2026-05-12T14:43:48.675+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseController:
+	{GET [/purchases/details/{id} || /purchases/{id}]}: getPurchaseById(Long)
+	{PUT [/purchases/update/{id}]}: updatePurchase(Long,PurchaseRequest)
+	{GET [/purchases/list]}: getAllPurchases()
+	{POST [/purchases/create]}: createPurchase(PurchaseRequest)
+	{DELETE [/purchases/delete/{id}]}: deletePurchase(Long)
+2026-05-12T14:43:48.677+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseOrderController:
+	{POST [/purchase-orders/create]}: createPurchaseOrder(PurchaseOrder)
+	{GET [/purchase-orders/list]}: getAllPurchaseOrders()
+	{PUT [/purchase-orders/update/{id}]}: updatePurchaseOrder(Long,PurchaseOrder)
+	{DELETE [/purchase-orders/delete/{id}]}: deletePurchaseOrder(Long)
+	{GET [/purchase-orders/{id}]}: getPurchaseOrderById(Long)
+2026-05-12T14:43:48.678+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.PurchaseReturnController:
+	{GET [/purchase-returns/list]}: getAllPurchaseReturns()
+	{PUT [/purchase-returns/update/{id}]}: updatePurchaseReturn(Long,PurchaseReturn)
+	{DELETE [/purchase-returns/delete/{id}]}: deletePurchaseReturn(Long)
+	{POST [/purchase-returns/create]}: createPurchaseReturn(PurchaseReturn)
+	{GET [/purchase-returns/{id}]}: getPurchaseReturnById(Long)
+2026-05-12T14:43:48.680+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReceivedOrderController:
+	{POST [/inventory/received-orders/create || /inventory/received-orders || /received-orders/create || /received-orders]}: createReceivedOrder(ReceivedOrder)
+	{DELETE [/inventory/received-orders/delete/{id} || /received-orders/delete/{id}]}: deleteReceivedOrder(Long)
+	{PUT [/inventory/received-orders/update || /received-orders/update || /inventory/received-orders/update/{id} || /received-orders/update/{id}]}: updateReceivedOrder(Long,ReceivedOrder)
+	{GET [/inventory/received-orders/list || /inventory/received-orders || /received-orders/list || /received-orders]}: getAllReceivedOrders()
+	{PUT [/inventory/received-orders/status/{id} || /received-orders/status/{id}]}: updateReceivedOrderStatus(Long,ReceivedOrderStatusUpdateRequest)
+	{GET [/inventory/received-orders/{id} || /received-orders/{id}]}: getReceivedOrderById(Long)
+2026-05-12T14:43:48.682+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReportController:
+	{GET [/reports/revenue/monthly]}: getMonthlyRevenue(String)
+	{GET [/reports/top-products]}: getTopProducts(String)
+	{GET [/reports/summary]}: getSummary(String)
+	{GET [/reports/top-customers]}: getTopCustomers(String)
+	{GET [/reports/orders/monthly]}: getMonthlyOrders(String)
+	{GET [/reports/export/csv]}: exportCsv(String)
+2026-05-12T14:43:48.684+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReturnRequestController:
+	{POST [/returns/request]}: requestReturn(ReturnRequestCreateRequest,AuthenticatedUser)
+	{POST [/returns/create]}: createReturnRequest(ReturnRequestCreateRequest)
+	{GET [/returns/customer/{customerId}]}: getCustomerReturnRequests(Long,AuthenticatedUser)
+	{GET [/returns/list || /returns]}: getAllReturnRequests()
+	{GET [/returns/{id}]}: getReturnRequestById(Long)
+	{PUT [/returns/update/{id}]}: updateReturnRequest(Long,ReturnRequestStatusUpdateRequest)
+	{PUT [/returns/status/{id}]}: updateReturnRequestStatus(Long,ReturnRequestStatusUpdateRequest)
+	{DELETE [/returns/delete/{id}]}: deleteReturnRequest(Long)
+2026-05-12T14:43:48.688+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ReviewController:
+	{GET [/reviews/{id}]}: getReviewById(Long)
+	{POST [/reviews/submit]}: submitReview(ReviewSubmitRequest,AuthenticatedUser)
+	{GET [/reviews/approved]}: getApprovedReviews(int)
+	{PUT [/reviews/approve/{id}]}: approveReview(Long)
+	{POST [/reviews/create]}: createReview(Review)
+	{GET [/reviews/list]}: getAllReviews()
+	{PUT [/reviews/reject/{id}]}: rejectReview(Long)
+	{PUT [/reviews/update/{id}]}: updateReview(Long,Review)
+	{GET [/reviews/my]}: getCustomerReviews(AuthenticatedUser)
+	{DELETE [/reviews/delete/{id}]}: deleteReview(Long)
+	{GET [/reviews/product/{productId}/approved]}: getApprovedReviewsByProduct(Long,int)
+	{GET [/reviews/my/order/{orderId}]}: getCustomerReviewsForOrder(Long,AuthenticatedUser)
+2026-05-12T14:43:48.693+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.RoleController:
+	{GET [/roles/list]}: getAllRoles()
+	{DELETE [/roles/delete/{id}]}: deleteRole(Long)
+	{POST [/roles/create]}: createRole(Role)
+	{GET [/roles/{id}]}: getRoleById(Long)
+	{PUT [/roles/update/{id}]}: updateRole(Long,Role)
+2026-05-12T14:43:48.696+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShipmentController:
+	{GET [/shipments/list || /shipments]}: getAllShipments()
+	{POST [/shipments/create || /shipments]}: createShipment(Shipment)
+	{DELETE [/shipments/delete/{id} || /shipments/{id}]}: deleteShipment(Long)
+	{PUT [/shipments/update/{id} || /shipments/{id}]}: updateShipment(Long,Shipment)
+	{GET [/shipments/{id}]}: getShipmentById(Long)
+	{PUT [/shipments/status/{id}]}: updateShipmentStatus(Long,ShipmentStatusUpdateRequest)
+	{GET [/shipments/order/{orderId}]}: getShipmentByOrderId(Long,AuthenticatedUser)
+2026-05-12T14:43:48.698+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.ShippingMethodController:
+	{GET [/shipping-methods/list]}: getAllShippingMethods()
+	{PUT [/shipping-methods/update/{id}]}: updateShippingMethod(Long,ShippingMethod)
+	{DELETE [/shipping-methods/delete/{id}]}: deleteShippingMethod(Long)
+	{POST [/shipping-methods/create]}: createShippingMethod(ShippingMethod)
+	{GET [/shipping-methods/{id}]}: getShippingMethodById(Long)
+2026-05-12T14:43:48.700+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.SubCategoryController:
+	{POST [/sub-categories/create || /subcategories/create]}: createSubCategory(SubCategory)
+	{DELETE [/sub-categories/delete/{id} || /subcategories/delete/{id}]}: deleteSubCategory(Long)
+	{PUT [/sub-categories/update/{id} || /subcategories/update/{id}]}: updateSubCategory(Long,SubCategory)
+	{GET [/sub-categories/{id} || /subcategories/{id}]}: getSubCategoryById(Long)
+	{GET [/sub-categories/list || /subcategories/list]}: getAllSubCategories()
+	{GET [/sub-categories/by-category/{categoryId} || /subcategories/by-category/{categoryId}]}: getSubCategoriesByCategory(Long)
+2026-05-12T14:43:48.701+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.UserController:
+	{DELETE [/users/delete/{id}]}: deleteUser(Long)
+	{POST [/users/create]}: createUser(User)
+	{GET [/users/{id}]}: getUserById(Long)
+	{GET [/users/list]}: getAllUsers()
+	{PUT [/users/update/{id}]}: updateUser(Long,User)
+2026-05-12T14:43:48.702+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	c.s.c.WarehouseController:
+	{DELETE [/warehouses/delete/{id}]}: deleteWarehouse(Long)
+	{GET [/warehouses/list]}: getAllWarehouses()
+	{GET [/warehouses/{id}]}: getWarehouseById(Long)
+	{PUT [/warehouses/update]}: updateWarehouse(Warehouse)
+	{POST [/warehouses/create]}: createWarehouse(Warehouse)
+2026-05-12T14:43:48.704+06:00 TRACE 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.w.a.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2026-05-12T14:43:48.706+06:00 DEBUG 18660 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 160 mappings in 'requestMappingHandlerMapping'
+2026-05-12T14:43:48.908+06:00  INFO 18660 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-05-12T14:43:48.913+06:00  INFO 18660 --- [           main] com.styleora.BackendApplication          : Started BackendApplication in 4.571 seconds (process running for 4.907)
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: update admin_users set email=?,password=?,role=? where id=?
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: select au1_0.id,au1_0.email,au1_0.password,au1_0.role from admin_users au1_0 where lower(au1_0.email)=lower(?) limit ?
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select a1_0.id,a1_0.attribute_id,a1_0.attribute_name,a1_0.attribute_type,a1_0.created_at,a1_0.notes,a1_0.status,a1_0.updated_at,a1_0.values_data from attributes a1_0 where lower(a1_0.attribute_name)=lower(?) limit ?
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select count(av1_0.id) from attribute_values av1_0 where av1_0.attribute_id=? and lower(av1_0.attribute_value)=lower(?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.city,c1_0.country,c1_0.customer_code,c1_0.date_of_birth,c1_0.email,c1_0.full_name,c1_0.gender,c1_0.notes,c1_0.password,c1_0.phone,c1_0.registered_at,c1_0.status,c1_0.total_orders,c1_0.total_spend from customers c1_0 where lower(c1_0.email)=lower(?) and (c1_0.status is null or lower(c1_0.status)<>'deleted') limit ?
+Hibernate: select count(c1_0.id) from category c1_0
+Hibernate: select count(sc1_0.id) from sub_categories sc1_0
+2026-05-12T14:44:28.075+06:00  INFO 18660 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-12T14:44:28.075+06:00  INFO 18660 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-12T14:44:28.077+06:00  INFO 18660 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-12T14:44:28.093+06:00  WARN 18660 --- [nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/orders/list' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12:05 min
+[INFO] Finished at: 2026-05-12T14:55:45+06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.5:run (default-cli) on project backend: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -1,0 +1,7 @@
+{
+    "customerId":  21,
+    "blockedDelete":  {
+                          "status":  409,
+                          "body":  "{\"status\":409,\"error\":\"Conflict\",\"message\":\"Customer cannot be permanently deleted because related business data exists: 8 linked orders and 2 linked return requests.\",\"validationErrors\":null,\"timestamp\":\"2026-05-07T15:15:44.751039900Z\"}"
+                      }
+}
