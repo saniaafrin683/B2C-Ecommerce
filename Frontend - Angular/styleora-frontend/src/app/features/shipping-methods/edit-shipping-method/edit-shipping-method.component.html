@@ -1,0 +1,86 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Shipping Methods / Edit</span>
+      <h1 class="admin-page-title">Edit Shipping Method</h1>
+      <p class="admin-page-subtitle">Update delivery details, pricing, estimated lead time, and status.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading shipping method...</div>
+
+    <form class="form-shell" (ngSubmit)="onSave()" *ngIf="!loading">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="shippingMethodForm.name" name="name" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-select" [(ngModel)]="shippingMethodForm.status" name="status" required>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Cost</label>
+          <input class="admin-input" type="number" [(ngModel)]="shippingMethodForm.cost" name="cost">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Estimated Days</label>
+          <input class="admin-input" type="number" [(ngModel)]="shippingMethodForm.estimatedDays" name="estimatedDays">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Coverage Area</label>
+          <select class="admin-select" [(ngModel)]="shippingMethodForm.coverageArea" name="coverageArea">
+            <option *ngFor="let coverageArea of coverageAreas" [value]="coverageArea">{{ coverageArea }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Courier Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="shippingMethodForm.courierName" name="courierName" placeholder="Pathao / RedX / Steadfast">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Minimum Order Amount</label>
+          <input class="admin-input" type="number" [(ngModel)]="shippingMethodForm.minOrderAmount" name="minOrderAmount">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Maximum Weight (kg)</label>
+          <input class="admin-input" type="number" [(ngModel)]="shippingMethodForm.maxWeightKg" name="maxWeightKg">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Sort Order</label>
+          <input class="admin-input" type="number" [(ngModel)]="shippingMethodForm.sortOrder" name="sortOrder">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label d-block">Free Shipping</label>
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="shippingMethodForm.isFreeShipping" name="isFreeShipping" id="editFreeShipping">
+            <label class="form-check-label" for="editFreeShipping">Enable free shipping for this method</label>
+          </div>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Description</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="shippingMethodForm.description" name="description"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">{{ submitting ? 'Saving...' : 'Save' }}</button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

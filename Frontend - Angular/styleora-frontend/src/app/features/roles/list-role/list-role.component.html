@@ -1,0 +1,60 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">System / Roles</span>
+      <h1 class="admin-page-title">Roles List</h1>
+      <p class="admin-page-subtitle">Manage reusable role definitions and their active availability in the admin panel.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        Add Role
+      </button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading roles...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Role Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of roles">
+            <td><strong>{{ item.name }}</strong></td>
+            <td>{{ item.description || 'Not set' }}</td>
+            <td><span class="pill-badge" [ngClass]="getStatusClass(item.status)">{{ item.status }}</span></td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action view" (click)="onDetails(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="roles.length === 0">
+            <td colspan="4" class="table-empty">
+              <strong>No roles found</strong>
+              Add a role to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

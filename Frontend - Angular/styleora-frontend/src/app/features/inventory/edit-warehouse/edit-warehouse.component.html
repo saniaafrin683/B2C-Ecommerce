@@ -1,0 +1,65 @@
+<div class="warehouse-form-page">
+
+  <div class="page-topbar">
+    <div class="page-title-wrap">
+      <h2>EDIT WAREHOUSE</h2>
+      <p>Update warehouse information</p>
+    </div>
+  </div>
+
+  <div class="form-card" *ngIf="!loading">
+    <form (ngSubmit)="onUpdate()">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Warehouse ID</label>
+          <input type="text" [(ngModel)]="warehouseForm.warehouseId" name="warehouseId" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Warehouse Name</label>
+          <input type="text" [(ngModel)]="warehouseForm.warehouseName" name="warehouseName" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" [(ngModel)]="warehouseForm.location" name="location" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Manager</label>
+          <input type="text" [(ngModel)]="warehouseForm.manager" name="manager" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input type="text" [(ngModel)]="warehouseForm.contactNumber" name="contactNumber" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Stock Available</label>
+          <input type="number" [(ngModel)]="warehouseForm.stockAvailable" name="stockAvailable" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Stock Shipping</label>
+          <input type="number" [(ngModel)]="warehouseForm.stockShipping" name="stockShipping" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Warehouse Revenue</label>
+          <input type="number" [(ngModel)]="warehouseForm.warehouseRevenue" name="warehouseRevenue" class="form-control">
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="reset-btn" (click)="onReset()">Reset</button>
+        <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Shipments / Details</span>
+      <h1 class="admin-page-title">Shipment Details</h1>
+      <p class="admin-page-subtitle">Review shipment lifecycle dates, courier details, and delivery remarks.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Shipment</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading shipment details...</div>
+
+    <div *ngIf="shipment && !loading" class="details-grid row">
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Order ID</span>
+          <strong>#{{ shipment.orderId }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Shipping Method ID</span>
+          <strong>#{{ shipment.shippingMethodId }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Tracking Number</span>
+          <strong>{{ shipment.trackingNumber || 'Not assigned' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Courier Name</span>
+          <strong>{{ shipment.courierName || 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Status</span>
+          <strong><span class="pill-badge" [ngClass]="getStatusClass(shipment.shipmentStatus || shipment.status || 'Pending')">{{ shipment.shipmentStatus || shipment.status || 'Pending' }}</span></strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Dispatch Date</span>
+          <strong>{{ shipment.dispatchDate ? (shipment.dispatchDate | date:'dd MMM yyyy, h:mm a') : 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Estimated Delivery Date</span>
+          <strong>{{ shipment.estimatedDeliveryDate ? (shipment.estimatedDeliveryDate | date:'dd MMM yyyy, h:mm a') : 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Delivered Date</span>
+          <strong>{{ shipment.deliveredDate ? (shipment.deliveredDate | date:'dd MMM yyyy, h:mm a') : 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-block">
+          <span>Remarks</span>
+          <strong>{{ shipment.remarks || 'No remarks added' }}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

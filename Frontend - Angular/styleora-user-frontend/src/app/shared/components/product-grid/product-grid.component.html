@@ -1,0 +1,9 @@
+<div class="row g-4" *ngIf="products.length; else emptyGrid">
+  <div [class]="columnClasses" *ngFor="let product of products">
+    <app-product-card [product]="product" [variant]="variant"></app-product-card>
+  </div>
+</div>
+
+<ng-template #emptyGrid>
+  <app-empty-state message="No data"></app-empty-state>
+</ng-template>

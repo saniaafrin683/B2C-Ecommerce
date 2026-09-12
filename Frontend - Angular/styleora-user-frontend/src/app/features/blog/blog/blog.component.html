@@ -1,0 +1,81 @@
+<section class="blog-shell container py-4 py-lg-5">
+  <div class="blog-hero rounded-4 mb-4 mb-lg-5">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">Styleora Journal</span>
+      <h1 class="blog-title">Fresh reads for style, shopping, and everyday fashion.</h1>
+      <p class="blog-description mb-0">
+        Browse curated stories that help customers discover outfit ideas, smarter buying tips, and seasonal inspiration.
+      </p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-6" *ngFor="let post of posts">
+      <article class="blog-card card border-0 h-100">
+        <div class="blog-card-visual" [ngClass]="getVisualTheme(post.category)" [attr.aria-label]="post.title">
+          <div class="visual-topline">
+            <span class="visual-chip">{{ post.category }}</span>
+            <span class="visual-caption">Styleora Edit</span>
+          </div>
+
+          <div class="visual-body">
+            <div class="visual-copy">
+              <p class="visual-kicker mb-2">Editorial Notes</p>
+              <h3 class="visual-heading mb-0">{{ post.category }}</h3>
+            </div>
+
+            <div class="visual-icon-frame" [ngSwitch]="post.category" aria-hidden="true">
+              <svg *ngSwitchCase="'Style Guide'" viewBox="0 0 64 64" class="visual-icon">
+                <path d="M22 21c3.2-1.1 5.6-3.8 6.4-7h7.2c.8 3.2 3.2 5.9 6.4 7l10 3.6-4.1 6.1-7.2-2.6V46a4 4 0 0 1-4 4H27.3a4 4 0 0 1-4-4V28.1l-7.2 2.6-4.1-6.1L22 21Z" />
+              </svg>
+
+              <svg *ngSwitchCase="'Buying Tips'" viewBox="0 0 64 64" class="visual-icon">
+                <path d="M19 18h26a4 4 0 0 1 4 4v23a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5V22a4 4 0 0 1 4-4Z" />
+                <path d="M25 26a7 7 0 0 1 14 0" />
+                <path d="M24 35h16" />
+                <path d="M24 41h10" />
+              </svg>
+
+              <svg *ngSwitchCase="'Accessories'" viewBox="0 0 64 64" class="visual-icon">
+                <path d="M32 15c-8.3 0-15 6.7-15 15 0 10.4 8.8 18.6 13.2 21.9a3 3 0 0 0 3.6 0C38.2 48.6 47 40.4 47 30c0-8.3-6.7-15-15-15Z" />
+                <circle cx="32" cy="30" r="6.5" />
+              </svg>
+
+              <svg *ngSwitchCase="'Lifestyle'" viewBox="0 0 64 64" class="visual-icon">
+                <path d="M21 24h22a5 5 0 0 1 5 5v16a5 5 0 0 1-5 5H21a5 5 0 0 1-5-5V29a5 5 0 0 1 5-5Z" />
+                <path d="M25 24v-3a7 7 0 0 1 14 0v3" />
+                <path d="M16 34h32" />
+              </svg>
+
+              <svg *ngSwitchDefault viewBox="0 0 64 64" class="visual-icon">
+                <path d="M18 22h28a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V26a4 4 0 0 1 4-4Z" />
+                <path d="M22 30h20" />
+                <path d="M22 38h14" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="visual-swatches" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="card-body p-4 d-flex flex-column">
+          <div class="meta-row mb-3">
+            <span class="category-chip">{{ post.category }}</span>
+            <span class="post-date">{{ post.date | date:'dd MMM yyyy' }}</span>
+          </div>
+
+          <h2 class="blog-card-title">{{ post.title }}</h2>
+          <p class="blog-card-excerpt flex-grow-1">{{ post.excerpt }}</p>
+
+          <a class="btn btn-dark rounded-pill px-4 align-self-start" [routerLink]="['/blog', post.id]">
+            Read More
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,146 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Reports / Analytics</span>
+      <h1 class="admin-page-title">Analytics Dashboard</h1>
+      <p class="admin-page-subtitle">Monitor revenue, order flow, customer activity, and top performers using live business data.</p>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mb-3">{{ errorMessage }}</div>
+
+  <div class="stats-grid" *ngIf="!loading">
+    <article class="stat-card surface-card glass-panel">
+      <div class="stat-icon green"><i class="bi bi-cash-stack"></i></div>
+      <div class="stat-copy"><span>Total Revenue</span><strong>{{ summary.totalRevenue | appCurrency:'1.2-2' }}</strong></div>
+    </article>
+    <article class="stat-card surface-card glass-panel">
+      <div class="stat-icon blue"><i class="bi bi-cart"></i></div>
+      <div class="stat-copy"><span>Total Orders</span><strong>{{ summary.totalOrders }}</strong></div>
+    </article>
+    <article class="stat-card surface-card glass-panel">
+      <div class="stat-icon amber"><i class="bi bi-people"></i></div>
+      <div class="stat-copy"><span>Total Customers</span><strong>{{ summary.totalCustomers }}</strong></div>
+    </article>
+    <article class="stat-card surface-card glass-panel">
+      <div class="stat-icon rose"><i class="bi bi-box-seam"></i></div>
+      <div class="stat-copy"><span>Total Products</span><strong>{{ summary.totalProducts }}</strong></div>
+    </article>
+    <article class="stat-card surface-card glass-panel">
+      <div class="stat-icon violet"><i class="bi bi-credit-card"></i></div>
+      <div class="stat-copy"><span>Total Payments</span><strong>{{ summary.totalPayments }}</strong></div>
+    </article>
+    <article class="stat-card surface-card glass-panel">
+      <div class="stat-icon orange"><i class="bi bi-hourglass-split"></i></div>
+      <div class="stat-copy"><span>Pending Orders</span><strong>{{ summary.pendingOrders }}</strong></div>
+    </article>
+  </div>
+
+  <div class="reports-grid" *ngIf="!loading">
+    <section class="section-card surface-card glass-panel">
+      <div class="section-head">
+        <div>
+          <h2>Monthly Revenue Chart</h2>
+          <p>Revenue grouped by order month.</p>
+        </div>
+      </div>
+
+      <div class="mini-chart" *ngIf="monthlyRevenue.length > 0; else emptyRevenue">
+        <div class="chart-bar" *ngFor="let item of monthlyRevenue">
+          <span class="bar-value">{{ item.revenue | appCurrency:'1.0-0' }}</span>
+          <div class="bar-column revenue" [style.height.%]="getRevenueBarHeight(item)"></div>
+          <span class="bar-label">{{ item.month }}</span>
+        </div>
+      </div>
+      <ng-template #emptyRevenue>
+        <div class="empty-state">No monthly revenue data available.</div>
+      </ng-template>
+    </section>
+
+    <section class="section-card surface-card glass-panel">
+      <div class="section-head">
+        <div>
+          <h2>Monthly Orders Chart</h2>
+          <p>Order volume grouped by month.</p>
+        </div>
+      </div>
+
+      <div class="mini-chart" *ngIf="monthlyOrders.length > 0; else emptyOrders">
+        <div class="chart-bar" *ngFor="let item of monthlyOrders">
+          <span class="bar-value">{{ item.ordersCount }}</span>
+          <div class="bar-column orders" [style.height.%]="getOrdersBarHeight(item)"></div>
+          <span class="bar-label">{{ item.month }}</span>
+        </div>
+      </div>
+      <ng-template #emptyOrders>
+        <div class="empty-state">No monthly orders data available.</div>
+      </ng-template>
+    </section>
+  </div>
+
+  <div class="reports-grid" *ngIf="!loading">
+    <section class="section-card surface-card glass-panel">
+      <div class="section-head">
+        <div>
+          <h2>Top Products</h2>
+          <p>Best-selling products by quantity sold.</p>
+        </div>
+      </div>
+
+      <div class="table-shell">
+        <table class="table-ui">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Total Sold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of topProducts">
+              <td>{{ item.productName }}</td>
+              <td>{{ item.totalSold }}</td>
+            </tr>
+            <tr *ngIf="topProducts.length === 0">
+              <td colspan="2" class="table-empty">
+                <strong>No product sales data</strong>
+                Top products will appear once order items are recorded.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-card surface-card glass-panel">
+      <div class="section-head">
+        <div>
+          <h2>Top Customers</h2>
+          <p>Customers with the highest order count.</p>
+        </div>
+      </div>
+
+      <div class="table-shell">
+        <table class="table-ui">
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Total Orders</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of topCustomers">
+              <td>{{ item.customerName }}</td>
+              <td>{{ item.totalOrders }}</td>
+            </tr>
+            <tr *ngIf="topCustomers.length === 0">
+              <td colspan="2" class="table-empty">
+                <strong>No customer order data</strong>
+                Top customers will appear once orders are available.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

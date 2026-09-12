@@ -1,0 +1,89 @@
+<section class="contact-page">
+  <div class="contact-loaded-flag">CONTACT PAGE LOADED</div>
+
+  <div class="contact-hero">
+    <span class="section-kicker">Contact Us</span>
+    <h1>We are here to help with your Styleora shopping experience.</h1>
+    <p>Reach the Styleora team for order guidance, product questions, support requests, and return help.</p>
+  </div>
+
+  <section class="contact-info-grid">
+    <article class="info-card" *ngFor="let card of contactCards">
+      <div class="info-icon">
+        <i class="bi" [ngClass]="card.icon"></i>
+      </div>
+      <span class="info-label">{{ card.title }}</span>
+      <h2>{{ card.value }}</h2>
+      <p>{{ card.detail }}</p>
+    </article>
+  </section>
+
+  <section class="contact-main-grid">
+    <article class="contact-form-card">
+      <div class="card-head">
+        <span class="section-kicker">Send Message</span>
+        <h2>Tell us how we can help.</h2>
+      </div>
+
+      <form class="contact-form" (submit)="submitForm(); $event.preventDefault()">
+        <div class="form-grid">
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" type="text" class="form-control" placeholder="Enter your name">
+          </div>
+
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" class="form-control" placeholder="Enter your email">
+          </div>
+
+          <div class="field">
+            <label for="contact-phone">Phone</label>
+            <input id="contact-phone" type="text" class="form-control" placeholder="Enter your phone number">
+          </div>
+
+          <div class="field">
+            <label for="contact-subject">Subject</label>
+            <input id="contact-subject" type="text" class="form-control" placeholder="What is this about?">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" class="form-control" rows="6" placeholder="Write your message"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark rounded-pill px-4">Send Message</button>
+
+        <p class="form-success" *ngIf="formSubmitted">
+          Message UI submitted successfully. Backend integration can be connected later.
+        </p>
+      </form>
+    </article>
+
+    <div class="contact-sidebar">
+      <article class="support-card">
+        <div class="card-head">
+          <span class="section-kicker">Store Support</span>
+          <h2>Support topics customers ask for most.</h2>
+        </div>
+
+        <div class="support-list">
+          <article class="support-item" *ngFor="let item of supportCards">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </article>
+        </div>
+      </article>
+
+      <article class="map-card">
+        <span class="section-kicker">Office Location</span>
+        <h2>Styleora Office Location</h2>
+        <div class="map-placeholder">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span>Dhaka, Bangladesh</span>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>

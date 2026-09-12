@@ -1,0 +1,90 @@
+.warehouse-details-page {
+  padding: 24px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.page-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.page-title-wrap h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.page-title-wrap p {
+  margin-top: 6px;
+  color: #64748b;
+}
+
+.page-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.back-btn,
+.edit-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-weight: 600;
+}
+
+.back-btn {
+  background: #eef2f7;
+  color: #334155;
+}
+
+.edit-btn {
+  background: #ff6c2f;
+  color: #fff;
+}
+
+.details-card,
+.loading-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.info-item {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 16px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

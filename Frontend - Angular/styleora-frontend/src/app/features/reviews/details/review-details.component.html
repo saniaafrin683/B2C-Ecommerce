@@ -1,0 +1,128 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Reviews / Details</span>
+      <h1 class="admin-page-title">Review Details</h1>
+      <p class="admin-page-subtitle">Inspect product feedback, customer identity, moderation state, and staff reply content.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onApprove()" [disabled]="acting || loading">Approve</button>
+      <button type="button" class="btn-ui-secondary danger-action" (click)="onReject()" [disabled]="acting || loading">Reject</button>
+      <button type="button" class="btn-ui-ghost danger-action" (click)="onDelete()" [disabled]="acting || loading">Delete</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading review details...</div>
+
+    <div *ngIf="review && !loading" class="review-details-grid">
+      <section class="section-card surface-card glass-panel detail-card hero-card">
+        <div class="hero-copy">
+          <span class="detail-kicker">Review Summary</span>
+          <h2>{{ review.reviewTitle || 'Untitled review' }}</h2>
+          <p>{{ review.reviewCode || ('REV-' + review.id) }}</p>
+        </div>
+        <div class="hero-meta">
+          <span class="pill-badge" [ngClass]="getStatusClass(review.reviewStatus)">{{ review.reviewStatus || 'Pending' }}</span>
+          <strong>{{ getStars(review.rating) }}</strong>
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Product Information</h2>
+            <p class="section-card-subtitle">Product reference linked with the review.</p>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <div class="overview-block">
+            <span>Product ID</span>
+            <strong>#{{ review.productId || 'N/A' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Product Name</span>
+            <strong>{{ review.productName || 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Review Date</span>
+            <strong>{{ review.reviewDate ? (review.reviewDate | date:'dd MMM yyyy') : 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Rating</span>
+            <strong>{{ getStars(review.rating) }} ({{ review.rating || 0 }}/5)</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Customer Information</h2>
+            <p class="section-card-subtitle">Reviewer identity data from the backend.</p>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <div class="overview-block">
+            <span>Customer ID</span>
+            <strong>#{{ review.customerId || 'N/A' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Customer Name</span>
+            <strong>{{ review.customerName || 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Email</span>
+            <strong>{{ review.customerEmail || 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Status</span>
+            <span class="pill-badge" [ngClass]="getStatusClass(review.reviewStatus)">{{ review.reviewStatus || 'Pending' }}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Review Message</h2>
+            <p class="section-card-subtitle">Original customer feedback content.</p>
+          </div>
+        </div>
+
+        <div class="notes-card">
+          {{ review.reviewMessage || 'No review message added' }}
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Reply Message</h2>
+            <p class="section-card-subtitle">Staff response or moderation note.</p>
+          </div>
+        </div>
+
+        <div class="reply-editor">
+          <textarea
+            rows="5"
+            class="reply-textarea"
+            [(ngModel)]="replyMessage"
+            name="replyMessage"
+            placeholder="Add a moderation note or staff reply for this review."></textarea>
+
+          <div class="reply-actions">
+            <button type="button" class="btn-ui" (click)="onSaveReply()" [disabled]="savingReply || acting">
+              {{ savingReply ? 'Saving...' : 'Save Reply' }}
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>

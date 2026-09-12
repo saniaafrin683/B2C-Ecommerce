@@ -1,0 +1,255 @@
+.current-stock-page {
+  padding: 24px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.compact-current-stock-page {
+  padding: 12px 0 0;
+  min-height: 0;
+}
+
+.page-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.page-title-wrap h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.page-title-wrap p {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.summary-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
+}
+
+.summary-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.summary-icon.orange { background: linear-gradient(135deg, #ff8a4c, #ff6c2f); }
+.summary-icon.green { background: linear-gradient(135deg, #2ec27e, #16a34a); }
+.summary-icon.red { background: linear-gradient(135deg, #ff6b6b, #ef4444); }
+.summary-icon.blue { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+
+.summary-text p {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.summary-text h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.stock-card {
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.stock-card-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef2f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stock-card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e3a5f;
+  font-weight: 700;
+}
+
+.header-right {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.action-outline-btn {
+  background: #ffffff;
+  border: 1px solid #dbe4f0;
+  color: #334155;
+  border-radius: 12px;
+  padding: 8px 18px;
+  min-height: 38px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.filter-field {
+  position: relative;
+}
+
+.search-field i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+}
+
+.search-field input,
+.filter-select {
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  min-height: 40px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+}
+
+.search-field input {
+  width: 260px;
+  padding: 9px 14px 9px 40px;
+}
+
+.filter-select {
+  min-width: 180px;
+  padding: 9px 14px;
+}
+
+.stock-card .table-ui th,
+.stock-card .table-ui td {
+  padding: 0.85rem 0.75rem;
+  vertical-align: middle;
+}
+
+.name-cell {
+  font-weight: 700;
+  color: #1e3a5f !important;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-warning {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.loading-cell {
+  text-align: center;
+  padding: 30px !important;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.empty-state {
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: #eef4ff;
+  color: #2563eb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+
+.empty-state h4 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #64748b;
+}
+
+@media (max-width: 1200px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .current-stock-page {
+    padding: 16px;
+  }
+
+  .compact-current-stock-page {
+    padding: 12px 0 0;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-right {
+    width: 100%;
+  }
+
+  .search-field,
+  .search-field input,
+  .filter-select {
+    width: 100%;
+  }
+}

@@ -1,0 +1,106 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Invoices / Create</span>
+      <h1 class="admin-page-title">Create Invoice</h1>
+      <p class="admin-page-subtitle">Add a billing record manually with customer, payment, and pricing details.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Invoice Number</label>
+          <input class="admin-input" type="text" [(ngModel)]="invoiceForm.invoiceNumber" name="invoiceNumber" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Order ID</label>
+          <input class="admin-input" type="number" [(ngModel)]="invoiceForm.orderId" name="orderId" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Customer Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="invoiceForm.customerName" name="customerName" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Customer Email</label>
+          <input class="admin-input" type="email" [(ngModel)]="invoiceForm.customerEmail" name="customerEmail">
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Billing Address</label>
+          <textarea class="admin-textarea" rows="3" [(ngModel)]="invoiceForm.billingAddress" name="billingAddress"></textarea>
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Subtotal</label>
+          <input class="admin-input" type="number" [(ngModel)]="invoiceForm.subtotal" name="subtotal">
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Tax</label>
+          <input class="admin-input" type="number" [(ngModel)]="invoiceForm.tax" name="tax">
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Discount</label>
+          <input class="admin-input" type="number" [(ngModel)]="invoiceForm.discount" name="discount">
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Shipping Cost</label>
+          <input class="admin-input" type="number" [(ngModel)]="invoiceForm.shippingCost" name="shippingCost">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Total Amount</label>
+          <input class="admin-input" type="number" [(ngModel)]="invoiceForm.totalAmount" name="totalAmount" required>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Payment Status</label>
+          <select class="admin-select" [(ngModel)]="invoiceForm.paymentStatus" name="paymentStatus" required>
+            <option *ngFor="let status of paymentStatuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Payment Method</label>
+          <select class="admin-select" [(ngModel)]="invoiceForm.paymentMethod" name="paymentMethod">
+            <option *ngFor="let method of paymentMethods" [value]="method">{{ method }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Issue Date</label>
+          <input class="admin-input" type="date" [(ngModel)]="invoiceForm.issueDate" name="issueDate" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Due Date</label>
+          <input class="admin-input" type="date" [(ngModel)]="invoiceForm.dueDate" name="dueDate" required>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Notes</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="invoiceForm.notes" name="notes"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-12">
+    <div class="p-4 bg-white rounded shadow-sm">
+      <h2>Profile</h2>
+      <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <div *ngIf="isLoading" class="text-muted">Loading profile...</div>
+      <div *ngIf="!isLoading && customer">
+        <p class="mb-2"><strong>Name:</strong> {{ customer.fullName }}</p>
+        <p class="mb-2"><strong>Email:</strong> {{ customer.email }}</p>
+        <p class="mb-2"><strong>Phone:</strong> {{ customer.phone || 'Not provided' }}</p>
+        <p class="mb-2"><strong>Address:</strong> {{ customer.address || 'Not provided' }}</p>
+        <p class="mb-2"><strong>City:</strong> {{ customer.city || 'Not provided' }}</p>
+        <p class="mb-2"><strong>Country:</strong> {{ customer.country || 'Not provided' }}</p>
+        <p class="mb-4"><strong>Member since:</strong> {{ customer.registeredAt || 'N/A' }}</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-outline-dark" routerLink="/my-reviews">My Reviews</a>
+          <button type="button" class="btn btn-outline-dark" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

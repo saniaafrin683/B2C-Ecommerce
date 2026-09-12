@@ -1,0 +1,81 @@
+<div class="home-shell">
+  <section class="hero-panel fade-up">
+    <div class="hero-copy">
+      <span class="hero-kicker">New Season Edit</span>
+      <h1>Clean everyday fashion with a softer, more curated shopping feel.</h1>
+      <p>
+        Discover refined wardrobe staples and selected home accents from the live Styleora catalog in one simple landing page.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-dark btn-lg rounded-pill px-4" routerLink="/shop">Shop Collection</a>
+      </div>
+
+      <div class="hero-note">
+        <span>Live products</span>
+        <span>Focused categories</span>
+        <span>Responsive shopping flow</span>
+      </div>
+    </div>
+
+    <div class="hero-spotlight">
+      <div class="hero-highlight-card">
+        <span class="highlight-badge">Quiet Luxury Mood</span>
+        <h2>Simple shopping, better product focus.</h2>
+        <p>Browse fewer homepage distractions and move straight into category and product discovery.</p>
+
+        <div class="countdown-preview">
+          <div class="countdown-box">
+            <strong>{{ newArrivals.length || '00' }}</strong>
+            <span>Fresh picks</span>
+          </div>
+          <div class="countdown-box">
+            <strong>{{ categoryHighlights.length }}</strong>
+            <span>Core categories</span>
+          </div>
+          <div class="countdown-box">
+            <strong>{{ trendingProducts.length || '00' }}</strong>
+            <span>Offer-led items</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block category-section fade-up">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Featured Categories</span>
+        <h2>Start with the collections customers browse most.</h2>
+        <p>Simple entry points keep the homepage calm while preserving fast product discovery.</p>
+      </div>
+      <a class="section-link" routerLink="/shop">View All Categories</a>
+    </div>
+
+    <div class="category-highlight-grid">
+      <a
+        *ngFor="let category of categoryHighlights; trackBy: trackByCategory"
+        class="category-highlight-card"
+        [ngClass]="category.accent"
+        [routerLink]="category.route">
+        <span class="category-pill">Collection</span>
+        <h3>{{ category.title }}</h3>
+        <p>{{ category.subtitle }}</p>
+        <span class="category-link">Open collection</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-section-shell fade-up">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Latest Products</span>
+        <h2>A limited product preview from the active catalog.</h2>
+        <p>Only a focused set of products is shown here so customers can browse quickly and move into product details without visual overload.</p>
+      </div>
+      <a class="section-link" routerLink="/shop">Shop All Products</a>
+    </div>
+
+    <app-new-arrivals [products]="newArrivals" [isLoading]="isLoadingProducts"></app-new-arrivals>
+  </section>
+</div>

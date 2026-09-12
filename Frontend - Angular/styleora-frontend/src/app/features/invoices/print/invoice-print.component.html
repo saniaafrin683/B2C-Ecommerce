@@ -1,0 +1,197 @@
+<div class="invoice-print-page">
+  <div class="print-toolbar no-print">
+    <button type="button" class="btn-ui-secondary" (click)="onBack()">Back</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="page-message error no-print">{{ errorMessage }}</div>
+  <div *ngIf="loading" class="page-message info no-print">Loading invoice...</div>
+
+  <section class="invoice-paper" *ngIf="invoice && !loading">
+    <header class="invoice-paper-header">
+      <section class="party-card store-card">
+        <div class="store-brand-row">
+          <div class="store-brand-mark">S</div>
+          <div>
+            <h2>{{ settings.storeName || 'StyleOra' }}</h2>
+            <p class="store-tagline">{{ getStoreTagline() }}</p>
+          </div>
+        </div>
+
+        <p>{{ settings.businessAddress || 'Business address not set' }}</p>
+        <p>Mobile: {{ settings.supportPhone || 'Not set' }}</p>
+        <p>Email: {{ settings.supportEmail || 'Not set' }}</p>
+        <p>Support Desk: {{ getSalesPerson() }}</p>
+      </section>
+
+      <section class="invoice-title-block">
+        <span class="invoice-kicker">Invoice</span>
+        <h1>Tax Invoice</h1>
+        <p>#{{ invoice.invoiceNumber }}</p>
+      </section>
+
+      <section class="party-card customer-card">
+        <h3>Customer Information</h3>
+        <p><strong>{{ invoice.customerName }}</strong></p>
+        <p>Phone: {{ getCustomerPhone() }}</p>
+        <p>Email: {{ invoice.customerEmail || 'Not set' }}</p>
+        <p>Address: {{ getCustomerAddress() }}</p>
+        <p>{{ getCustomerLocation() }}</p>
+      </section>
+    </header>
+
+    <div class="invoice-meta-row">
+      <div>
+        <span>Issue Date</span>
+        <strong>{{ invoice.issueDate | date:'dd MMM yyyy' }}</strong>
+      </div>
+
+      <div>
+        <span>Order Reference</span>
+        <strong>{{ getOrderReference() }}</strong>
+      </div>
+
+      <div>
+        <span>Payment Method</span>
+        <strong>{{ invoice.paymentMethod || 'Not set' }}</strong>
+      </div>
+
+      <div>
+        <span>Payment Status</span>
+        <strong>{{ invoice.paymentStatus || 'Pending' }}</strong>
+      </div>
+
+      <div>
+        <span>Order Status</span>
+        <strong>{{ order?.orderStatus || 'Pending' }}</strong>
+      </div>
+
+      <div>
+        <span>Billing Address</span>
+        <strong>{{ invoice.billingAddress || 'Not set' }}</strong>
+      </div>
+    </div>
+
+    <section class="invoice-table-card">
+      <table class="invoice-items-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Product Discount</th>
+            <th>Line Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of getLineItems(); let i = index">
+            <td>
+              <strong>{{ item.productName || 'N/A' }}</strong>
+
+              <div class="table-subcopy" *ngIf="item.size || item.color">
+                <span *ngIf="item.size">Size: {{ item.size }}</span>
+                <span *ngIf="item.color"> | Color: {{ item.color }}</span>
+              </div>
+
+              <div class="table-subcopy">
+                Ref: {{ getOrderReference() }}-{{ i + 1 }}
+              </div>
+            </td>
+
+            <td>
+              <div *ngIf="getItemDiscountTotal(item) > 0; else regularAdminUnitPrice">
+                <div class="table-subcopy text-decoration-line-through">
+                  {{ getItemRegularUnitPrice(item) | appCurrency:'1.2-2' }}
+                </div>
+
+                <div>
+                  {{ getItemDiscountedUnitPrice(item) | appCurrency:'1.2-2' }}
+                </div>
+              </div>
+
+              <ng-template #regularAdminUnitPrice>
+                {{ getItemDiscountedUnitPrice(item) | appCurrency:'1.2-2' }}
+              </ng-template>
+            </td>
+
+            <td>{{ item.quantity || 0 }}</td>
+
+            <td>
+              {{
+                getItemDiscountTotal(item) > 0
+                  ? ('- ' + (getItemDiscountTotal(item) | appCurrency:'1.2-2'))
+                  : (0 | appCurrency:'1.2-2')
+              }}
+            </td>
+
+            <td>
+              {{ (item.lineTotal || 0) | appCurrency:'1.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="invoice-paper-footer">
+      <section class="invoice-signoff">
+        <div class="signoff-note">
+          <strong>Thank you for shopping with StyleOra</strong>
+          <p>
+            For support, exchange, or return requests, contact our team within 7 days of receiving the order.
+          </p>
+          <p>Email: {{ settings.supportEmail || 'support@styleora.com' }}</p>
+          <p>Phone: {{ settings.supportPhone || '+880 1710-000000' }}</p>
+        </div>
+
+        <div class="signature-line"></div>
+        <p>Authorized Signature</p>
+      </section>
+
+      <section class="invoice-totals">
+        <div class="total-line">
+          <span>Regular Subtotal</span>
+          <strong>{{ (invoice.regularSubtotal ?? invoice.subtotal) | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="total-line" *ngIf="invoice.productDiscountTotal">
+          <span>Product Discount</span>
+          <strong>-{{ invoice.productDiscountTotal | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="total-line">
+          <span>Subtotal After Product Discount</span>
+          <strong>{{ (invoice.subtotalAfterProductDiscount ?? invoice.subtotal) | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="total-line" *ngIf="invoice.couponCode">
+          <span>Coupon Code</span>
+          <strong>{{ invoice.couponCode }}</strong>
+        </div>
+
+        <div class="total-line" *ngIf="invoice.couponDiscount">
+          <span>Coupon Discount</span>
+          <strong>-{{ invoice.couponDiscount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="total-line" *ngIf="invoice.tax">
+          <span>Tax</span>
+          <strong>{{ invoice.tax | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="total-line" *ngIf="invoice.shippingCost">
+          <span>Shipping</span>
+          <strong>{{ invoice.shippingCost | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="total-line grand-total">
+          <span>Final Total</span>
+          <strong>{{ invoice.totalAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </section>
+    </footer>
+
+    <div class="print-actions no-print">
+      <button type="button" class="btn-ui print-btn" (click)="onPrint()">Print</button>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,59 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Attributes / Details</span>
+      <h1 class="admin-page-title">Attribute Details</h1>
+      <p class="admin-page-subtitle">Review attribute metadata, value sets, and timestamps.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Attribute</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading attribute details...
+    </div>
+
+    <div class="attribute-details-grid" *ngIf="attribute && !loading">
+      <div class="overview-block">
+        <span>Attribute ID</span>
+        <strong>{{ attribute.attributeId }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Attribute Name</span>
+        <strong>{{ attribute.attributeName }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Attribute Type</span>
+        <strong>{{ attribute.attributeType }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Status</span>
+        <span class="pill-badge" [ngClass]="getStatusClass(attribute.status)">{{ attribute.status }}</span>
+      </div>
+      <div class="overview-block">
+        <span>Created At</span>
+        <strong>{{ attribute.createdAt | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Updated At</span>
+        <strong>{{ attribute.updatedAt | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block overview-wide">
+        <span>Values</span>
+        <strong>{{ attribute.values || 'No values added' }}</strong>
+      </div>
+      <div class="overview-block overview-wide">
+        <span>Notes</span>
+        <strong>{{ attribute.notes || 'No notes added' }}</strong>
+      </div>
+    </div>
+  </section>
+</div>

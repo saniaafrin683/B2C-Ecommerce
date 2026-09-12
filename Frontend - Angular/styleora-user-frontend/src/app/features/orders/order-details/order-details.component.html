@@ -1,0 +1,409 @@
+<div class="order-details-page container py-5">
+  <div class="details-actions mb-4 no-print">
+    <button class="btn btn-outline-dark rounded-pill" (click)="goBack()">
+      Back to Orders
+    </button>
+
+    <button
+      class="btn btn-invoice rounded-pill"
+      (click)="printInvoice()"
+      *ngIf="order"
+    >
+      Print Invoice
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-dark"></div>
+    <p>Loading order details...</p>
+  </div>
+
+  <div *ngIf="!isLoading && errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && order" class="order-details-card invoice-print-area">
+    <section class="invoice-shell">
+      <header class="invoice-header">
+        <div class="company-block">
+          <div class="brand-mark">S</div>
+          <div>
+            <p class="eyebrow">StyleOra</p>
+            <h2>{{ companyProfile.name }}</h2>
+            <p class="company-tagline">{{ companyProfile.tagline }}</p>
+            <p>{{ companyProfile.address }}</p>
+            <p>{{ companyProfile.email }} | {{ companyProfile.phone }}</p>
+          </div>
+        </div>
+
+        <div class="invoice-title-block">
+          <p class="eyebrow">Tax Invoice</p>
+          <h3>INVOICE</h3>
+          <strong>{{ getDisplayInvoiceNumber() }}</strong>
+        </div>
+
+        <div class="customer-hero-card">
+          <p class="eyebrow">Customer Information</p>
+          <h5>{{ order.customerName }}</h5>
+          <p>{{ order.customerPhone || 'Phone not available' }}</p>
+          <p>{{ order.customerEmail || 'Email not available' }}</p>
+          <p>{{ getCustomerAddress() }}</p>
+        </div>
+      </header>
+
+      <section class="invoice-meta-grid compact-grid">
+        <div class="meta-card">
+          <span>Issue Date</span>
+          <strong>{{ order.createdAt | date:'dd MMM yyyy' }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>Order Reference</span>
+          <strong>{{ order.orderId || ('ORD-' + order.id) }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>Payment Method</span>
+          <strong>{{ order.paymentMethod || 'Cash On Delivery' }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>Payment Status</span>
+          <strong>{{ order.paymentStatus || 'Pending' }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>Order Status</span>
+          <strong>{{ order.orderStatus || 'Pending' }}</strong>
+        </div>
+        <div class="meta-card">
+          <span>Billing Address</span>
+          <strong>{{ order.billingAddress || order.shippingAddress || 'Billing address not available' }}</strong>
+        </div>
+      </section>
+
+      <section class="invoice-customer-grid">
+        <div class="customer-panel">
+          <h5>Bill To</h5>
+          <p><strong>{{ order.customerName }}</strong></p>
+          <p>{{ order.customerEmail || 'Email not available' }}</p>
+          <p>{{ order.customerPhone || 'Phone not available' }}</p>
+          <p>{{ getCustomerAddress() }}</p>
+        </div>
+
+        <div class="customer-panel">
+          <h5>Order Notes</h5>
+          <p><strong>Payment Method:</strong> {{ order.paymentMethod || 'Cash On Delivery' }}</p>
+          <p><strong>Payment Status:</strong> {{ order.paymentStatus || 'Pending' }}</p>
+          <p><strong>Order Status:</strong> {{ order.orderStatus || 'Pending' }}</p>
+          <p><strong>Shipping Address:</strong> {{ order.shippingAddress || 'Shipping address not available' }}</p>
+          <p *ngIf="order.trackingNumber"><strong>Tracking:</strong> {{ order.trackingNumber }}</p>
+        </div>
+      </section>
+    </section>
+
+    <div class="return-request-section no-print" *ngIf="order">
+      <div class="return-request-card">
+        <div class="return-request-copy">
+          <p class="return-request-eyebrow">After Delivery Support</p>
+          <h5 class="mb-1">Need to return this order?</h5>
+          <p class="mb-0">Return requests are available only for delivered orders and can be reviewed by our support team.</p>
+        </div>
+
+        <div class="return-request-actions">
+          <span *ngIf="currentReturnRequest" class="return-status-badge">
+            {{ returnStatusLabel }}
+          </span>
+
+          <button
+            *ngIf="canRequestReturn"
+            type="button"
+            class="btn btn-return rounded-pill"
+            (click)="openReturnModal()">
+            Request Return
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="returnSuccessMessage" class="return-feedback success">{{ returnSuccessMessage }}</div>
+      <div *ngIf="reviewSuccessMessage" class="return-feedback success">{{ reviewSuccessMessage }}</div>
+    </div>
+
+    <div class="timeline-section no-print">
+      <div class="timeline-header">
+        <div>
+          <p class="timeline-eyebrow">Order Journey</p>
+          <h5 class="mb-1">Order Status Timeline</h5>
+          <p class="timeline-subtitle mb-0">Track your package from confirmation to doorstep delivery.</p>
+        </div>
+        <div class="timeline-status-badge">
+          {{ order.orderStatus || 'Pending' }}
+        </div>
+      </div>
+
+      <div class="status-timeline" aria-label="Order status timeline">
+        <div
+          *ngFor="let status of timelineStatuses"
+          class="timeline-step"
+          [class.timeline-step-complete]="isCompleted(status)"
+          [class.timeline-step-current]="isCurrent(status)"
+          [class.timeline-step-inactive]="isInactive(status)">
+          <div class="timeline-connector" aria-hidden="true"></div>
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="timeline-dot">
+              <i class="bi" [ngClass]="getTimelineIcon(status)"></i>
+            </div>
+          </div>
+          <div class="timeline-copy">
+            <div class="timeline-label">{{ status }}</div>
+            <div class="timeline-state">
+              <ng-container *ngIf="isCompleted(status)">Completed</ng-container>
+              <ng-container *ngIf="isCurrent(status)">Current Step</ng-container>
+              <ng-container *ngIf="isInactive(status)">Upcoming</ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-section shipment-section no-print" *ngIf="order">
+      <div class="timeline-header">
+        <div>
+          <p class="timeline-eyebrow">Shipment Tracking</p>
+          <h5 class="mb-1">Courier and delivery progress</h5>
+          <p class="timeline-subtitle mb-0">Live shipment updates appear here once your order is packed and dispatched.</p>
+        </div>
+        <div *ngIf="shipment" class="rounded-pill fw-bold px-3 py-2" [ngClass]="getShipmentStatusBadgeClass()">
+          {{ shipment.shipmentStatus || 'Pending' }}
+        </div>
+      </div>
+
+      <div *ngIf="shipmentLoading" class="text-muted small mt-3">Loading shipment details...</div>
+
+      <div *ngIf="!shipmentLoading && !hasShipment()" class="text-muted small mt-3">
+        No shipment assigned yet.
+      </div>
+
+      <div *ngIf="shipment" class="row g-3 mt-0 mb-3">
+        <div class="col-md-3 col-sm-6">
+        <div class="border rounded-4 bg-white p-3 h-100">
+          <span class="d-block text-uppercase small text-muted mb-1">Courier</span>
+          <strong class="text-dark">{{ shipment.courierName || 'To be assigned' }}</strong>
+        </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+        <div class="border rounded-4 bg-white p-3 h-100">
+          <span class="d-block text-uppercase small text-muted mb-1">Tracking Number</span>
+          <strong class="text-dark">{{ shipment.trackingNumber || 'Available after dispatch' }}</strong>
+        </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+        <div class="border rounded-4 bg-white p-3 h-100">
+          <span class="d-block text-uppercase small text-muted mb-1">Shipped Date</span>
+          <strong class="text-dark">{{ shipment.shippedDate ? (shipment.shippedDate | date:'dd MMM yyyy, h:mm a') : 'Pending dispatch' }}</strong>
+        </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+        <div class="border rounded-4 bg-white p-3 h-100">
+          <span class="d-block text-uppercase small text-muted mb-1">Estimated Delivery</span>
+          <strong class="text-dark">{{ shipment.estimatedDeliveryDate ? (shipment.estimatedDeliveryDate | date:'dd MMM yyyy, h:mm a') : 'Will be updated soon' }}</strong>
+        </div>
+        </div>
+      </div>
+
+      <div *ngIf="shipment" class="status-timeline" aria-label="Shipment progress timeline">
+        <div
+          *ngFor="let status of shipmentStatuses"
+          class="timeline-step"
+          [class.timeline-step-complete]="isShipmentCompleted(status)"
+          [class.timeline-step-current]="isShipmentCurrent(status)"
+          [class.timeline-step-inactive]="isShipmentInactive(status)">
+          <div class="timeline-connector" aria-hidden="true"></div>
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="timeline-dot">
+              <i class="bi" [ngClass]="getShipmentTimelineIcon(status)"></i>
+            </div>
+          </div>
+          <div class="timeline-copy">
+            <div class="timeline-label">{{ status }}</div>
+            <div class="timeline-state">
+              <ng-container *ngIf="isShipmentCompleted(status)">Completed</ng-container>
+              <ng-container *ngIf="isShipmentCurrent(status)">In Progress</ng-container>
+              <ng-container *ngIf="isShipmentInactive(status)">Upcoming</ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive invoice-table-wrap">
+    <table class="table mt-4 invoice-items-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="text-end">Qty</th>
+          <th class="text-end">Unit Price</th>
+          <th class="text-end">Discount</th>
+          <th class="text-end">Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of orderItems">
+          <td>
+            <div class="fw-semibold">{{ item.productName }}</div>
+            <div class="text-muted small" *ngIf="item.size || item.color">
+              <span *ngIf="item.size">Size: {{ item.size }}</span>
+              <span *ngIf="item.color"> | Color: {{ item.color }}</span>
+            </div>
+            <div class="d-flex flex-column gap-2 mt-3 no-print" *ngIf="item.productId">
+              <button
+                *ngIf="canWriteReview(item.productId)"
+                type="button"
+                class="btn btn-sm btn-outline-dark rounded-pill align-self-start"
+                (click)="openReviewForm(item.productId)">
+                Write Review
+              </button>
+
+              <span *ngIf="hasSubmittedReview(item.productId)" class="badge rounded-pill text-bg-success align-self-start px-3 py-2">
+                {{ getReviewStatusLabel(item.productId) }}
+              </span>
+
+              <div *ngIf="activeReviewProductId === item.productId" class="border rounded-4 bg-white p-3">
+                <div *ngIf="reviewErrorMessage" class="return-feedback error mb-2">{{ reviewErrorMessage }}</div>
+
+                <div class="mb-3">
+                  <label class="d-block fw-semibold small mb-2" [for]="'reviewRating-' + item.productId">Rating</label>
+                  <select
+                    class="form-select form-select-sm"
+                    [id]="'reviewRating-' + item.productId"
+                    [(ngModel)]="reviewForm.rating"
+                    [name]="'reviewRating' + item.productId">
+                    <option *ngFor="let rating of reviewRatings" [ngValue]="rating">{{ rating }} Star{{ rating > 1 ? 's' : '' }}</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="d-block fw-semibold small mb-2" [for]="'reviewComment-' + item.productId">Comment</label>
+                  <textarea
+                    class="form-control form-control-sm"
+                    rows="3"
+                    [id]="'reviewComment-' + item.productId"
+                    [(ngModel)]="reviewForm.comment"
+                    [name]="'reviewComment' + item.productId"
+                    placeholder="Share your experience with this product."></textarea>
+                </div>
+
+                <div class="d-flex gap-2 justify-content-end flex-wrap">
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" (click)="closeReviewForm()">Cancel</button>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-dark rounded-pill"
+                    [disabled]="submittingReviewProductId === item.productId"
+                    (click)="submitReview(item.productId)">
+                    {{ submittingReviewProductId === item.productId ? 'Submitting...' : 'Submit Review' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="text-end">{{ item.quantity }}</td>
+          <td class="text-end">BDT {{ getItemDiscountedUnitPrice(item) | number:'1.2-2' }}</td>
+          <td class="text-end">
+            <span *ngIf="getItemProductDiscountTotal(item) > 0; else noDiscountLine">-BDT {{ getItemProductDiscountTotal(item) | number:'1.2-2' }}</span>
+            <ng-template #noDiscountLine>BDT 0.00</ng-template>
+          </td>
+          <td class="text-end">BDT {{ getItemDiscountedLineTotal(item) | number:'1.2-2' }}</td>
+        </tr>
+
+        <tr *ngIf="!orderItems.length">
+          <td colspan="5" class="text-center text-muted">
+            No items found
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="totals-card invoice-breakdown-card invoice-summary-area">
+      <div class="invoice-proof-title">Invoice Breakdown</div>
+      <div class="total-row">
+        <span>Subtotal</span>
+        <strong>BDT {{ getRegularSubtotal() | number:'1.2-2' }}</strong>
+      </div>
+      <div class="total-row" *ngIf="getProductDiscountTotal()">
+        <span>Product Discount</span>
+        <strong class="text-success">-BDT {{ getProductDiscountTotal() | number:'1.2-2' }}</strong>
+      </div>
+      <div class="total-row" *ngIf="getCouponDiscount()">
+        <span>Coupon Discount<span *ngIf="order.couponCode"> ({{ order.couponCode }})</span></span>
+        <strong class="text-success">-BDT {{ getCouponDiscount() | number:'1.2-2' }}</strong>
+      </div>
+      <div class="total-row" *ngIf="order.shippingCost">
+        <span>Delivery Charge</span>
+        <strong>BDT {{ order.shippingCost | number:'1.2-2' }}</strong>
+      </div>
+      <div class="total-row total-row-grand">
+        <span>Grand Total</span>
+        <strong>BDT {{ order.totalAmount | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+
+    <div class="invoice-footer-card">
+      <div class="signature-panel">
+        <div class="signature-line"></div>
+        <p>Authorized Signature</p>
+      </div>
+      <div class="footer-copy">
+        <strong>Thank you for shopping with StyleOra</strong>
+        <p>For return or support assistance, contact {{ companyProfile.email }} or {{ companyProfile.phone }} within 7 days of delivery.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="return-modal-backdrop no-print" *ngIf="showReturnModal">
+    <div class="return-modal-card">
+      <div class="return-modal-header">
+        <div>
+          <p class="return-request-eyebrow">Return Request</p>
+          <h5 class="mb-1">Request a return for this order</h5>
+          <p class="mb-0">Tell us why you want to return this delivered order.</p>
+        </div>
+        <button type="button" class="return-modal-close" (click)="closeReturnModal()" aria-label="Close return form">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div *ngIf="returnErrorMessage" class="return-feedback error">{{ returnErrorMessage }}</div>
+
+      <form (ngSubmit)="submitReturnRequest()">
+        <div class="return-form-field">
+          <label for="returnReason">Return Reason</label>
+          <select
+            id="returnReason"
+            class="form-select"
+            [(ngModel)]="returnForm.reason"
+            name="reason"
+            required>
+            <option value="">Select a reason</option>
+            <option *ngFor="let reason of returnReasons" [value]="reason">{{ reason }}</option>
+          </select>
+        </div>
+
+        <div class="return-form-field">
+          <label for="returnNote">Note</label>
+          <textarea
+            id="returnNote"
+            class="form-control"
+            rows="4"
+            [(ngModel)]="returnForm.note"
+            name="note"
+            placeholder="Add any details that could help support review your return."></textarea>
+        </div>
+
+        <div class="return-modal-actions">
+          <button type="button" class="btn btn-outline-dark rounded-pill" (click)="closeReturnModal()">Cancel</button>
+          <button type="submit" class="btn btn-return rounded-pill" [disabled]="submittingReturn">
+            {{ submittingReturn ? 'Submitting...' : 'Submit Return Request' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

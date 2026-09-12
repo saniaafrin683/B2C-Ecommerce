@@ -1,0 +1,278 @@
+<div class="edit-order-page">
+
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">Edit Order</h2>
+      <p class="page-subtitle">Update order information and maintain order workflow</p>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-light" (click)="onCancel()">Back to List</button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <form *ngIf="!loading" class="edit-grid" (ngSubmit)="onUpdate()">
+
+    <div class="left-column">
+
+      <div class="card">
+        <h3>Basic Information</h3>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Order ID</label>
+            <input type="text" [(ngModel)]="orderForm.orderId" name="orderId">
+          </div>
+
+          <div class="form-group">
+            <label>Created At</label>
+            <input type="text" [value]="getFormattedDate(orderForm.createdAt)" readonly>
+          </div>
+
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" [(ngModel)]="orderForm.customerName" name="customerName">
+          </div>
+
+          <div class="form-group">
+            <label>Customer Email</label>
+            <input type="email" [(ngModel)]="orderForm.customerEmail" name="customerEmail">
+          </div>
+
+          <div class="form-group">
+            <label>Customer Phone</label>
+            <input type="text" [(ngModel)]="orderForm.customerPhone" name="customerPhone">
+          </div>
+
+          <div class="form-group">
+            <label>Priority</label>
+            <select [(ngModel)]="orderForm.priority" name="priority">
+              <option value="">Select Priority</option>
+              <option *ngFor="let item of priorityOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Order Status & Delivery</h3>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Order Status</label>
+            <select [(ngModel)]="orderForm.orderStatus" name="orderStatus">
+              <option *ngFor="let item of orderStatusOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Status</label>
+            <select [(ngModel)]="orderForm.paymentStatus" name="paymentStatus">
+              <option *ngFor="let item of paymentStatusOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Method</label>
+            <input type="text" [(ngModel)]="orderForm.paymentMethod" name="paymentMethod">
+          </div>
+
+          <div class="form-group">
+            <label>Delivery Number</label>
+            <input type="text" [(ngModel)]="orderForm.deliveryNumber" name="deliveryNumber">
+          </div>
+
+          <div class="form-group">
+            <label>Tracking Number</label>
+            <input type="text" [(ngModel)]="orderForm.trackingNumber" name="trackingNumber">
+          </div>
+
+          <div class="form-group">
+            <label>Items</label>
+            <input type="number" [(ngModel)]="orderForm.items" name="items">
+          </div>
+
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" [(ngModel)]="orderForm.quantity" name="quantity">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Shipment Tracking</h3>
+
+        <div *ngIf="shipmentErrorMessage" class="state-box error">
+          {{ shipmentErrorMessage }}
+        </div>
+
+        <div *ngIf="shipmentLoading" class="state-box">
+          Loading shipment details...
+        </div>
+
+        <div class="form-grid" *ngIf="!shipmentLoading">
+          <div class="form-group">
+            <label>Shipping Method</label>
+            <select
+              [(ngModel)]="shipmentForm.shippingMethodId"
+              name="shipmentShippingMethodId"
+              (ngModelChange)="onShippingMethodChange()"
+              [disabled]="shippingMethodsLoading">
+              <option [ngValue]="undefined">Select Shipping Method</option>
+              <option *ngFor="let item of shippingMethods" [ngValue]="item.id">
+                {{ item.name }}{{ item.courierName ? ' - ' + item.courierName : '' }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Courier</label>
+            <select [(ngModel)]="shipmentForm.courierName" name="shipmentCourier">
+              <option value="">Select Courier</option>
+              <option *ngFor="let item of courierOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tracking Number</label>
+            <input type="text" [(ngModel)]="shipmentForm.trackingNumber" name="shipmentTrackingNumber">
+          </div>
+
+          <div class="form-group">
+            <label>Shipment Status</label>
+            <select [(ngModel)]="shipmentForm.shipmentStatus" name="shipmentStatus">
+              <option *ngFor="let item of shipmentStatusOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Shipped Date</label>
+            <input type="datetime-local" [(ngModel)]="shipmentForm.shippedDate" name="shipmentShippedDate">
+          </div>
+
+          <div class="form-group">
+            <label>Estimated Delivery</label>
+            <input type="datetime-local" [(ngModel)]="shipmentForm.estimatedDeliveryDate" name="shipmentEstimatedDeliveryDate">
+          </div>
+
+          <div class="form-group">
+            <label>Delivered Date</label>
+            <input type="datetime-local" [(ngModel)]="shipmentForm.deliveredDate" name="shipmentDeliveredDate">
+          </div>
+
+          <div class="form-group full-width">
+            <label>Shipment Note</label>
+            <textarea rows="3" [(ngModel)]="shipmentForm.remarks" name="shipmentRemarks"></textarea>
+          </div>
+        </div>
+
+        <div class="action-buttons" *ngIf="!shipmentLoading">
+          <button type="button" class="btn btn-primary" (click)="onSaveShipment()" [disabled]="loading || submitting || shipmentSubmitting || shipmentStatusSubmitting">
+            {{ shipmentSubmitting ? 'Saving...' : (shipmentId ? 'Save Shipment' : 'Create Shipment') }}
+          </button>
+
+          <button type="button" class="btn btn-warning" (click)="onUpdateShipmentStatus()" [disabled]="loading || submitting || shipmentSubmitting || shipmentStatusSubmitting">
+            {{ shipmentStatusSubmitting ? 'Updating...' : 'Update Shipment Status' }}
+          </button>
+
+          <button type="button" class="btn btn-light" (click)="onResetShipment()" [disabled]="loading || submitting || shipmentSubmitting || shipmentStatusSubmitting">
+            Reset Shipment
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Address Information</h3>
+
+        <div class="form-grid single-column">
+          <div class="form-group">
+            <label>Shipping Address</label>
+            <textarea rows="4" [(ngModel)]="orderForm.shippingAddress" name="shippingAddress"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Billing Address</label>
+            <textarea rows="4" [(ngModel)]="orderForm.billingAddress" name="billingAddress"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="right-column">
+
+      <div class="card">
+        <h3>Amount Summary</h3>
+
+        <div class="form-grid single-column">
+          <div class="form-group">
+            <label>Subtotal</label>
+            <input type="number" [(ngModel)]="orderForm.subtotal" name="subtotal">
+          </div>
+
+          <div class="form-group">
+            <label>Tax</label>
+            <input type="number" [(ngModel)]="orderForm.tax" name="tax">
+          </div>
+
+          <div class="form-group">
+            <label>Discount</label>
+            <input type="number" [(ngModel)]="orderForm.discount" name="discount">
+          </div>
+
+          <div class="form-group">
+            <label>Shipping Cost</label>
+            <input type="number" [(ngModel)]="orderForm.shippingCost" name="shippingCost">
+          </div>
+
+          <div class="form-group">
+            <label>Total Amount</label>
+            <input type="number" [(ngModel)]="orderForm.totalAmount" name="totalAmount">
+          </div>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="getOrderItems().length > 0">
+        <h3>Order Items</h3>
+
+        <div class="items-list">
+          <div class="item-row" *ngFor="let item of getOrderItems()">
+            <div class="item-copy">
+              <strong>{{ item.productName || 'Product Name Not Available' }}</strong>
+              <span>Size: {{ item.size || 'N/A' }} | Color: {{ item.color || 'N/A' }}</span>
+            </div>
+
+            <div class="item-meta">
+              <span>Qty: {{ item.quantity || 0 }}</span>
+              <span>{{ (item.lineTotal || 0) | appCurrency:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card action-card">
+        <h3>Actions</h3>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="submitting">
+            {{ submitting ? 'Saving...' : 'Save' }}
+          </button>
+
+          <button type="button" class="btn btn-warning" (click)="onReset()">
+            Reset
+          </button>
+
+          <button type="button" class="btn btn-light" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>

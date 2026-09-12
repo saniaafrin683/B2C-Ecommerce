@@ -1,0 +1,176 @@
+<section class="shop-shell">
+  <div class="shop-hero rounded-4 mb-4">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">Customer Shop</span>
+      <h1 class="shop-title">{{ pageTitle }}</h1>
+      <p class="shop-description mb-0">{{ pageDescription }}</p>
+    </div>
+  </div>
+
+  <div class="shop-mobile-bar d-md-none mb-3">
+    <button
+      class="btn btn-outline-dark rounded-pill shop-filter-toggle"
+      type="button"
+      (click)="toggleFilterPanel()"
+      [attr.aria-expanded]="isFilterPanelOpen"
+      aria-controls="shopFilterPanel"
+    >
+      {{ isFilterPanelOpen ? 'Hide Filters' : 'Show Filters' }}
+    </button>
+  </div>
+
+  <div class="shop-layout row g-4">
+    <div class="col-12 col-md-3 shop-sidebar-col" [class.is-open]="isFilterPanelOpen">
+      <aside class="shop-sidebar card border-0" id="shopFilterPanel" [class.is-open]="isFilterPanelOpen">
+        <div class="card-body p-4">
+          <div class="sidebar-section mb-4">
+            <div class="sidebar-section-head">
+              <h2 class="sidebar-title mb-0">Price Range</h2>
+              <span class="sidebar-meta">BDT</span>
+            </div>
+            <div class="row g-2">
+              <div class="col-12">
+                <label class="form-label" for="shopMinPrice">Min Price</label>
+                <input
+                  id="shopMinPrice"
+                  class="form-control"
+                  type="number"
+                  min="0"
+                  [(ngModel)]="minPrice"
+                  (ngModelChange)="applyFilters()"
+                >
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="shopMaxPrice">Max Price</label>
+                <input
+                  id="shopMaxPrice"
+                  class="form-control"
+                  type="number"
+                  min="0"
+                  [(ngModel)]="maxPrice"
+                  (ngModelChange)="applyFilters()"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section mb-4" *ngIf="availableBrands.length">
+            <div class="sidebar-section-head">
+              <h2 class="sidebar-title mb-0">Brand</h2>
+              <span class="sidebar-meta">{{ availableBrands.length }}</span>
+            </div>
+            <select
+              id="shopBrand"
+              class="form-select"
+              [(ngModel)]="selectedBrand"
+              (ngModelChange)="applyFilters()"
+            >
+              <option value="">All brands</option>
+              <option *ngFor="let brand of availableBrands; trackBy: trackByLabel" [value]="brand">
+                {{ brand }}
+              </option>
+            </select>
+          </div>
+
+          <div class="sidebar-section mb-4" *ngIf="availableSubCategories.length">
+            <div class="sidebar-section-head">
+              <h2 class="sidebar-title mb-0">Sub Categories</h2>
+              <span class="sidebar-meta">{{ availableSubCategories.length }}</span>
+            </div>
+
+            <div class="sidebar-link-list">
+              <a
+                class="sidebar-link"
+                *ngFor="let subCategory of availableSubCategories; trackBy: trackBySubCategory"
+                [routerLink]="['/shop', selectedCategorySlug, subCategory.slug]"
+                [queryParams]="{ subcategoryId: subCategory.id }"
+                [class.active]="selectedSubCategorySlug === subCategory.slug"
+                (click)="closeFilterPanel()"
+              >
+                {{ subCategory.name }}
+              </a>
+            </div>
+          </div>
+
+          <div class="sidebar-section sidebar-actions" *ngIf="hasClientSideFilters">
+            <button class="btn btn-outline-dark w-100 rounded-pill" type="button" (click)="resetClientFilters()">
+              Clear Filters
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="col-12 col-md-9">
+      <div class="shop-toolbar card border-0 mb-3">
+        <div class="card-body shop-toolbar-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div class="toolbar-copy">
+            <div class="toolbar-count">{{ totalElements }} products found</div>
+            <div class="toolbar-note" *ngIf="selectedCategorySlug">Filtered by {{ getCategoryLabel(selectedCategorySlug) }}</div>
+            <div class="toolbar-note" *ngIf="selectedSubCategorySlug">Sub category: {{ getDisplayLabel(selectedSubCategorySlug) }}</div>
+            <div class="toolbar-note" *ngIf="selectedBrand">Brand: {{ selectedBrand }}</div>
+          </div>
+
+          <div class="toolbar-controls d-flex flex-column flex-md-row align-items-md-center gap-2">
+            <input
+              class="form-control toolbar-search"
+              type="search"
+              placeholder="Search products"
+              [(ngModel)]="searchTerm"
+              (keyup.enter)="applyFilters()"
+            >
+            <div class="sort-group">
+              <label class="form-label mb-0" for="shopSort">Sort</label>
+              <select
+                id="shopSort"
+                class="form-select"
+                [(ngModel)]="sortOption"
+                (ngModelChange)="applyFilters()"
+              >
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A to Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-danger border-0 shadow-sm" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="shop-loading card border-0" *ngIf="isLoading">
+        <div class="card-body text-center py-5">
+          <div class="spinner-border text-dark mb-3" role="status" aria-hidden="true"></div>
+          <p class="mb-0">Loading products...</p>
+        </div>
+      </div>
+
+      <app-product-grid *ngIf="!isLoading && displayedProducts.length" [products]="displayedProducts"></app-product-grid>
+
+      <div class="shop-pagination d-flex justify-content-between align-items-center mt-4" *ngIf="!isLoading && totalPages > 1">
+        <button class="btn btn-outline-dark rounded-pill" type="button" (click)="goToPage(page - 1)" [disabled]="page === 0">
+          Previous
+        </button>
+        <div class="text-muted">Page {{ page + 1 }} of {{ totalPages }}</div>
+        <button class="btn btn-outline-dark rounded-pill" type="button" (click)="goToPage(page + 1)" [disabled]="page + 1 >= totalPages">
+          Next
+        </button>
+      </div>
+
+      <ng-container *ngIf="!isLoading && !displayedProducts.length">
+        <div class="shop-empty-state card border-0">
+          <div class="card-body text-center py-5">
+            <h2 class="h5 mb-2">No products found</h2>
+            <p class="text-muted mb-3">Try adjusting search, price, or brand filters to widen the result set.</p>
+            <button class="btn btn-outline-dark rounded-pill px-4" type="button" *ngIf="hasClientSideFilters" (click)="resetClientFilters()">
+              Clear Filters
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

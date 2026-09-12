@@ -1,0 +1,284 @@
+<div class="container py-4 product-details-page" *ngIf="product; else emptyState">
+  <a class="btn btn-link text-decoration-none px-0 mb-4 back-link" routerLink="/shop">Back to shop</a>
+
+  <div class="product-detail-shell row g-4 align-items-start">
+    <div class="col-12 col-lg-6">
+      <div class="product-gallery-card bg-white rounded-4 shadow-sm p-3 p-lg-4">
+        <div class="gallery-header">
+          <span class="section-kicker">Product Gallery</span>
+          <span class="gallery-counter">{{ galleryImages.length || 1 }} View<span *ngIf="galleryImages.length !== 1">s</span></span>
+        </div>
+        <div class="gallery-stage">
+          <div class="gallery-glow" aria-hidden="true"></div>
+          <img
+            [src]="selectedImage || productImageUrl"
+            [alt]="product.name"
+            class="img-fluid w-100 rounded product-image"
+          >
+        </div>
+
+        <div class="thumbnail-row mt-3" *ngIf="galleryImages.length">
+          <button
+            *ngFor="let image of galleryImages"
+            type="button"
+            class="thumbnail-button btn p-0"
+            [class.active]="selectedImage === image"
+            (click)="selectImage(image)"
+          >
+            <img [src]="image" [alt]="product.name" class="thumbnail-image">
+          </button>
+        </div>
+
+        <div class="gallery-note">
+          <div class="gallery-note-block">
+            <span class="gallery-note-title">Styleora Edit</span>
+            <span class="gallery-note-copy">Refined everyday fashion with clean silhouettes and premium comfort.</span>
+          </div>
+          <div class="gallery-note-meta">
+            <span class="gallery-note-pill">Curated pick</span>
+            <span class="gallery-note-pill">Soft finish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="product-copy-card bg-white rounded-4 shadow-sm p-4 p-xl-5">
+        <div class="product-badges d-flex align-items-center flex-wrap gap-2 mb-3">
+          <span class="detail-pill">{{ product.category }}</span>
+          <span class="detail-pill detail-pill-muted" *ngIf="productSubCategory">{{ productSubCategory }}</span>
+          <span class="detail-discount-pill" *ngIf="product.discount">{{ product.discount }}% OFF</span>
+        </div>
+
+        <div class="title-row d-flex align-items-start justify-content-between gap-3 mb-2">
+          <div class="title-copy">
+            <h1 class="h2 mb-0 product-name">{{ product.name }}</h1>
+            <p class="product-brand-label mb-0">{{ product.brand || 'Styleora signature' }}</p>
+          </div>
+          <span class="stock-badge" [ngClass]="stockClass">{{ stockLabel }}</span>
+        </div>
+
+        <div class="product-meta-stack mb-4">
+          <div class="meta-line"><span class="meta-key">Category</span><span class="meta-value">{{ product.category }}</span></div>
+          <div class="meta-line"><span class="meta-key">Brand</span><span class="meta-value">{{ product.brand || 'Styleora signature' }}</span></div>
+          <div class="meta-line"><span class="meta-key">Sub-category</span><span class="meta-value">{{ productSubCategory || 'General Collection' }}</span></div>
+          <div class="meta-line"><span class="meta-key">Tags</span><span class="meta-value meta-tags"><span class="spec-tag" *ngFor="let tag of productTags">{{ tag }}</span></span></div>
+        </div>
+
+        <div class="price-panel mb-4">
+          <div class="price-row">
+            <div class="price-copy">
+              <span class="price-current">BDT {{ finalPrice | number:'1.2-2' }}</span>
+              <div class="price-support" *ngIf="originalPrice || product.discount">
+                <span class="price-original" *ngIf="originalPrice">BDT {{ originalPrice | number:'1.2-2' }}</span>
+                <span class="discount-chip" *ngIf="product.discount">{{ product.discount }}% OFF</span>
+              </div>
+            </div>
+            <div class="price-side-note">
+              <span class="price-side-label">Styleora Price</span>
+              <strong>Inclusive fashion value</strong>
+            </div>
+          </div>
+          <p class="price-note mb-0" *ngIf="savingsAmount > 0">You save BDT {{ savingsAmount }} on this item today.</p>
+        </div>
+
+        <div class="description-panel mb-4">
+          <div class="section-label mb-2">Short Description</div>
+          <p class="product-description mb-0">{{ shortDescription }}</p>
+        </div>
+
+        <div class="product-assurance-row mb-4">
+          <div class="assurance-card">
+            <span class="assurance-title">Fabric Feel</span>
+            <strong>Premium everyday comfort</strong>
+          </div>
+          <div class="assurance-card">
+            <span class="assurance-title">Delivery</span>
+            <strong>Ready for cart and checkout</strong>
+          </div>
+          <div class="assurance-card">
+            <span class="assurance-title">Wishlist</span>
+            <strong>Save now, compare later</strong>
+          </div>
+        </div>
+
+        <div class="size-section mb-4 pb-4" *ngIf="sizeOptions.length">
+          <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+            <div class="section-label mb-0">Select Size</div>
+            <div class="selected-size-copy">Selected: {{ selectedSize }}</div>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <button
+              *ngFor="let size of sizeOptions"
+              type="button"
+              class="size-option btn"
+              [class.active]="selectedSize === size"
+              (click)="selectSize(size)"
+            >
+              {{ size }}
+            </button>
+          </div>
+        </div>
+
+        <div class="quantity-section mb-4">
+          <div class="quantity-header">
+            <div>
+              <div class="section-label mb-2">Quantity</div>
+              <p class="quantity-copy mb-0">Adjust the quantity before adding this style to your cart.</p>
+            </div>
+            <span class="quantity-hint">Maximum available for order: {{ availableStock }}</span>
+          </div>
+          <div class="quantity-layout">
+            <app-quantity-selector
+              [quantity]="quantity"
+              [min]="1"
+              [max]="availableStock > 0 ? availableStock : 1"
+              (quantityChange)="updateQuantity($event)"
+            ></app-quantity-selector>
+          </div>
+        </div>
+
+        <div class="feedback-stack" *ngIf="addToCartMessage || addToCartErrorMessage || wishlistMessage || buyNowMessage">
+          <div class="alert alert-success mb-0" *ngIf="addToCartMessage">{{ addToCartMessage }}</div>
+          <div class="alert alert-danger mb-0" *ngIf="addToCartErrorMessage">{{ addToCartErrorMessage }}</div>
+          <div class="alert alert-info mb-0" *ngIf="wishlistMessage">{{ wishlistMessage }}</div>
+          <div class="alert alert-warning mb-0" *ngIf="buyNowMessage">{{ buyNowMessage }}</div>
+        </div>
+
+        <div class="action-grid mb-4 action-row">
+          <button class="btn btn-dark btn-lg primary-cart-button w-100" type="button" (click)="addToCart()" [disabled]="availableStock <= 0 || isAddingToCart">
+            {{ availableStock <= 0 ? 'Out of Stock' : (isAddingToCart ? 'Adding...' : 'Add to Cart') }}
+          </button>
+          <button
+            class="btn btn-outline-dark btn-lg w-100 secondary-cart-button"
+            type="button"
+            [class.wishlist-active]="isWishlisted"
+            (click)="toggleWishlist()"
+          >
+            {{ isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist' }}
+          </button>
+          <button class="btn btn-outline-dark btn-lg w-100 secondary-cart-button buy-now-button" type="button" (click)="showBuyNowHint()">
+            Buy Now
+          </button>
+        </div>
+
+        <div class="action-support-row mb-4">
+          <span>Secure cart flow</span>
+          <span>Wishlist preserved locally</span>
+          <span>Responsive checkout journey</span>
+        </div>
+
+        <div class="product-specs rounded-4">
+          <div class="section-label mb-3">Product Information</div>
+          <div class="spec-table">
+            <div class="spec-row">
+              <span class="spec-key">Category</span>
+              <span class="spec-value">{{ product.category }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Sub-category</span>
+              <span class="spec-value">{{ productSubCategory || 'General Collection' }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Brand</span>
+              <span class="spec-value">{{ product.brand || 'Styleora signature' }}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Tags</span>
+              <span class="spec-value spec-tags">
+                <span class="spec-tag" *ngFor="let tag of productTags">{{ tag }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-specs rounded-4 mt-4" *ngIf="hasProductAttributes">
+          <div class="section-label mb-3">Attributes</div>
+          <div class="spec-table">
+            <div class="spec-row" *ngFor="let attribute of productAttributes; trackBy: trackByAttribute">
+              <span class="spec-key">{{ attribute.key }}</span>
+              <span class="spec-value">{{ attribute.value }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="related-products-section mt-5" *ngIf="relatedProducts.length">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Related Products</span>
+        <h2>More styles from the same shopping flow.</h2>
+        <p class="section-copy mb-0">A curated set from the same category so customers can continue browsing without leaving the product journey.</p>
+      </div>
+      <a class="btn btn-outline-dark rounded-pill px-4" [routerLink]="['/shop', product.category?.toLowerCase()]">View Collection</a>
+    </div>
+
+    <app-product-grid [products]="relatedProducts" variant="home"></app-product-grid>
+  </section>
+
+  <section class="review-section mt-5">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Customer Reviews</span>
+        <h2>Early customer feedback for this style direction.</h2>
+        <p class="section-copy mb-0">Approved reviews are shown here to help shoppers understand fit, comfort, and everyday wear expectations.</p>
+      </div>
+      <div class="review-summary">
+        <strong>{{ reviewAverage }}</strong>
+        <span>Average rating</span>
+      </div>
+    </div>
+
+    <div class="review-insights" *ngIf="reviews.length > 0">
+      <div class="review-insight-card">
+        <span class="review-insight-label">Approved reviews</span>
+        <strong>{{ reviews.length }}</strong>
+      </div>
+      <div class="review-insight-card">
+        <span class="review-insight-label">Average score</span>
+        <strong>{{ reviewAverage }}/5</strong>
+      </div>
+      <div class="review-insight-card">
+        <span class="review-insight-label">Product mood</span>
+        <strong>Modern, wearable, easy to style</strong>
+      </div>
+    </div>
+
+    <div class="review-grid" *ngIf="reviews.length > 0; else emptyReviews">
+      <article class="review-card" *ngFor="let review of reviews; trackBy: trackByReview">
+        <div class="review-card-head">
+          <div>
+            <strong>{{ review.name }}</strong>
+            <span>{{ review.title }}</span>
+          </div>
+          <span *ngIf="review.reviewDate" class="review-date">{{ review.reviewDate | date:'dd MMM yyyy' }}</span>
+        </div>
+        <div class="review-stars">
+          <i class="bi bi-star-fill" *ngFor="let star of createStars(review.rating)"></i>
+          <span class="review-rating-copy">{{ review.rating }}/5</span>
+        </div>
+        <p class="review-comment">{{ review.comment }}</p>
+        <div *ngIf="review.adminReply" class="review-reply">
+          <strong class="d-block mb-1">Admin Reply</strong>
+          <p class="mb-0 text-muted">{{ review.adminReply }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<ng-template #emptyState>
+  <div class="container py-4">
+    <div class="alert alert-light border text-center mb-0">
+      Product details are unavailable.
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #emptyReviews>
+  <div class="alert alert-light border text-center mb-0">
+    Approved customer reviews for this product will appear here once they are available.
+  </div>
+</ng-template>

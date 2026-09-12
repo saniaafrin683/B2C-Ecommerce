@@ -1,0 +1,55 @@
+<section class="blog-details-shell container py-4 py-lg-5" *ngIf="post">
+  <div class="mb-4">
+    <a class="back-link" routerLink="/blog">
+      <i class="bi bi-arrow-left"></i>
+      Back to Blog
+    </a>
+  </div>
+
+  <article class="blog-article card border-0">
+    <img class="article-image" [src]="post?.image" [alt]="post?.title">
+
+    <div class="card-body p-4 p-lg-5">
+      <div class="meta-row mb-3">
+        <span class="category-chip">{{ post?.category }}</span>
+        <span class="post-date">{{ post?.date | date:'dd MMM yyyy' }}</span>
+      </div>
+
+      <h1 class="article-title">{{ post?.title }}</h1>
+      <p class="article-intro">{{ post?.excerpt }}</p>
+
+      <div class="article-content">
+        <p *ngFor="let paragraph of post?.content || []">{{ paragraph }}</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="related-section mt-4 mt-lg-5" *ngIf="relatedPosts.length">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-3">
+      <div>
+        <p class="section-eyebrow mb-1">More from Styleora Journal</p>
+        <h2 class="section-title mb-0">Continue reading</h2>
+      </div>
+      <a class="btn btn-outline-dark rounded-pill px-4" routerLink="/blog">View All Posts</a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12 col-md-6" *ngFor="let relatedPost of relatedPosts">
+        <article class="related-card card border-0 h-100">
+          <img class="related-image" [src]="relatedPost.image" [alt]="relatedPost.title">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="meta-row mb-3">
+              <span class="category-chip">{{ relatedPost.category }}</span>
+              <span class="post-date">{{ relatedPost.date | date:'dd MMM yyyy' }}</span>
+            </div>
+            <h3 class="related-title">{{ relatedPost.title }}</h3>
+            <p class="related-excerpt flex-grow-1">{{ relatedPost.excerpt }}</p>
+            <a class="btn btn-dark rounded-pill px-4 align-self-start" [routerLink]="['/blog', relatedPost.id]">
+              Read More
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</section>

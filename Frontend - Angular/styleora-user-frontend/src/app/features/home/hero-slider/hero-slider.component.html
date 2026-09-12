@@ -1,0 +1,44 @@
+<section class="hero-slider">
+  <div class="hero-card">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">{{ activeSlide.eyebrow }}</span>
+      <h1>{{ activeSlide.title }}</h1>
+      <p>{{ activeSlide.description }}</p>
+      <div class="hero-chip-row">
+        <span class="hero-chip">{{ activeSlide.accent }}</span>
+        <span class="hero-chip">Premium Everyday Fashion</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-dark btn-lg rounded-pill px-4" [routerLink]="activeSlide.shopLink">Shop Now</a>
+        <a class="btn btn-outline-dark btn-lg rounded-pill px-4" routerLink="/shop">View Catalog</a>
+      </div>
+
+      <div class="hero-dots">
+        <button
+          *ngFor="let slide of slides; let i = index"
+          type="button"
+          class="hero-dot"
+          [class.active]="i === currentSlide"
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+          (click)="goToSlide(i)"
+        ></button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img [src]="activeSlide.image" [alt]="activeSlide.title">
+      <div class="hero-highlight-card">
+        <span>Curated Drop</span>
+        <strong>New-season textures, lighter layers, and giftable accents.</strong>
+      </div>
+      <div class="hero-nav">
+        <button type="button" class="hero-nav-btn" aria-label="Previous slide" (click)="previousSlide()">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <button type="button" class="hero-nav-btn" aria-label="Next slide" (click)="nextSlide()">
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

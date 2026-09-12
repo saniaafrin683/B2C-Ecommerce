@@ -1,0 +1,23 @@
+<div class="toast-stack" *ngIf="toasts$ | async as toasts">
+  <div
+    *ngFor="let toast of toasts"
+    class="toast-card shadow-sm"
+    [ngClass]="getToastClass(toast.type)">
+    <div class="toast-icon">
+      <i class="bi" [ngClass]="getToastIcon(toast.type)"></i>
+    </div>
+
+    <div class="toast-copy">
+      <div class="toast-title">{{ getToastTitle(toast.type) }}</div>
+      <div class="toast-message">{{ toast.message }}</div>
+    </div>
+
+    <button
+      type="button"
+      class="toast-close"
+      (click)="dismiss(toast.id)"
+      aria-label="Dismiss notification">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+</div>

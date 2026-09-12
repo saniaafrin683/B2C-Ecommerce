@@ -1,0 +1,85 @@
+:host {
+  display: block;
+}
+
+.orders-shell {
+  border: 1px solid #f0ece4;
+  position: relative;
+}
+
+.order-success-overlay {
+  align-items: center;
+  background: rgba(23, 18, 14, 0.62);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  z-index: 2000;
+}
+
+.order-success-modal {
+  border-radius: 1.25rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.success-check {
+  align-items: center;
+  background: #e7f5eb;
+  border: 2px solid #3f9b5f;
+  border-radius: 999px;
+  color: #2f7a46;
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: 700;
+  height: 62px;
+  justify-content: center;
+  width: 62px;
+}
+
+.orders-message,
+.orders-loading {
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.95rem 1rem;
+}
+
+.orders-message-error {
+  background: #fff2f2;
+  border: 1px solid #efc4c4;
+  color: #8f2d2d;
+}
+
+.orders-loading {
+  background: #f8f5ef;
+  border: 1px solid #ebe1d0;
+  color: #6c5d45;
+  text-align: center;
+}
+
+.status-pill {
+  background: #f6efe2;
+  border-radius: 999px;
+  color: #6f5427;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+}
+
+.payment-pill {
+  background: #eef3fb;
+  border-radius: 999px;
+  color: #2b4f7d;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+}
+
+@media (max-width: 767.98px) {
+  .order-success-modal {
+    max-width: 100%;
+  }
+}

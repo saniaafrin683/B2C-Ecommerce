@@ -1,0 +1,90 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Payments / Create</span>
+      <h1 class="admin-page-title">Create Payment</h1>
+      <p class="admin-page-subtitle">Add a transaction record linked to an invoice and order from the current finance data.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loadingReferences" class="page-message info">
+      Loading invoices and orders...
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()" *ngIf="!loadingReferences">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Invoice</label>
+          <select class="admin-select" [(ngModel)]="paymentForm.invoiceId" name="invoiceId" (ngModelChange)="onInvoiceChange()" required>
+            <option [ngValue]="0">Select Invoice</option>
+            <option *ngFor="let invoice of invoices" [ngValue]="invoice.id">
+              {{ invoice.invoiceNumber }} - {{ invoice.customerName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Order</label>
+          <select class="admin-select" [(ngModel)]="paymentForm.orderId" name="orderId" (ngModelChange)="onOrderChange()" required>
+            <option [ngValue]="0">Select Order</option>
+            <option *ngFor="let order of orders" [ngValue]="order.id">
+              {{ order.orderId || ('Order #' + order.id) }} - {{ order.customerName || 'Unknown customer' }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Transaction ID</label>
+          <input class="admin-input" type="text" [(ngModel)]="paymentForm.transactionId" name="transactionId" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Customer Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="paymentForm.customerName" name="customerName" required>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Amount</label>
+          <input class="admin-input" type="number" [(ngModel)]="paymentForm.amount" name="amount" required>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Payment Method</label>
+          <select class="admin-select" [(ngModel)]="paymentForm.paymentMethod" name="paymentMethod">
+            <option *ngFor="let method of paymentMethods" [value]="method">{{ method }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Payment Status</label>
+          <select class="admin-select" [(ngModel)]="paymentForm.paymentStatus" name="paymentStatus" required>
+            <option *ngFor="let status of paymentStatuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Payment Date</label>
+          <input class="admin-input" type="date" [(ngModel)]="paymentForm.paymentDate" name="paymentDate" required>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Notes</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="paymentForm.notes" name="notes"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

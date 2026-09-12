@@ -1,0 +1,63 @@
+.invoice-page {
+  margin-top: 1.25rem;
+}
+
+.invoice-sheet {
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.invoice-label,
+.invoice-meta-label {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+}
+
+.invoice-number {
+  color: var(--text-strong);
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.invoice-block {
+  padding: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.75);
+}
+
+.invoice-link {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.totals-card {
+  max-width: 24rem;
+}
+
+.totals-card span,
+.invoice-block .text-muted {
+  line-height: 1.6;
+}
+
+.total-row {
+  font-weight: 700;
+}
+
+.total-row strong {
+  color: var(--brand-strong);
+}
+
+.signature-line {
+  width: 12rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.28);
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 991.98px) {
+  .totals-card {
+    max-width: 100%;
+  }
+}

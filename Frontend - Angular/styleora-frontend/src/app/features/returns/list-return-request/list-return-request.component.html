@@ -1,0 +1,74 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Sales / Returns</span>
+      <h1 class="admin-page-title">Return Requests</h1>
+      <p class="admin-page-subtitle">Manage customer return approvals and refund progression after order delivery.</p>
+    </div>
+
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading return requests...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Customer</th>
+            <th>Reason</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of returnRequests">
+            <td>
+              <strong>{{ item.orderReference || ('ORD-' + item.orderId) }}</strong>
+              <div class="text-muted small">#{{ item.orderId }}</div>
+            </td>
+            <td>
+              <strong>{{ item.customerName || ('Customer #' + item.customerId) }}</strong>
+              <div class="text-muted small">#{{ item.customerId }}</div>
+            </td>
+            <td>{{ item.reason || 'Not provided' }}</td>
+            <td>{{ item.requestedAt ? (item.requestedAt | date:'dd MMM yyyy, h:mm a') : 'Not set' }}</td>
+            <td>
+              <select
+                class="admin-select"
+                [ngModel]="item.status"
+                [ngModelOptions]="{ standalone: true }"
+                [disabled]="updatingId === item.id"
+                (ngModelChange)="onStatusChange(item, $event)">
+                <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+              </select>
+            </td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onDetails(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="returnRequests.length === 0">
+            <td colspan="6" class="table-empty">
+              <strong>No return requests found</strong>
+              Customer return requests will appear here after delivery-based submissions.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,20 @@
+<section class="trending-shell">
+  <div class="section-head">
+    <div>
+      <span class="section-kicker">Trending Products</span>
+      <h2>Popular pieces presented as a separate fashion edit.</h2>
+      <p>Built on the same live product feed, but framed as a more editorial row for quick discovery.</p>
+    </div>
+    <a class="section-link" routerLink="/shop/fashion">View Fashion Edit</a>
+  </div>
+
+  <div class="trending-rail" *ngIf="products.length; else trendingState">
+    <div class="trending-card-wrap" *ngFor="let product of products">
+      <app-product-card [product]="product" variant="home"></app-product-card>
+    </div>
+  </div>
+</section>
+
+<ng-template #trendingState>
+  <app-empty-state [message]="isLoading ? 'Loading products...' : 'No trending products available right now.'"></app-empty-state>
+</ng-template>

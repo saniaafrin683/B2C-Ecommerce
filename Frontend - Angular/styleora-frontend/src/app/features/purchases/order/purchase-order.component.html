@@ -1,0 +1,163 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Purchases / Orders</span>
+      <h1 class="admin-page-title">Purchase Order</h1>
+      <p class="admin-page-subtitle">Manage supplier purchase orders with live backend persistence.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="openCreateForm()">
+        <i class="bi bi-plus-circle"></i>
+        Add Purchase Order
+      </button>
+    </div>
+  </div>
+
+  <div class="order-summary-grid">
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Total Orders</span>
+      <strong>{{ totalOrders }}</strong>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Pending</span>
+      <strong>{{ pendingOrders }}</strong>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Received / Completed</span>
+      <strong>{{ completedOrders }}</strong>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Cancelled</span>
+      <strong>{{ cancelledOrders }}</strong>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading purchase orders...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Supplier</th>
+            <th>Items</th>
+            <th>Order Date</th>
+            <th>Expected Delivery</th>
+            <th>Order Status</th>
+            <th>Total</th>
+            <th>Payment Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let order of purchaseOrders">
+            <td><strong>{{ order.purchaseOrderId }}</strong></td>
+
+            <td>
+              <div class="supplier-cell">
+                <div class="supplier-avatar">{{ order.supplierName.slice(0, 2).toUpperCase() }}</div>
+                <div class="supplier-copy">
+                  <strong>{{ order.supplierName }}</strong>
+                  <span>{{ order.paymentMethod || 'Not Set' }}</span>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <div class="item-stack">
+                <strong>{{ getItemCount(order) }} item{{ getItemCount(order) !== 1 ? 's' : '' }}</strong>
+                <span>{{ getItemSummary(order) || 'No items added' }}</span>
+              </div>
+            </td>
+
+            <td>{{ order.orderDate | date:'dd MMM yyyy' }}</td>
+            <td>{{ order.expectedDeliveryDate ? (order.expectedDeliveryDate | date:'dd MMM yyyy') : '-' }}</td>
+
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(order.orderStatus)">
+                {{ order.orderStatus }}
+              </span>
+            </td>
+
+            <td><strong>{{ order.totalAmount | appCurrency:'1.2-2' }}</strong></td>
+
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(order.paymentStatus)">
+                {{ order.paymentStatus }}
+              </span>
+            </td>
+
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(order)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(order)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(order.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="purchaseOrders.length === 0">
+            <td colspan="9" class="table-empty">
+              <strong>No purchase orders found</strong>
+              Add a purchase order to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-card surface-card glass-panel" *ngIf="selectedOrder">
+    <div class="section-card-header">
+      <div>
+        <h2 class="section-card-title">Order Overview</h2>
+        <p class="section-card-subtitle">Selected purchase order details and financial breakdown.</p>
+      </div>
+    </div>
+
+    <div class="selected-order-grid">
+      <div class="overview-block">
+        <span>Order ID</span>
+        <strong>{{ selectedOrder.purchaseOrderId }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Supplier</span>
+        <strong>{{ selectedOrder.supplierName }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Order Date</span>
+        <strong>{{ selectedOrder.orderDate | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Expected Delivery</span>
+        <strong>{{ selectedOrder.expectedDeliveryDate ? (selectedOrder.expectedDeliveryDate | date:'dd MMM yyyy') : '-' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Total Amount</span>
+        <strong>{{ selectedOrder.totalAmount | appCurrency:'1.2-2' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Payment Status</span>
+        <span class="pill-badge" [ngClass]="getStatusClass(selectedOrder.paymentStatus)">{{ selectedOrder.paymentStatus }}</span>
+      </div>
+    </div>
+  </section>
+</div>

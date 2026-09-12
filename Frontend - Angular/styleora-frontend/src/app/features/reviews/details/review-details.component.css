@@ -1,0 +1,138 @@
+.page-message {
+  margin-bottom: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.page-message.error {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.page-message.info {
+  color: var(--brand);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.danger-action {
+  border-color: rgba(239, 68, 68, 0.18);
+  color: #b91c1c;
+}
+
+.review-details-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-kicker {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-copy h2 {
+  margin: 0.35rem 0;
+  color: var(--text-strong);
+}
+
+.hero-copy p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.hero-meta strong {
+  color: #f59e0b;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.overview-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.72);
+  border: 1px solid rgba(226, 232, 240, 0.92);
+}
+
+.overview-block span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.overview-block strong {
+  color: var(--text-strong);
+}
+
+.notes-card {
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.72);
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.reply-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.reply-textarea {
+  width: 100%;
+  min-height: 140px;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.72);
+  color: var(--text-strong);
+  padding: 1rem 1.1rem;
+  resize: vertical;
+  outline: none;
+}
+
+.reply-textarea:focus {
+  border-color: rgba(37, 99, 235, 0.42);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.reply-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 767.98px) {
+  .hero-meta {
+    align-items: flex-start;
+  }
+
+  .reply-actions {
+    justify-content: flex-start;
+  }
+}

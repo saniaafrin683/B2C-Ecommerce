@@ -1,0 +1,139 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Finance / Invoices</span>
+      <h1 class="admin-page-title">Invoice List</h1>
+      <p class="admin-page-subtitle">Track billing records, monitor payment states, and manage printable invoices linked to live orders.</p>
+    </div>
+  </div>
+
+  <div class="invoice-summary-grid compact-summary-grid">
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Total Invoice</span>
+      <strong>{{ totalInvoices }}</strong>
+      <small>All generated billing records</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Pending Invoice</span>
+      <strong>{{ pendingInvoices }}</strong>
+      <small>Awaiting payment completion</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Paid Invoice</span>
+      <strong>{{ paidInvoices }}</strong>
+      <small>Completed and settled invoices</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Cancelled Invoice</span>
+      <strong>{{ cancelledInvoices }}</strong>
+      <small>Cancelled, failed, or inactive invoices</small>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div class="invoice-toolbar compact-toolbar">
+      <div>
+        <h2 class="section-card-title">All Invoices List</h2>
+      </div>
+
+      <div class="toolbar-actions">
+        <button type="button" class="btn-ui-secondary">
+          <i class="bi bi-calendar3"></i>
+          This Month
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-download"></i>
+          Download
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-box-arrow-up"></i>
+          Export
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-box-arrow-in-down"></i>
+          Import
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading invoices...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Invoice ID</th>
+            <th>Billing Name</th>
+            <th>Order Date</th>
+            <th>Total</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of paginatedInvoices">
+            <td class="action-col">
+              <div class="invoice-id-copy">
+                <strong>{{ item.invoiceNumber }}</strong>
+                <span>Order {{ item.orderReference || ('#' + item.orderId) }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="invoice-customer">
+                <div class="invoice-avatar">{{ getInitials(item.customerName) }}</div>
+                <div class="invoice-customer-copy">
+                  <strong>{{ item.customerName }}</strong>
+                  <span>{{ item.customerEmail || 'No email available' }}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{ item.issueDate | date:'dd MMM yyyy' }}</td>
+            <td>
+              <div class="amount-copy">
+                <strong>{{ item.totalAmount | appCurrency:'1.2-2' }}</strong>
+                <span>Invoice total</span>
+              </div>
+            </td>
+            <td>
+              <span class="method-chip" [ngClass]="getPaymentMethodClass(item.paymentMethod)">
+                {{ item.paymentMethod || 'Not set' }}
+              </span>
+            </td>
+            <td><span class="pill-badge" [ngClass]="getStatusClass(item.paymentStatus)">{{ item.paymentStatus }}</span></td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)"><i class="bi bi-eye"></i></button>
+                <button type="button" class="icon-action edit" (click)="onPrint(item)"><i class="bi bi-printer"></i></button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="paginatedInvoices.length === 0">
+            <td colspan="7" class="table-empty">
+              <strong>No invoices available</strong>
+              Invoice records will appear here once billing entries are created.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && invoices.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </section>
+</div>

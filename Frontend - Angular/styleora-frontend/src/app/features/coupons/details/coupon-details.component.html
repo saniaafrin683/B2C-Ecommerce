@@ -1,0 +1,75 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Coupons / Details</span>
+      <h1 class="admin-page-title">Coupon Details</h1>
+      <p class="admin-page-subtitle">Review coupon configuration, usage limits, and active date window.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Coupon</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading coupon details...
+    </div>
+
+    <div class="coupon-details-grid" *ngIf="coupon && !loading">
+      <div class="overview-block">
+        <span>Coupon Code</span>
+        <strong>{{ coupon.couponCode }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Discount Type</span>
+        <strong>{{ coupon.discountType }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Discount Value</span>
+        <strong>{{ getDiscountValueLabel() }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Status</span>
+        <span class="pill-badge" [ngClass]="getStatusClass(coupon.status)">{{ coupon.status }}</span>
+      </div>
+      <div class="overview-block">
+        <span>Start Date</span>
+        <strong>{{ coupon.startDate | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>End Date</span>
+        <strong>{{ coupon.endDate | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Usage Limit</span>
+        <strong>{{ coupon.usageLimit }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Used Count</span>
+        <strong>{{ coupon.usedCount }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Minimum Order</span>
+        <strong>{{ coupon.minimumOrderAmount | appCurrency:'1.2-2' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Created At</span>
+        <strong>{{ coupon.createdAt | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Updated At</span>
+        <strong>{{ coupon.updatedAt | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block overview-wide">
+        <span>Description</span>
+        <strong>{{ coupon.description || 'No description added' }}</strong>
+      </div>
+    </div>
+  </section>
+</div>

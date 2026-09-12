@@ -1,0 +1,101 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Customers / Create</span>
+      <h1 class="admin-page-title">Create Customer</h1>
+      <p class="admin-page-subtitle">Add a new customer profile with contact details, address data, and account statistics.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Customer Code</label>
+          <input class="admin-input" type="text" [(ngModel)]="customerForm.customerCode" name="customerCode" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Full Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="customerForm.fullName" name="fullName" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Email</label>
+          <input class="admin-input" type="email" [(ngModel)]="customerForm.email" name="email" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Phone</label>
+          <input class="admin-input" type="text" [(ngModel)]="customerForm.phone" name="phone">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Gender</label>
+          <select class="admin-select" [(ngModel)]="customerForm.gender" name="gender">
+            <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Date of Birth</label>
+          <input class="admin-input" type="date" [(ngModel)]="customerForm.dateOfBirth" name="dateOfBirth">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Registered Date</label>
+          <input class="admin-input" type="date" [(ngModel)]="customerForm.registeredAt" name="registeredAt">
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Address</label>
+          <textarea class="admin-textarea" rows="3" [(ngModel)]="customerForm.address" name="address"></textarea>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">City</label>
+          <input class="admin-input" type="text" [(ngModel)]="customerForm.city" name="city">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Country</label>
+          <input class="admin-input" type="text" [(ngModel)]="customerForm.country" name="country">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-select" [(ngModel)]="customerForm.status" name="status" required>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Total Orders</label>
+          <input class="admin-input" type="number" [(ngModel)]="customerForm.totalOrders" name="totalOrders">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Total Spend</label>
+          <input class="admin-input" type="number" [(ngModel)]="customerForm.totalSpend" name="totalSpend">
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Notes</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="customerForm.notes" name="notes"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

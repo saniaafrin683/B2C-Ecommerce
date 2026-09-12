@@ -1,0 +1,133 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Community / Reviews</span>
+      <h1 class="admin-page-title">Customer Reviews</h1>
+      <p class="admin-page-subtitle">Moderate product feedback, track approval status, and review customer sentiment from live backend data.</p>
+    </div>
+  </div>
+
+  <div class="reviews-summary-grid compact-summary-grid">
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Total Reviews</span>
+      <strong>{{ totalReviews }}</strong>
+      <small>All submitted reviews</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Pending Reviews</span>
+      <strong>{{ pendingReviews }}</strong>
+      <small>Awaiting moderation</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Approved Reviews</span>
+      <strong>{{ approvedReviews }}</strong>
+      <small>Published feedback</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Rejected Reviews</span>
+      <strong>{{ rejectedReviews }}</strong>
+      <small>Declined submissions</small>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div class="reviews-toolbar compact-toolbar">
+      <div>
+        <h2 class="section-card-title">Review Moderation Queue</h2>
+      </div>
+      <button type="button" class="btn-ui-secondary">
+        <i class="bi bi-calendar3"></i>
+        This Month
+      </button>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading reviews...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Review ID</th>
+            <th>Product</th>
+            <th>Customer</th>
+            <th>Rating</th>
+            <th>Review</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of paginatedReviews">
+            <td>
+              <div class="review-id-copy">
+                <strong>{{ item.reviewCode || ('REV-' + item.id) }}</strong>
+                <span>#{{ item.id }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="review-id-copy">
+                <strong>{{ item.productName || 'Unknown product' }}</strong>
+                <span>Product #{{ item.productId || 'N/A' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="review-customer">
+                <div class="review-avatar">{{ getInitials(item.customerName) }}</div>
+                <div class="review-id-copy">
+                  <strong>{{ item.customerName || 'Unknown customer' }}</strong>
+                  <span>{{ item.customerEmail || 'No email available' }}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="rating-copy">
+                <strong>{{ getStars(item.rating) }}</strong>
+                <span>{{ item.rating || 0 }}/5 rating</span>
+              </div>
+            </td>
+            <td>
+              <div class="review-text">
+                <strong>{{ item.reviewTitle || 'Untitled review' }}</strong>
+                <span>{{ item.reviewMessage || 'No review message added.' }}</span>
+              </div>
+            </td>
+            <td>{{ item.reviewDate | date:'dd MMM yyyy' }}</td>
+            <td><span class="pill-badge" [ngClass]="getStatusClass(item.reviewStatus)">{{ item.reviewStatus || 'Pending' }}</span></td>
+            <td class="action-col-cell">
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)"><i class="bi bi-eye"></i></button>
+                <button type="button" class="icon-action approve" (click)="onApprove(item)"><i class="bi bi-check2"></i></button>
+                <button type="button" class="icon-action reject" (click)="onReject(item)"><i class="bi bi-x-lg"></i></button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="paginatedReviews.length === 0">
+            <td colspan="8" class="table-empty">
+              <strong>No reviews available</strong>
+              Customer review records will appear here once they are submitted.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && reviews.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </section>
+</div>

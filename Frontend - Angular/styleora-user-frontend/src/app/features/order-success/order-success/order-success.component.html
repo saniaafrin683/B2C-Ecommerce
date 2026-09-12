@@ -1,0 +1,58 @@
+<div class="order-success-page">
+
+  <div class="success-card">
+
+    <!-- ICON -->
+    <div class="success-icon">
+      <i class="bi bi-check-circle-fill"></i>
+    </div>
+
+    <!-- TITLE -->
+    <h1>Order Confirmed</h1>
+
+    <!-- MESSAGE -->
+    <p class="success-message">
+      Thank you for your purchase. Your order has been placed successfully.
+    </p>
+
+    <!-- INVOICE STYLE BOX -->
+    <div class="invoice-box">
+
+      <div class="invoice-row">
+        <span>Order Reference</span>
+        <strong>{{ orderId || 'N/A' }}</strong>
+      </div>
+
+      <div class="invoice-row">
+        <span>Status</span>
+        <strong class="status-paid">Confirmed</strong>
+      </div>
+
+      <div class="invoice-row">
+        <span>Payment Method</span>
+        <strong>{{ orderDetails?.paymentMethod || 'Cash On Delivery' }}</strong>
+      </div>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="success-actions">
+      <a routerLink="/" class="btn btn-home">Home</a>
+      <button type="button" class="btn btn-outline-success" (click)="goToOrders()">My Orders</button>
+      <button
+        *ngIf="canViewOrderDetails"
+        type="button"
+        class="btn btn-outline-success"
+        (click)="viewOrderDetails()">
+        View Order Details
+      </button>
+      <a routerLink="/shop" class="btn btn-shop">Shop</a>
+    </div>
+
+    <p class="success-message mt-3 mb-0" *ngIf="isResolvingOrder">
+      Preparing your order details...
+    </p>
+
+  </div>
+
+</div>

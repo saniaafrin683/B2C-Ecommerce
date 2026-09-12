@@ -1,0 +1,136 @@
+<div class="product-list-page admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Catalog management</span>
+      <h1 class="admin-page-title">Product List</h1>
+      <p class="admin-page-subtitle">Review every product, current stock levels, and quick actions from one structured table.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button class="btn-ui" routerLink="/products/create">
+        <i class="bi bi-plus-lg"></i>
+        Add Product
+      </button>
+    </div>
+  </div>
+
+  <div class="product-card section-card surface-card glass-panel compact-table-card">
+    <div class="card-head toolbar-card compact-toolbar">
+      <div>
+        <h2>All Products</h2>
+        <p>{{ loading ? 'Syncing product data...' : (products.length + ' items in catalog') }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mx-3 mt-3 mb-0">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success mx-3 mt-3 mb-0">{{ successMessage }}</div>
+
+    <div class="table-shell">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th class="check-col">
+              <input type="checkbox">
+            </th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>Sub Category</th>
+            <th>Brand</th>
+            <th>Tag</th>
+            <th class="action-col">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="loading">
+            <td colspan="9" class="table-empty"><strong>Loading products</strong>Syncing the latest catalog rows.</td>
+          </tr>
+
+          <tr *ngFor="let product of paginatedProducts">
+            <td class="check-col">
+              <input type="checkbox">
+            </td>
+
+            <td>
+              <div class="product-info">
+                <div class="product-image-box">
+                  <img [src]="product.imageUrl || 'https://via.placeholder.com/60'" [alt]="product.name">
+                </div>
+
+                <div class="product-text">
+                  <h3>{{ product.name }}</h3>
+                  <p>Weight: {{ product.weight || 'N/A' }}</p>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <div class="price-cell">
+                <span class="price-current">{{ getCurrentPrice(product) | appCurrency:'1.2-2' }}</span>
+                <span class="price-discount" *ngIf="hasDiscount(product)">
+                  {{ product.discount }}% off
+                </span>
+              </div>
+            </td>
+
+            <td>
+              <span class="stock-pill">{{ product.stock }} in stock</span>
+            </td>
+
+            <td class="category-text">{{ product.category }}</td>
+            <td class="category-text">{{ product.subCategory || 'General' }}</td>
+            <td class="category-text">{{ product.brand || 'N/A' }}</td>
+
+            <td>
+              <span class="tag-badge">{{ product.tag || 'N/A' }}</span>
+            </td>
+
+            <td class="action-col">
+              <div class="table-actions">
+                <button
+                  class="action-btn action-view"
+                  [routerLink]="['/products/details', product.id]"
+                  type="button">
+                  <i class="bi bi-eye"></i>
+                </button>
+
+                <button
+                  class="action-btn action-edit"
+                  (click)="onEdit(product.id)"
+                  type="button">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button
+                  class="action-btn action-delete"
+                  (click)="onDelete(product.id)"
+                  type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="!loading && paginatedProducts.length === 0">
+            <td colspan="9" class="table-empty"><strong>No products found</strong>Try adding a new item or changing your data source.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && products.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+</div>

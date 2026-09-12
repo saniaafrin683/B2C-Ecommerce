@@ -1,0 +1,95 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Inventory / Shipping Methods</span>
+      <h1 class="admin-page-title">Shipping Methods</h1>
+      <p class="admin-page-subtitle">Manage delivery options, estimated lead times, shipping cost, and method availability.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        Add Shipping Method
+      </button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div class="shipping-toolbar">
+      <div class="shipping-search">
+        <i class="bi bi-search"></i>
+        <input
+          class="admin-input"
+          type="text"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="applySearch()"
+          name="shippingSearch"
+          placeholder="Search by name, description, or status">
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading shipping methods...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Coverage Area</th>
+            <th>Courier</th>
+            <th>Cost</th>
+            <th>Min Order</th>
+            <th>Estimated Days</th>
+            <th>Free Shipping</th>
+            <th>Sort Order</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredShippingMethods">
+            <td>
+              <div class="shipping-copy">
+                <strong>{{ item.name }}</strong>
+                <span>{{ item.description || 'No description added' }}</span>
+              </div>
+            </td>
+            <td>{{ item.coverageArea || 'Not set' }}</td>
+            <td>{{ item.courierName || 'Not set' }}</td>
+            <td><strong>{{ item.cost | appCurrency:'1.2-2' }}</strong></td>
+            <td>{{ item.minOrderAmount | appCurrency:'1.2-2' }}</td>
+            <td>{{ item.estimatedDays }} days</td>
+            <td>
+              <span class="pill-badge" [ngClass]="item.isFreeShipping ? 'pill-success' : 'pill-warning'">
+                {{ item.isFreeShipping ? 'Free' : 'Paid' }}
+              </span>
+            </td>
+            <td>{{ item.sortOrder }}</td>
+            <td><span class="pill-badge" [ngClass]="getStatusClass(item.status)">{{ item.status }}</span></td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onDetails(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredShippingMethods.length === 0">
+            <td colspan="10" class="table-empty">
+              <strong>No shipping methods found</strong>
+              Add a shipping method to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

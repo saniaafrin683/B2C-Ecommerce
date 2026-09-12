@@ -1,0 +1,72 @@
+.my-reviews-page {
+  background: #f8f9fa;
+  min-height: 60vh;
+}
+
+.page-card h2 {
+  font-size: 1.75rem;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  background: #fff;
+  border-color: #e9ecef !important;
+}
+
+.review-rating {
+  display: inline-flex;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.review-comment {
+  color: #495057;
+  line-height: 1.6;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-success {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.status-danger {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.admin-reply {
+  padding: 0.9rem 1rem;
+  border-radius: 0.85rem;
+  background: #f8f9fa;
+  border-left: 4px solid #212529;
+}
+
+.admin-reply-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6c757d;
+  margin-bottom: 0.35rem;
+}

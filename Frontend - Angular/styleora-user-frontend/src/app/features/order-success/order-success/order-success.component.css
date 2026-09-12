@@ -1,0 +1,140 @@
+.order-success-page {
+  min-height: calc(100vh - 90px);
+  background: #f4f8f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 15px;
+}
+
+.success-card {
+  width: 100%;
+  max-width: 560px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 45px 35px;
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(15, 81, 50, 0.14);
+  border: 1px solid rgba(15, 81, 50, 0.12);
+}
+
+.success-icon {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(15, 81, 50, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon i {
+  font-size: 52px;
+  color: #0f5132;
+}
+
+.success-card h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f5132;
+  margin-bottom: 12px;
+}
+
+.success-message {
+  font-size: 15px;
+  color: #667085;
+  margin-bottom: 28px;
+}
+
+.invoice-box {
+  background: #f7fbf8;
+  border: 1px dashed rgba(15, 81, 50, 0.35);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e4eee8;
+  font-size: 15px;
+}
+
+.invoice-row:last-child {
+  border-bottom: none;
+}
+
+.invoice-row span {
+  color: #667085;
+}
+
+.invoice-row strong {
+  color: #1f2937;
+}
+
+.status-paid {
+  color: #0f5132 !important;
+}
+
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.success-actions .btn {
+  min-width: 120px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-home,
+.btn-shop {
+  background: #0f5132;
+  color: #ffffff;
+  border: 1px solid #0f5132;
+}
+
+.btn-home:hover,
+.btn-shop:hover {
+  background: #0b3f27;
+  color: #ffffff;
+}
+
+.btn-outline-success {
+  color: #0f5132;
+  border: 1px solid #0f5132;
+  background: #ffffff;
+}
+
+.btn-outline-success:hover {
+  background: #0f5132;
+  color: #ffffff;
+}
+
+@media (max-width: 576px) {
+  .success-card {
+    padding: 35px 20px;
+  }
+
+  .success-card h1 {
+    font-size: 26px;
+  }
+
+  .invoice-row {
+    flex-direction: column;
+    text-align: left;
+    gap: 5px;
+  }
+
+  .success-actions .btn {
+    width: 100%;
+  }
+}

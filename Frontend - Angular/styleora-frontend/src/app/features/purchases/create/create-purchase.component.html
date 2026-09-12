@@ -1,0 +1,206 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Inventory / Purchases</span>
+      <h1 class="admin-page-title">Create Purchase</h1>
+      <p class="admin-page-subtitle">
+        Add products, quantities, and status. Received or completed purchases increase stock automatically.
+      </p>
+    </div>
+  </div>
+
+  <form class="admin-form-section form-shell" (ngSubmit)="onSave()">
+    <div *ngIf="errorMessage" class="purchase-error">
+      {{ errorMessage }}
+    </div>
+
+    <div class="quick-form-grid row">
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier</label>
+        <select class="admin-select" [(ngModel)]="purchaseForm.supplierName" name="supplierName" required>
+          <option value="">Select Supplier</option>
+          <option *ngFor="let supplier of supplierOptions" [value]="supplier">
+            {{ supplier }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Purchase Date</label>
+        <input class="admin-input" type="date" [(ngModel)]="purchaseForm.purchaseDate" name="purchaseDate" required>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Purchase Status</label>
+        <select class="admin-select" [(ngModel)]="purchaseForm.purchaseStatus" name="purchaseStatus">
+          <option *ngFor="let status of purchaseStatuses" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="items-card">
+      <div class="items-card-header">
+        <div>
+          <h3>Purchase Items</h3>
+          <p *ngIf="loadingProducts">Loading products...</p>
+          <p *ngIf="!loadingProducts">Select products and enter the received quantity.</p>
+        </div>
+
+        <button type="button" class="btn-ui-secondary" (click)="addItemRow()">
+          <i class="bi bi-plus-circle"></i>
+          Add Row
+        </button>
+      </div>
+
+      <div class="table-shell">
+        <table class="table-ui">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Current Stock</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Subtotal</th>
+              <th class="action-col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of purchaseForm.items; let index = index; trackBy: trackByIndex">
+              <td>
+                <select
+                  class="admin-select table-select"
+                  [(ngModel)]="item.productId"
+                  [name]="'productId' + index"
+                  (ngModelChange)="onProductChange(item)"
+                >
+                  <option [ngValue]="null">Select product</option>
+                  <option *ngFor="let product of products" [ngValue]="product.id">
+                    {{ product.name }}
+                  </option>
+                </select>
+              </td>
+
+              <td>{{ item.category || '-' }}</td>
+              <td>{{ item.availableStock ?? 0 }}</td>
+
+              <td>
+                <input
+                  class="admin-input table-input"
+                  type="number"
+                  min="1"
+                  [(ngModel)]="item.quantity"
+                  [name]="'quantity' + index"
+                  (ngModelChange)="onItemValueChange(item)"
+                >
+              </td>
+
+              <td>
+                <input
+                  class="admin-input table-input"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  [(ngModel)]="item.unitPrice"
+                  [name]="'unitPrice' + index"
+                  (ngModelChange)="onItemValueChange(item)"
+                >
+              </td>
+
+              <td>
+                <strong>{{ item.subtotal | appCurrency:'1.2-2' }}</strong>
+              </td>
+
+              <td class="action-col">
+                <button type="button" class="icon-action delete" (click)="removeItemRow(index)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="totals-panel">
+      <div class="totals-panel-header">
+        <div>
+          <h3>Totals</h3>
+          <p>Calculated automatically from the selected item rows.</p>
+        </div>
+      </div>
+
+      <div class="admin-form-grid row totals-grid">
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Subtotal</label>
+          <input class="admin-input" type="number" [ngModel]="purchaseForm.subtotal" name="subtotal" readonly>
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Total Amount</label>
+          <input class="admin-input" type="number" [ngModel]="purchaseForm.totalAmount" name="totalAmount" readonly>
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Paid Amount</label>
+          <input
+            class="admin-input"
+            type="number"
+            min="0"
+            [(ngModel)]="purchaseForm.paidAmount"
+            name="paidAmount"
+            (ngModelChange)="onTotalsChange()"
+          >
+        </div>
+
+        <div class="col-md-3 admin-field">
+          <label class="admin-form-label">Due Amount</label>
+          <input class="admin-input" type="number" [ngModel]="purchaseForm.dueAmount" name="dueAmount" readonly>
+        </div>
+      </div>
+    </div>
+
+    <div class="optional-panel">
+      <button type="button" class="optional-toggle" (click)="toggleOptionalNotes()">
+        <span>Optional Notes</span>
+        <i class="bi" [ngClass]="showOptionalNotes ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+      </button>
+
+      <div *ngIf="showOptionalNotes" class="optional-body">
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Notes</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="purchaseForm.notes" name="notes"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden-default-fields" aria-hidden="true">
+      <input type="hidden" [(ngModel)]="purchaseForm.purchaseId" name="purchaseId">
+      <input type="hidden" [(ngModel)]="purchaseForm.discount" name="discount">
+      <input type="hidden" [(ngModel)]="purchaseForm.tax" name="tax">
+      <input type="hidden" [(ngModel)]="purchaseForm.shippingCost" name="shippingCost">
+      <input type="hidden" [(ngModel)]="purchaseForm.supplierEmail" name="supplierEmail">
+      <input type="hidden" [(ngModel)]="purchaseForm.supplierPhone" name="supplierPhone">
+      <input type="hidden" [(ngModel)]="purchaseForm.supplierAddress" name="supplierAddress">
+      <input type="hidden" [(ngModel)]="purchaseForm.paymentStatus" name="paymentStatus">
+      <input type="hidden" [(ngModel)]="purchaseForm.paymentMethod" name="paymentMethod">
+    </div>
+
+    <div class="admin-form-actions">
+      <button type="submit" class="btn-ui" [disabled]="submitting || loadingProducts">
+        {{ submitting ? 'Saving...' : 'Save' }}
+      </button>
+
+      <button type="button" class="btn-ui-secondary" (click)="onReset()">
+        Reset
+      </button>
+
+      <button type="button" class="btn-ui-ghost" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

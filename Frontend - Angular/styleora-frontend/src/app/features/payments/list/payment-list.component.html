@@ -1,0 +1,153 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Finance / Payments</span>
+      <h1 class="admin-page-title">Transactions</h1>
+      <p class="admin-page-subtitle">Monitor invoice-linked payment records, transaction channels, settlement states, and customer receipts.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        Add Payment
+      </button>
+    </div>
+  </div>
+
+  <div class="payment-summary-grid compact-summary-grid">
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Total Payments</span>
+      <strong>{{ totalPayments }}</strong>
+      <small>All recorded transactions</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Paid Payments</span>
+      <strong>{{ paidPayments }}</strong>
+      <small>Settled successfully</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Pending Payments</span>
+      <strong>{{ pendingPayments }}</strong>
+      <small>Awaiting confirmation</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Failed Payments</span>
+      <strong>{{ failedPayments }}</strong>
+      <small>Declined or cancelled</small>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div class="payment-toolbar compact-toolbar">
+      <div>
+        <h2 class="section-card-title">Payment Transaction List</h2>
+      </div>
+
+      <div class="toolbar-actions">
+        <button type="button" class="btn-ui-secondary">
+          <i class="bi bi-calendar3"></i>
+          This Month
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-download"></i>
+          Download
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-box-arrow-up"></i>
+          Export
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-box-arrow-in-down"></i>
+          Import
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading payments...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Invoice ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of paginatedPayments">
+            <td class="action-col">
+              <div class="transaction-copy">
+                <strong>{{ item.transactionId || 'N/A' }}</strong>
+                <span>Order #{{ item.orderId || 'N/A' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="invoice-copy">
+                <strong>#{{ item.invoiceId || 'N/A' }}</strong>
+                <span>Linked invoice</span>
+              </div>
+            </td>
+            <td>
+              <div class="customer-cell">
+                <div class="customer-avatar">{{ getInitials(item.customerName) }}</div>
+                <div class="customer-copy">
+                  <strong>{{ item.customerName || 'Unknown customer' }}</strong>
+                  <span>Order #{{ item.orderId || 'N/A' }}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="amount-copy">
+                <strong>{{ item.amount | appCurrency:'1.2-2' }}</strong>
+                <span>Transaction amount</span>
+              </div>
+            </td>
+            <td>
+              <span class="method-chip" [ngClass]="getPaymentMethodClass(item.paymentMethod)">
+                {{ item.paymentMethod || 'Not set' }}
+              </span>
+            </td>
+            <td>{{ item.paymentDate | date:'dd MMM yyyy' }}</td>
+            <td><span class="pill-badge" [ngClass]="getStatusClass(item.paymentStatus)">{{ item.paymentStatus }}</span></td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)"><i class="bi bi-eye"></i></button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)"><i class="bi bi-pencil"></i></button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="paginatedPayments.length === 0">
+            <td colspan="8" class="table-empty">
+              <strong>No payments available</strong>
+              Payment transactions will appear here once records are created.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && payments.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </section>
+</div>

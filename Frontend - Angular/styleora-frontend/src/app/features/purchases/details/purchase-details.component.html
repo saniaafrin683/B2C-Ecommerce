@@ -1,0 +1,194 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Inventory / Purchases</span>
+      <h1 class="admin-page-title">Purchase Details</h1>
+      <p class="admin-page-subtitle">View supplier, item, and stock-application details for a purchase.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
+        Back to List
+      </button>
+
+      <button type="button" class="btn-ui-ghost" (click)="onEdit()">
+        <i class="bi bi-pencil"></i>
+        Edit
+      </button>
+    </div>
+  </div>
+
+  <section *ngIf="loading" class="section-card surface-card glass-panel">
+    <p class="section-card-subtitle">Loading purchase details...</p>
+  </section>
+
+  <section *ngIf="!loading && errorMessage" class="section-card surface-card glass-panel">
+    <p class="section-card-subtitle">{{ errorMessage }}</p>
+  </section>
+
+  <div *ngIf="!loading && purchase" class="purchase-details-grid">
+    <section class="section-card surface-card glass-panel">
+      <div class="section-card-header">
+        <div>
+          <h2 class="section-card-title">Purchase Summary</h2>
+          <p class="section-card-subtitle">High-level purchase and stock posting status.</p>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span>Purchase ID</span>
+          <strong>{{ purchase.purchaseId || ('PUR-' + purchase.id) }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Date</span>
+          <strong>{{ purchase.purchaseDate | date:'dd MMM yyyy' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Purchase Status</span>
+          <span class="pill-badge" [ngClass]="getStatusClass(purchase.purchaseStatus)">{{ purchase.purchaseStatus }}</span>
+        </div>
+
+        <div class="summary-item">
+          <span>Stock Applied</span>
+          <span class="pill-badge" [ngClass]="purchase.stockApplied ? 'pill-success' : 'pill-warning'">
+            {{ purchase.stockApplied ? 'Applied' : 'Pending' }}
+          </span>
+        </div>
+
+        <div class="summary-item">
+          <span>Total Amount</span>
+          <strong>{{ purchase.totalAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Total Items</span>
+          <strong>{{ getItemCount() }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card surface-card glass-panel">
+      <div class="section-card-header">
+        <div>
+          <h2 class="section-card-title">Supplier Information</h2>
+          <p class="section-card-subtitle">Supplier contact and address details.</p>
+        </div>
+      </div>
+
+      <div class="supplier-panel">
+        <div class="supplier-avatar">{{ purchase.supplierName.slice(0, 2).toUpperCase() }}</div>
+
+        <div class="supplier-copy">
+          <strong>{{ purchase.supplierName }}</strong>
+          <span>{{ purchase.supplierEmail || 'Not Available' }}</span>
+          <span>{{ purchase.supplierPhone || 'Not Available' }}</span>
+          <p>{{ purchase.supplierAddress || 'Not Available' }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card surface-card glass-panel purchase-items-section">
+      <div class="section-card-header">
+        <div>
+          <h2 class="section-card-title">Purchase Items</h2>
+          <p class="section-card-subtitle">Purchased products and their line totals.</p>
+        </div>
+      </div>
+
+      <div class="table-shell">
+        <table class="table-ui">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of purchase.items">
+              <td>{{ item.productName }}</td>
+              <td>{{ item.category || 'Uncategorized' }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unitPrice | appCurrency:'1.2-2' }}</td>
+              <td><strong>{{ getLineTotal(item) | appCurrency:'1.2-2' }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-card surface-card glass-panel">
+      <div class="section-card-header">
+        <div>
+          <h2 class="section-card-title">Payment Information</h2>
+          <p class="section-card-subtitle">Current payment method and balance summary.</p>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span>Payment Method</span>
+          <strong>{{ purchase.paymentMethod || 'Not Set' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Payment Status</span>
+          <span class="pill-badge" [ngClass]="getStatusClass(purchase.paymentStatus)">{{ purchase.paymentStatus || 'Pending' }}</span>
+        </div>
+
+        <div class="summary-item">
+          <span>Paid Amount</span>
+          <strong>{{ purchase.paidAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Due Amount</span>
+          <strong>{{ purchase.dueAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card surface-card glass-panel">
+      <div class="section-card-header">
+        <div>
+          <h2 class="section-card-title">Totals</h2>
+          <p class="section-card-subtitle">Final purchase amount summary.</p>
+        </div>
+      </div>
+
+      <div class="totals-list">
+        <div class="amount-row">
+          <span>Subtotal</span>
+          <strong>{{ purchase.subtotal | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row">
+          <span>Discount</span>
+          <strong>{{ purchase.discount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row">
+          <span>Tax</span>
+          <strong>{{ purchase.tax | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row">
+          <span>Shipping / Other Cost</span>
+          <strong>{{ purchase.shippingCost | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row total">
+          <span>Grand Total</span>
+          <strong>{{ purchase.totalAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

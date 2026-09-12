@@ -1,0 +1,30 @@
+<div class="admin-layout" [class.sidebar-collapsed]="sidebarCollapsed">
+  <button
+    class="layout-backdrop"
+    type="button"
+    *ngIf="sidebarCollapsed"
+    (click)="toggleSidebar()"
+    aria-label="Close navigation">
+  </button>
+
+  <aside class="sidebar-wrap" [class.collapsed]="sidebarCollapsed">
+    <app-sidebar [collapsed]="sidebarCollapsed"></app-sidebar>
+  </aside>
+
+  <div class="main-area" [class.collapsed]="sidebarCollapsed">
+    <div class="topbar-wrap">
+      <app-topbar (menuToggle)="toggleSidebar()"></app-topbar>
+    </div>
+
+    <div class="maintenance-banner" *ngIf="(settings$ | async)?.maintenanceMode">
+      <i class="bi bi-tools"></i>
+      <span>Maintenance mode is active. Admin changes remain available while storefront access may be limited.</span>
+    </div>
+
+    <main class="page-content">
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

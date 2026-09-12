@@ -1,0 +1,87 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Catalog / Attributes</span>
+      <h1 class="admin-page-title">Attributes</h1>
+      <p class="admin-page-subtitle">Manage product attribute groups, value sets, and active statuses with live backend data.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="openCreateForm()">
+        <i class="bi bi-plus-circle"></i>
+        Add Attribute
+      </button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading attributes...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Attribute Name</th>
+            <th>Attribute Type</th>
+            <th>Values</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of attributes">
+            <td><strong>{{ item.attributeId }}</strong></td>
+            <td>
+              <div class="attribute-cell">
+                <div class="attribute-avatar">{{ item.attributeName.slice(0, 2).toUpperCase() }}</div>
+                <div class="attribute-copy">
+                  <strong>{{ item.attributeName }}</strong>
+                  <span>{{ item.notes || 'No notes added' }}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{ item.attributeType }}</td>
+            <td>
+              <div class="values-cell">{{ getValuePreview(item.values) }}</div>
+            </td>
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(item.status)">
+                {{ item.status }}
+              </span>
+            </td>
+            <td>{{ item.createdAt | date:'dd MMM yyyy' }}</td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="attributes.length === 0">
+            <td colspan="7" class="table-empty">
+              <strong>No attributes found</strong>
+              Add an attribute to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

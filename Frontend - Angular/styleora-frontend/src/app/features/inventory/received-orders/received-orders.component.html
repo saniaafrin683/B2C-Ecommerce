@@ -1,0 +1,124 @@
+<div class="received-orders-page">
+
+  <div class="page-topbar">
+    <div class="page-title-wrap">
+      <h2>RECEIVED ORDERS</h2>
+      <p>Manage incoming inventory orders from suppliers</p>
+    </div>
+
+    <div class="page-actions">
+      <button class="add-btn" routerLink="/inventory/create-received-order">
+        <i class="bi bi-plus-lg"></i>
+        Add Received Order
+      </button>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <p>Total Orders</p>
+      <h3>{{ totalOrders }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <p>Completed Orders</p>
+      <h3>{{ completedOrders }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <p>Pending Orders</p>
+      <h3>{{ pendingOrders }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <p>Total Received Amount</p>
+      <h3>{{ totalReceivedAmount | number:'1.0-0' }}</h3>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-card-header">
+      <h3>All Received Orders</h3>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mx-3 mt-3 mb-0">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success mx-3 mt-3 mb-0">{{ successMessage }}</div>
+
+    <div class="table-shell">
+      <table class="table table-bordered table-hover card-table table-ui">
+        <thead>
+          <tr>
+            <th>Order No</th>
+            <th>Supplier</th>
+            <th>Warehouse</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Received Date</th>
+            <th>Status</th>
+            <th>Total Amount</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="loading">
+            <td colspan="9" class="loading-cell">Loading...</td>
+          </tr>
+
+          <tr *ngFor="let item of receivedOrders">
+            <td>{{ item.orderNo }}</td>
+            <td>{{ item.supplierName }}</td>
+            <td>{{ item.warehouseName }}</td>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.receivedDate | date:'dd MMM yyyy' }}</td>
+            <td>
+              <select
+                class="form-select form-select-sm"
+                [ngModel]="item.status"
+                [ngModelOptions]="{ standalone: true }"
+                [disabled]="updatingStatusId === item.id || item.status === 'Completed'"
+                (ngModelChange)="onStatusChange(item, $event)">
+                <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+              </select>
+            </td>
+            <td>{{ item.totalAmount | number:'1.0-0' }}</td>
+            <td class="action-col">
+              <div class="action-buttons table-actions">
+                <button
+                  class="action-btn action-view"
+                  type="button"
+                  (click)="onDetails(item.id)"
+                  aria-label="View received order">
+                  <i class="bi bi-eye"></i>
+                </button>
+
+                <button
+                  class="action-btn action-edit"
+                  type="button"
+                  (click)="onEdit(item.id)"
+                  aria-label="Edit received order">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button
+                  class="action-btn action-delete"
+                  type="button"
+                  [disabled]="item.status === 'Completed'"
+                  (click)="onDelete(item.id)"
+                  aria-label="Delete received order">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="!loading && receivedOrders.length === 0">
+            <td colspan="9" class="loading-cell">No received orders found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

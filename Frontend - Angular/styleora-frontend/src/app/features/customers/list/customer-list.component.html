@@ -1,0 +1,156 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">CRM / Customers</span>
+      <h1 class="admin-page-title">All Customers</h1>
+      <p class="admin-page-subtitle">Manage active customer profiles, contact records, order totals, and account status with live backend data.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        Add Customer
+      </button>
+    </div>
+  </div>
+
+  <div class="customer-summary-grid compact-summary-grid">
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Total Customers</span>
+      <strong>{{ totalCustomers }}</strong>
+      <small>Non-deleted profiles</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Active Customers</span>
+      <strong>{{ activeCustomers }}</strong>
+      <small>Engaged accounts</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Total Orders</span>
+      <strong>{{ totalOrdersCount }}</strong>
+      <small>Across all customers</small>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card compact-summary-card">
+      <span>Total Spend</span>
+      <strong>{{ totalSpendAmount | appCurrency:'1.0-0' }}</strong>
+      <small>Customer lifetime value</small>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div class="customer-toolbar compact-toolbar">
+      <div class="toolbar-filter">
+        <button type="button" class="btn-ui-secondary">
+          <i class="bi bi-calendar3"></i>
+          This Month
+        </button>
+      </div>
+
+      <div class="toolbar-actions">
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-download"></i>
+          Download
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-box-arrow-up"></i>
+          Export
+        </button>
+        <button type="button" class="btn-ui-ghost">
+          <i class="bi bi-box-arrow-in-down"></i>
+          Import
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading customers...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Customer Code</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Total Orders</th>
+            <th>Total Spend</th>
+            <th>Status</th>
+            <th>Registered Date</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of paginatedCustomers">
+            <td><strong>{{ item.customerCode }}</strong></td>
+            <td class="action-col">
+              <div class="customer-cell">
+                <div class="customer-avatar">{{ getInitials(item.fullName) }}</div>
+                <div class="customer-copy">
+                  <strong>{{ item.fullName }}</strong>
+                  <span>{{ item.email || 'No email added' }}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{ item.phone || 'Not set' }}</td>
+            <td>
+              <div class="location-copy">
+                <strong>{{ item.city || 'Not set' }}</strong>
+                <span>{{ getLocationLabel(item) }}</span>
+                <span>{{ item.address || 'Address not set' }}</span>
+              </div>
+            </td>
+            <td>{{ item.totalOrders }}</td>
+            <td>{{ item.totalSpend | appCurrency:'1.2-2' }}</td>
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(item.status)">{{ item.status }}</span>
+            </td>
+            <td>{{ item.registeredAt | date:'dd MMM yyyy' }}</td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="paginatedCustomers.length === 0">
+            <td colspan="9" class="table-empty">
+              <strong>No customers found</strong>
+              Add a customer to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && customers.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </section>
+</div>

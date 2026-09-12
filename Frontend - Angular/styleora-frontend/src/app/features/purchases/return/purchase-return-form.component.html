@@ -1,0 +1,85 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Purchases / Return / {{ isEditMode ? 'Edit' : 'Create' }}</span>
+      <h1 class="admin-page-title">{{ isEditMode ? 'Edit Purchase Return' : 'Create Purchase Return' }}</h1>
+      <p class="admin-page-subtitle">Capture purchase return details and keep the demo flow visible in the existing return list.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
+        Back to Purchase Return
+      </button>
+    </div>
+  </div>
+
+  <form class="admin-form-section form-shell" (ngSubmit)="onSave()">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading purchase return...
+    </div>
+
+    <div class="admin-form-grid row" *ngIf="!loading">
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Purchase Order ID</label>
+        <input class="admin-input" type="text" [(ngModel)]="returnForm.purchaseOrderId" name="purchaseOrderId" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier</label>
+        <input class="admin-input" type="text" [(ngModel)]="returnForm.supplierName" name="supplierName" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Return Date</label>
+        <input class="admin-input" type="date" [(ngModel)]="returnForm.returnDate" name="returnDate" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Total Amount</label>
+        <input class="admin-input" type="number" [(ngModel)]="returnForm.totalAmount" name="totalAmount" required>
+      </div>
+
+      <div class="col-md-8 admin-field">
+        <label class="admin-form-label">Items / Product Name</label>
+        <input class="admin-input" type="text" [(ngModel)]="productName" name="productName" required>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Quantity</label>
+        <input class="admin-input" type="number" min="1" [(ngModel)]="quantity" name="quantity" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Return Status</label>
+        <select class="admin-select" [(ngModel)]="returnForm.returnStatus" name="returnStatus" required>
+          <option *ngFor="let status of returnStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Refund Status</label>
+        <select class="admin-select" [(ngModel)]="returnForm.refundStatus" name="refundStatus" required>
+          <option *ngFor="let status of refundStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-12 admin-field">
+        <label class="admin-form-label">Return Reason</label>
+        <textarea class="admin-textarea" rows="4" [(ngModel)]="returnForm.returnReason" name="returnReason" required></textarea>
+      </div>
+    </div>
+
+    <div class="admin-form-actions" *ngIf="!loading">
+      <button type="submit" class="btn-ui" [disabled]="submitting">
+        {{ submitting ? 'Saving...' : 'Save' }}
+      </button>
+      <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+      <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

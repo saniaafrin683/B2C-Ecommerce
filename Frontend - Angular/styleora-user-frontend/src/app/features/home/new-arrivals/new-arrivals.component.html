@@ -1,0 +1,16 @@
+<section class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-kicker">New Arrivals</span>
+      <h2>Fresh catalog drops styled for a cleaner first impression.</h2>
+      <p>Live backend products surfaced in a premium card layout with discount, stock, cart, and wishlist actions intact.</p>
+    </div>
+    <a class="btn btn-dark rounded-pill px-4" routerLink="/shop">Shop All</a>
+  </div>
+
+  <app-product-grid *ngIf="products.length; else newArrivalsState" [products]="products" variant="home"></app-product-grid>
+</section>
+
+<ng-template #newArrivalsState>
+  <app-empty-state [message]="isLoading ? 'Loading products...' : 'No products available right now.'"></app-empty-state>
+</ng-template>

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+footer {
+  width: 100%;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #fff;
+}

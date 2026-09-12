@@ -1,0 +1,195 @@
+<div class="sub-category-create-page admin-page form-shell">
+  <div class="page-header admin-page-header">
+    <div class="page-title-block">
+      <span class="admin-page-eyebrow">Taxonomy workflow</span>
+      <h1 class="admin-page-title">Create Sub Category</h1>
+      <p class="admin-page-subtitle">Add a sub category, map it to a parent category, and keep the catalog structure organized.</p>
+    </div>
+
+    <div class="page-actions admin-actions">
+      <button type="button" class="btn-ui-secondary cancel-top-btn" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <form (ngSubmit)="onSave()" #subCategoryCreateForm="ngForm">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="sub-category-card upload-card">
+          <h4>Add Thumbnail Photo</h4>
+
+          <label for="subCategoryImage" class="upload-box">
+            <div class="upload-content">
+              <div class="upload-icon">
+                <i class="bi bi-cloud-arrow-up"></i>
+              </div>
+
+              <h5>Drop your image here, or click to browse</h5>
+              <p>1600 x 1200 (4:3) recommended. PNG, JPG and GIF files are allowed.</p>
+
+              <span class="btn-ui browse-btn">Browse Image</span>
+            </div>
+
+            <input
+              id="subCategoryImage"
+              type="file"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              hidden>
+          </label>
+
+          <div class="file-name" *ngIf="selectedFileName">
+            Selected: {{ selectedFileName }}
+          </div>
+
+          <div class="image-preview" *ngIf="subCategoryForm.imageUrl">
+            <img
+              [src]="subCategoryForm.imageUrl"
+              alt="Sub Category Preview"
+              (error)="subCategoryForm.imageUrl = 'assets/images/category/default-product.png'">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="sub-category-card form-card admin-form-section">
+          <div class="section-card-header">
+            <div>
+              <h4 class="section-card-title">General Information</h4>
+              <p class="section-card-subtitle">Use the same field rhythm and action layout as the current Category screens.</p>
+            </div>
+          </div>
+
+          <div class="row admin-form-grid">
+            <div class="col-md-6 admin-field">
+              <label>Sub Category Code</label>
+              <input
+                type="text"
+                class="form-control"
+                name="subCategoryCode"
+                [(ngModel)]="subCategoryForm.subCategoryCode"
+                required
+                placeholder="Enter sub category code">
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-6 admin-field">
+              <label>Sub Category Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="subCategoryName"
+                [(ngModel)]="subCategoryForm.subCategoryName"
+                required
+                placeholder="Enter sub category name">
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-6 admin-field">
+              <label>Parent Category</label>
+              <select
+                class="form-control"
+                name="categoryId"
+                [(ngModel)]="subCategoryForm.categoryId"
+                (ngModelChange)="onCategoryChange()"
+                required>
+                <option [ngValue]="null">{{ loadingCategories ? 'Loading categories...' : 'Select Parent Category' }}</option>
+                <option *ngFor="let category of categories" [ngValue]="category.id">
+                  {{ category.categoryTitle }}
+                </option>
+              </select>
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-6 admin-field">
+              <label>Created By</label>
+              <select
+                class="form-control"
+                name="createdBy"
+                [(ngModel)]="subCategoryForm.createdBy"
+                required>
+                <option value="">Select Creator</option>
+                <option *ngFor="let option of createdByOptions" [value]="option">
+                  {{ option }}
+                </option>
+              </select>
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-4 admin-field">
+              <label>Stock</label>
+              <input
+                type="number"
+                class="form-control"
+                name="stock"
+                [(ngModel)]="subCategoryForm.stock"
+                placeholder="Enter stock quantity">
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-4 admin-field">
+              <label>Tag ID</label>
+              <input
+                type="text"
+                class="form-control"
+                name="tagId"
+                [(ngModel)]="subCategoryForm.tagId"
+                placeholder="Enter tag id">
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-4 admin-field">
+              <label>Status</label>
+              <select
+                class="form-control"
+                name="status"
+                [(ngModel)]="subCategoryForm.status">
+                <option *ngFor="let option of statusOptions" [value]="option">
+                  {{ option }}
+                </option>
+              </select>
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-12 admin-field">
+              <label>Image URL</label>
+              <input
+                type="text"
+                class="form-control"
+                name="imageUrl"
+                [(ngModel)]="subCategoryForm.imageUrl"
+                placeholder="Paste image URL or upload a file">
+              <div class="admin-validation-msg"></div>
+            </div>
+
+            <div class="col-md-12 admin-field">
+              <label>Description</label>
+              <textarea
+                rows="5"
+                class="form-control"
+                name="description"
+                [(ngModel)]="subCategoryForm.description"
+                placeholder="Write sub category description"></textarea>
+              <div class="admin-validation-msg"></div>
+            </div>
+          </div>
+
+          <div class="form-actions admin-form-actions">
+            <button type="submit" class="btn-ui save-btn" [disabled]="submitting">
+              {{ submitting ? 'Saving...' : 'Save' }}
+            </button>
+
+            <button type="button" class="btn-ui-secondary reset-btn" (click)="onReset()">
+              Reset
+            </button>
+
+            <button type="button" class="btn-ui-ghost cancel-btn" (click)="onCancel()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+<div class="app-toast-shell" *ngIf="toast$ | async as toast">
+  <div class="app-toast-card" [ngClass]="'tone-' + toast.tone">
+    <span class="toast-icon" aria-hidden="true">
+      <i class="bi bi-check-circle-fill" *ngIf="toast.tone === 'success'"></i>
+      <i class="bi bi-exclamation-circle-fill" *ngIf="toast.tone === 'error'"></i>
+      <i class="bi bi-info-circle-fill" *ngIf="toast.tone === 'info'"></i>
+    </span>
+    <span class="toast-copy">{{ toast.message }}</span>
+  </div>
+</div>

@@ -1,0 +1,243 @@
+<div class="create-product-page admin-page form-shell">
+  <div class="page-header admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Catalog workflow</span>
+      <h1 class="admin-page-title">Create Product</h1>
+      <p class="admin-page-subtitle">Add a new product with image, details, pricing, and inventory data in one flow.</p>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mb-3">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success mb-3">{{ successMessage }}</div>
+
+  <form class="row g-4" (ngSubmit)="onSave()">
+    <div class="col-lg-4">
+      <div class="preview-card card-box">
+        <div class="preview-image-wrap">
+          <img
+            [src]="imagePreviewUrl || productForm.imageUrl || 'https://via.placeholder.com/500x320/f8fafc/94a3b8?text=Product+Preview'"
+            alt="Product Preview"
+          />
+        </div>
+
+        <div class="preview-content">
+          <span class="preview-badge">{{ productForm.tag || 'New Tag' }}</span>
+
+          <h4>{{ productForm.name || 'Product Name' }}</h4>
+          <p class="preview-category">{{ productForm.category || 'Category' }}</p>
+          <p class="preview-category" *ngIf="productForm.subCategory">{{ productForm.subCategory }}</p>
+
+          <div class="price-row">
+            <h5>{{ (productForm.price || 0) | appCurrency:'1.0-0' }}</h5>
+            <span class="old-price">{{ ((productForm.price || 0) + 150) | appCurrency:'1.0-0' }}</span>
+          </div>
+
+          <div class="preview-group">
+            <label>Sizes</label>
+            <div class="size-list">
+              <span *ngFor="let size of selectedSizes">{{ size }}</span>
+            </div>
+          </div>
+
+          <div class="preview-group">
+            <label>Colors</label>
+            <div class="color-list">
+              <span
+                class="color-dot"
+                *ngFor="let color of selectedColors"
+                [style.background]="color">
+              </span>
+            </div>
+          </div>
+
+          <div class="preview-meta">
+            <div class="meta-item">
+              <span>Brand</span>
+              <strong>{{ productForm.brand || '-' }}</strong>
+            </div>
+
+            <div class="meta-item">
+              <span>Stock</span>
+              <strong>{{ productForm.stock || 0 }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card-box form-card admin-form-section">
+        <div class="section-card-header">
+          <div>
+            <h5 class="section-card-title">Add Product Photo</h5>
+            <p class="section-card-subtitle">Upload the primary image shown in product cards and detail views.</p>
+          </div>
+        </div>
+
+        <div class="upload-box">
+          <div class="upload-icon">
+            <i class="bi bi-cloud-arrow-up"></i>
+          </div>
+
+          <h6>Drop your images here, or click to browse</h6>
+          <p>1600 x 1200 (4:3) recommended. PNG, JPG and JPEG files allowed.</p>
+
+          <input
+            type="file"
+            #fileInput
+            accept="image/*"
+            hidden
+            (change)="onFileSelected($event)"
+          >
+
+          <button
+            type="button"
+            class="btn-ui browse-btn"
+            (click)="fileInput.click()">
+            Browse Files
+          </button>
+        </div>
+      </div>
+
+      <div class="card-box form-card admin-form-section">
+        <div class="section-card-header">
+          <div>
+            <h5 class="section-card-title">Product Information</h5>
+            <p class="section-card-subtitle">Keep labels, field spacing, and input sizing consistent across the catalog forms.</p>
+          </div>
+        </div>
+
+        <div class="row admin-form-grid">
+          <div class="col-md-6 admin-field">
+            <label class="form-label">Product Name</label>
+            <input type="text" class="form-control custom-input" [(ngModel)]="productForm.name" name="name">
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-6 admin-field">
+            <label class="form-label">Product Categories</label>
+            <select class="form-select custom-input" [(ngModel)]="productForm.category" name="category" (ngModelChange)="onCategoryChange()">
+              <option value="">Select Category</option>
+              <option *ngFor="let category of categories" [value]="category.categoryTitle">{{ category.categoryTitle }}</option>
+            </select>
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-6 admin-field">
+            <label class="form-label">Sub Category</label>
+            <select
+              class="form-select custom-input"
+              [(ngModel)]="productForm.subCategoryId"
+              name="subCategoryId"
+              (ngModelChange)="onSubCategoryChange()">
+              <option [ngValue]="null">Select Sub Category (Optional)</option>
+              <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory.id">
+                {{ subCategory.subCategoryName }}
+              </option>
+            </select>
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Brand</label>
+            <input type="text" class="form-control custom-input" [(ngModel)]="productForm.brand" name="brand">
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Gender</label>
+            <select class="form-select custom-input" [(ngModel)]="productForm.gender" name="gender">
+              <option value="">Select Gender</option>
+              <option>Men</option>
+              <option>Women</option>
+              <option>Unisex</option>
+            </select>
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-12 admin-field">
+            <label class="form-label">Description</label>
+            <textarea
+              rows="4"
+              class="form-control custom-input"
+              [(ngModel)]="productForm.description"
+              name="description"></textarea>
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">SKU / Product Code</label>
+            <input type="text" class="form-control custom-input" [(ngModel)]="productForm.tagNumber" name="tagNumber">
+            <small class="form-text text-muted">Internal product identifier. This still saves to the existing <code>tagNumber</code> field.</small>
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Stock</label>
+            <input type="number" class="form-control custom-input" [(ngModel)]="productForm.stock" name="stock">
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Tag</label>
+            <div class="tag-chip-list">
+              <button
+                *ngFor="let option of productTagOptions"
+                type="button"
+                class="tag-chip"
+                [class.active]="isSelectedProductTag(option)"
+                (click)="onProductTagSelect(option)">
+                {{ option }}
+              </button>
+            </div>
+            <input
+              type="text"
+              class="form-control custom-input tag-custom-input"
+              [(ngModel)]="productForm.tag"
+              name="tag"
+              placeholder="Or enter a custom tag">
+            <small class="form-text text-muted">Optional badge label for storefront/admin display. You can pick one above or enter a custom tag manually.</small>
+            <div class="admin-validation-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box form-card admin-form-section">
+        <div class="section-card-header">
+          <div>
+            <h5 class="section-card-title">Pricing Details</h5>
+            <p class="section-card-subtitle">Use the same field rhythm for price, discount, and tax values.</p>
+          </div>
+        </div>
+
+        <div class="row admin-form-grid">
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control custom-input" [(ngModel)]="productForm.price" name="price">
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Discount (%)</label>
+            <input type="number" class="form-control custom-input" [(ngModel)]="productForm.discount" name="discount">
+            <div class="admin-validation-msg"></div>
+          </div>
+
+          <div class="col-md-4 admin-field">
+            <label class="form-label">Tax (%)</label>
+            <input type="number" class="form-control custom-input" [(ngModel)]="productForm.tax" name="tax">
+            <div class="admin-validation-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row admin-form-actions">
+        <button type="submit" class="btn-ui btn-create">Save Product</button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-secondary btn-cancel" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

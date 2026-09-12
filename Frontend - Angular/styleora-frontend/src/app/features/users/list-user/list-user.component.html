@@ -1,0 +1,107 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Administration / Users</span>
+      <h1 class="admin-page-title">Users List</h1>
+      <p class="admin-page-subtitle">Manage admin panel accounts, access roles, and account status from one place.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        Add User
+      </button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div class="users-toolbar">
+      <div class="users-toolbar-search">
+        <i class="bi bi-search"></i>
+        <input
+          class="admin-input"
+          type="text"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="applyFilters()"
+          name="searchTerm"
+          placeholder="Search by code, name, email, or phone">
+      </div>
+
+      <div class="users-toolbar-filters">
+        <select class="admin-select" [(ngModel)]="selectedRole" (ngModelChange)="applyFilters()" name="roleFilter">
+          <option *ngFor="let role of roles" [value]="role">{{ role === 'ALL' ? 'All Roles' : role }}</option>
+        </select>
+
+        <select class="admin-select" [(ngModel)]="selectedStatus" (ngModelChange)="applyFilters()" name="statusFilter">
+          <option *ngFor="let status of statuses" [value]="status">{{ status === 'ALL' ? 'All Statuses' : status }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading users...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>User Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredUsers">
+            <td><strong>{{ item.userCode }}</strong></td>
+            <td>
+              <div class="user-cell">
+                <ng-container *ngIf="item.avatarUrl; else userInitials">
+                  <img class="user-avatar-image" [src]="item.avatarUrl" [alt]="getFullName(item)">
+                </ng-container>
+                <ng-template #userInitials>
+                  <div class="user-avatar">{{ getInitials(item) }}</div>
+                </ng-template>
+
+                <div class="user-copy">
+                  <strong>{{ getFullName(item) }}</strong>
+                  <span>{{ item.email }}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone || 'Not set' }}</td>
+            <td>
+              <span class="pill-badge role-pill" [ngClass]="getRoleClass(item.role)">{{ item.role }}</span>
+            </td>
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(item.status)">{{ item.status }}</span>
+            </td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action view" (click)="onDetails(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="filteredUsers.length === 0">
+            <td colspan="7" class="table-empty">
+              <strong>No users found</strong>
+              Adjust the filters or add a user to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,121 @@
+<div class="create-order-page">
+
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">Create Order</h2>
+      <p class="page-subtitle">Add a new order with the current admin workflow and backend-supported fields</p>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-light" (click)="onCancel()">Back to List</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="state-box">
+    Loading form...
+  </div>
+
+  <div *ngIf="errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <form class="create-grid" (ngSubmit)="onSave()">
+
+    <div class="left-column">
+
+      <div class="card">
+        <h3>Basic Information</h3>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Order ID</label>
+            <input type="text" [(ngModel)]="orderForm.orderId" name="orderId" required>
+          </div>
+
+          <div class="form-group">
+            <label>Created At</label>
+            <input type="date" [(ngModel)]="orderForm.createdAt" name="createdAt" required>
+          </div>
+
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" [(ngModel)]="orderForm.customerName" name="customerName" required>
+          </div>
+
+          <div class="form-group">
+            <label>Priority</label>
+            <select [(ngModel)]="orderForm.priority" name="priority" required>
+              <option value="">Select Priority</option>
+              <option *ngFor="let item of priorityOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Order Status & Delivery</h3>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Order Status</label>
+            <select [(ngModel)]="orderForm.orderStatus" name="orderStatus" required>
+              <option *ngFor="let item of orderStatusOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Status</label>
+            <select [(ngModel)]="orderForm.paymentStatus" name="paymentStatus" required>
+              <option *ngFor="let item of paymentStatusOptions" [value]="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Items</label>
+            <input type="number" [(ngModel)]="orderForm.items" name="items" min="1" required>
+          </div>
+
+          <div class="form-group">
+            <label>Delivery Number</label>
+            <input type="text" [(ngModel)]="orderForm.deliveryNumber" name="deliveryNumber">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="right-column">
+
+      <div class="card">
+        <h3>Amount Summary</h3>
+
+        <div class="form-grid single-column">
+          <div class="form-group">
+            <label>Total Amount</label>
+            <input type="number" [(ngModel)]="orderForm.totalAmount" name="totalAmount" min="0" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="card action-card">
+        <h3>Actions</h3>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="submitting">
+            {{ submitting ? 'Saving...' : 'Save' }}
+          </button>
+
+          <button type="button" class="btn btn-warning" (click)="onReset()">
+            Reset
+          </button>
+
+          <button type="button" class="btn btn-light" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>

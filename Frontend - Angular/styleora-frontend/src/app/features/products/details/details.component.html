@@ -1,0 +1,155 @@
+<div class="product-details-page admin-page">
+  <div class="page-topbar admin-page-header">
+    <div class="page-title-wrap">
+      <span class="admin-page-eyebrow">Catalog preview</span>
+      <h1 class="admin-page-title">Product Details</h1>
+      <p class="admin-page-subtitle">View complete product information, pricing, and metadata in a cleaner split layout.</p>
+    </div>
+
+    <div class="page-actions admin-actions">
+      <button class="btn-ui-secondary back-btn" type="button" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
+        Back
+      </button>
+
+      <button class="btn-ui edit-btn" type="button" (click)="goToEdit()">
+        <i class="bi bi-pencil-square"></i>
+        Edit Product
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && product" class="details-grid">
+    <div class="details-left-card">
+      <div class="image-box">
+        <img [src]="getProductImage()" [alt]="product.name">
+      </div>
+
+      <div class="quick-info">
+        <div class="quick-item">
+          <span class="label">Category</span>
+          <span class="value">{{ product.category || 'N/A' }}</span>
+        </div>
+
+        <div class="quick-item">
+          <span class="label">Brand</span>
+          <span class="value">{{ product.brand || 'N/A' }}</span>
+        </div>
+
+        <div class="quick-item">
+          <span class="label">Sub Category</span>
+          <span class="value">{{ product.subCategory || 'General' }}</span>
+        </div>
+
+        <div class="quick-item">
+          <span class="label">Gender</span>
+          <span class="value">{{ product.gender || 'N/A' }}</span>
+        </div>
+
+      
+
+    <div class="details-right-card">
+      <div class="details-header">
+        <h3>{{ product.name }}</h3>
+        <span class="tag-badge" [class.tag-badge-empty]="!product.tag">{{ product.tag || 'No Tag' }}</span>
+      </div>
+
+      <div class="price-stock-row">
+        <div class="price-box">
+          <span class="price-label">Price</span>
+          <h4>{{ getDisplayPrice() | appCurrency:'1.2-2' }}</h4>
+        </div>
+
+        <div class="price-box">
+          <span class="price-label">Discount</span>
+          <h4>{{ product.discount || 0 }}%</h4>
+        </div>
+
+        <div class="price-box">
+          <span class="price-label">Tax</span>
+          <h4>{{ product.tax || 0 }}%</h4>
+        </div>
+
+        <div class="price-box">
+          <span class="price-label">Stock</span>
+          <h4>{{ product.stock || 0 }}</h4>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h5>Product Information</h5>
+
+        <div class="info-table">
+          <div class="info-row">
+            <div class="info-label">Product ID</div>
+            <div class="info-value">{{ product.id }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Name</div>
+            <div class="info-value">{{ product.name || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Category</div>
+            <div class="info-value">{{ product.category || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Sub Category</div>
+            <div class="info-value">{{ product.subCategory || 'General' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Brand</div>
+            <div class="info-value">{{ product.brand || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Weight</div>
+            <div class="info-value">{{ product.weight || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Gender</div>
+            <div class="info-value">{{ product.gender || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">SKU / Product Code</div>
+            <div class="info-value">{{ product.tagNumber || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Tag</div>
+            <div class="info-value">
+              <span class="tag-badge tag-badge-inline" [class.tag-badge-empty]="!product.tag">{{ product.tag || 'No Tag' }}</span>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Image URL</div>
+            <div class="info-value image-url">{{ product.imageUrl || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Created At</div>
+            <div class="info-value">{{ product.createdAt || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Updated At</div>
+            <div class="info-value">{{ product.updatedAt || 'N/A' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h5>Description</h5>
+        <div class="description-box">
+          {{ product.description || 'No description available' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

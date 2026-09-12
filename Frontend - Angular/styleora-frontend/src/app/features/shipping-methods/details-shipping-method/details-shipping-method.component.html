@@ -1,0 +1,88 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Shipping Methods / Details</span>
+      <h1 class="admin-page-title">Shipping Method Details</h1>
+      <p class="admin-page-subtitle">Review shipping cost, delivery estimate, description, and activation status.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Shipping Method</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading shipping method details...</div>
+
+    <div *ngIf="shippingMethod && !loading" class="details-grid row">
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Name</span>
+          <strong>{{ shippingMethod.name }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Status</span>
+          <strong><span class="pill-badge" [ngClass]="getStatusClass(shippingMethod.status)">{{ shippingMethod.status }}</span></strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Cost</span>
+          <strong>{{ shippingMethod.cost | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Estimated Days</span>
+          <strong>{{ shippingMethod.estimatedDays }} days</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Coverage Area</span>
+          <strong>{{ shippingMethod.coverageArea || 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Courier Name</span>
+          <strong>{{ shippingMethod.courierName || 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Minimum Order Amount</span>
+          <strong>{{ shippingMethod.minOrderAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Maximum Weight</span>
+          <strong>{{ shippingMethod.maxWeightKg }} kg</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Free Shipping</span>
+          <strong>{{ shippingMethod.isFreeShipping ? 'Enabled' : 'Disabled' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Sort Order</span>
+          <strong>{{ shippingMethod.sortOrder }}</strong>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-block">
+          <span>Description</span>
+          <strong>{{ shippingMethod.description || 'No description added' }}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,40 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Roles / Details</span>
+      <h1 class="admin-page-title">Role Details</h1>
+      <p class="admin-page-subtitle">Review role definition details and current activation status.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Role</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading role details...</div>
+
+    <div *ngIf="role && !loading" class="details-grid row">
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Role Name</span>
+          <strong>{{ role.name }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Status</span>
+          <strong><span class="pill-badge" [ngClass]="getStatusClass(role.status)">{{ role.status }}</span></strong>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-block">
+          <span>Description</span>
+          <strong>{{ role.description || 'Not set' }}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

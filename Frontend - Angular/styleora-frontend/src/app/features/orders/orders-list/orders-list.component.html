@@ -1,0 +1,146 @@
+<div class="orders-page compact-orders-page">
+
+  <div class="page-header">
+    <div>
+      <h2>Orders List</h2>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && successMessage" class="state-box">
+    {{ successMessage }}
+  </div>
+
+  <div class="summary-grid compact-summary-grid" *ngIf="!loading && hasOrders">
+    <div class="summary-card compact-summary-card">
+      <p>Payment Refund</p>
+      <h3>{{ paymentRefundCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>Order Cancel</p>
+      <h3>{{ orderCancelCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>Order Shipped</p>
+      <h3>{{ orderShippedCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>Order Delivering</p>
+      <h3>{{ orderDeliveringCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>Pending Review</p>
+      <h3>{{ pendingReviewCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>Pending Payment</p>
+      <h3>{{ pendingPaymentCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>Delivered</p>
+      <h3>{{ deliveredCount }}</h3>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <p>In Progress</p>
+      <h3>{{ inProgressCount }}</h3>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && !hasOrders" class="state-box">
+    No orders found.
+  </div>
+
+  <div class="table-card compact-table-card" *ngIf="!loading && hasOrders">
+    <div class="table-shell">
+    <table class="table table-bordered table-hover card-table table-ui">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th class="action-col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of paginatedOrders">
+          <td>{{ item.orderId }}</td>
+          <td>{{ item.createdAt || '-' }}</td>
+          <td>
+            <div class="customer-copy">
+              <strong>{{ item.customerName || 'N/A' }}</strong>
+              <div class="text-muted small">{{ item.customerEmail || 'No email available' }}</div>
+            </div>
+          </td>
+
+          <td>
+            {{ getAmount(item) | appCurrency:'1.2-2' }}
+          </td>
+
+          <td>
+            <div class="status-cell">
+              <div
+                class="status-select-wrap status-badge badge-soft"
+                [ngClass]="getStatusClass(getStatus(item))">
+                <select
+                  class="status-select"
+                  [(ngModel)]="selectedStatuses[item.id!]"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="isStatusUpdating(item.id)"
+                  (ngModelChange)="onStatusChange(item, $event)">
+                  <option *ngFor="let status of orderStatuses" [value]="status">
+                    {{ status }}
+                  </option>
+                </select>
+                <span class="status-chevron" aria-hidden="true"></span>
+              </div>
+              <span *ngIf="isStatusUpdating(item.id)" class="status-updating">Updating...</span>
+            </div>
+          </td>
+
+          <td class="action-cell action-col">
+            <div class="table-actions">
+              <button class="action-btn action-view" type="button" (click)="onDetails(item.id)" aria-label="View order details">
+                <i class="bi bi-eye"></i>
+              </button>
+
+              <button class="action-btn action-edit" type="button" (click)="onEdit(item.id)" aria-label="Edit order">
+                <i class="bi bi-pencil"></i>
+              </button>
+
+              <button class="action-btn action-delete" type="button" (click)="onDelete(item.id)" aria-label="Delete order">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="hasOrders">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+</div>

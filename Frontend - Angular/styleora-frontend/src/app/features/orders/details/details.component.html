@@ -1,0 +1,306 @@
+<div class="order-details-page">
+
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">Order Details</h2>
+      <p class="page-subtitle">Complete information about this order</p>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-light" type="button" (click)="goBack()">Back</button>
+      <button class="btn btn-primary" type="button" *ngIf="order?.id" (click)="goToEdit()">
+        Edit Order
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="state-box">
+    Loading order details...
+  </div>
+
+  <div *ngIf="!loading && errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && !order" class="state-box error">
+    Order data not found.
+  </div>
+
+  <div *ngIf="!loading && order" class="details-grid">
+
+    <div class="left-column">
+
+      <div class="card">
+        <h3>Order Timeline</h3>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-step" [class.completed]="isStepCompleted('placed')">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <h4>Order Placed</h4>
+              <p>{{ getFormattedDate(order.createdAt || order.createdDate) }}</p>
+            </div>
+          </div>
+
+          <div class="timeline-step" [class.completed]="isStepCompleted('confirmed')">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <h4>Order Confirmed</h4>
+              <p>Order has been confirmed by admin.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step" [class.completed]="isStepCompleted('processing')">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <h4>Processing</h4>
+              <p>Order is being prepared for shipment.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step" [class.completed]="isStepCompleted('shipped')">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <h4>Shipped</h4>
+              <p>Order has left the warehouse.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step" [class.completed]="isStepCompleted('delivered')">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <h4>Delivered</h4>
+              <p>Order delivered successfully.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Order Summary</h3>
+
+        <div class="summary-row">
+          <span>Order ID</span>
+          <strong>{{ getDisplayOrderId() }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Priority</span>
+          <strong>{{ order.priority || 'Not Available' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Status</span>
+          <span
+            class="status-badge"
+            [class.status-success]="getStatusClass(getOrderStatus()) === 'status-success'"
+            [class.status-warning]="getStatusClass(getOrderStatus()) === 'status-warning'"
+            [class.status-danger]="getStatusClass(getOrderStatus()) === 'status-danger'"
+            [class.status-info]="getStatusClass(getOrderStatus()) === 'status-info'"
+            [class.status-default]="getStatusClass(getOrderStatus()) === 'status-default'">
+            {{ getOrderStatus() }}
+          </span>
+        </div>
+
+        <div class="summary-row">
+          <span>Payment Status</span>
+          <span
+            class="status-badge"
+            [class.status-success]="getStatusClass(getPaymentStatus()) === 'status-success'"
+            [class.status-warning]="getStatusClass(getPaymentStatus()) === 'status-warning'"
+            [class.status-danger]="getStatusClass(getPaymentStatus()) === 'status-danger'"
+            [class.status-info]="getStatusClass(getPaymentStatus()) === 'status-info'"
+            [class.status-default]="getStatusClass(getPaymentStatus()) === 'status-default'">
+            {{ getPaymentStatus() }}
+          </span>
+        </div>
+
+        <div class="summary-row">
+          <span>Created At</span>
+          <strong>{{ getFormattedDate(order.createdAt || order.createdDate) }}</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Customer Information</h3>
+
+        <div class="customer-box">
+          <div class="avatar">
+            {{ getInitials(getCustomerName()) }}
+          </div>
+
+          <div class="customer-meta">
+            <strong>{{ getCustomerName() }}</strong>
+            <span>{{ getCustomerEmail() }}</span>
+            <span>{{ getCustomerPhone() }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Shipping Information</h3>
+        <p>{{ getShippingAddress() }}</p>
+
+        <h3 class="mt">Billing Information</h3>
+        <p>{{ getBillingAddress() }}</p>
+      </div>
+
+    </div>
+
+    <div class="right-column">
+
+      <div class="card">
+        <h3>Payment Information</h3>
+
+        <div class="summary-row">
+          <span>Payment Method</span>
+          <strong>{{ getPaymentMethod() }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Delivery Number</span>
+          <strong>{{ order.deliveryNumber || 'Not Available' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Tracking Number</span>
+          <strong>{{ order.trackingNumber || 'Not Available' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Total Items</span>
+          <strong>{{ getTotalItemCount() }}</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="shipment-card-header">
+          <h3>Shipment Tracking</h3>
+          <button class="btn btn-primary shipment-manage-btn" type="button" (click)="goToShipmentEdit()">
+            Manage Shipment
+          </button>
+        </div>
+
+        <div *ngIf="shipmentLoading" class="shipment-empty-state">
+          Loading shipment details...
+        </div>
+
+        <ng-container *ngIf="!shipmentLoading && shipment; else noShipmentState">
+          <div class="summary-row">
+            <span>Courier</span>
+            <strong>{{ shipment.courierName || 'Not Available' }}</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Tracking Number</span>
+            <strong>{{ shipment.trackingNumber || 'Not Available' }}</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipment Status</span>
+            <span
+              class="status-badge"
+              [class.status-success]="getStatusClass(getShipmentStatus()) === 'status-success'"
+              [class.status-warning]="getStatusClass(getShipmentStatus()) === 'status-warning'"
+              [class.status-danger]="getStatusClass(getShipmentStatus()) === 'status-danger'"
+              [class.status-info]="getStatusClass(getShipmentStatus()) === 'status-info'"
+              [class.status-default]="getStatusClass(getShipmentStatus()) === 'status-default'">
+              {{ getShipmentStatus() }}
+            </span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipped Date</span>
+            <strong>{{ getFormattedDate(shipment.shippedDate || shipment.dispatchDate) }}</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Estimated Delivery</span>
+            <strong>{{ getFormattedDate(shipment.estimatedDeliveryDate) }}</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivered Date</span>
+            <strong>{{ getFormattedDate(shipment.deliveredDate) }}</strong>
+          </div>
+        </ng-container>
+
+        <ng-template #noShipmentState>
+          <div class="shipment-empty-state">
+            No shipment has been assigned to this order yet.
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="card">
+        <h3>Totals</h3>
+
+        <div class="amount-row">
+          <span>Subtotal</span>
+          <strong>{{ getSubtotal() | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row">
+          <span>Tax</span>
+          <strong>{{ getTax() | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row">
+          <span>Shipping</span>
+          <strong>{{ getShippingCost() | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="amount-row">
+          <span>Discount</span>
+          <strong>{{ getDiscount() | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <hr>
+
+        <div class="amount-row total">
+          <span>Total</span>
+          <strong>{{ getTotalAmount() | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Order Items</h3>
+
+        <div class="table-wrapper">
+          <table class="order-items-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of getOrderItems()">
+                <td class="product-cell">
+                  <img *ngIf="item.productImage" [src]="item.productImage" alt="product">
+                  <div class="item-copy">
+                    <span>{{ item.productName || 'Product Name Not Available' }}</span>
+                    <small>Size: {{ item.size || 'N/A' }} | Color: {{ item.color || 'N/A' }}</small>
+                  </div>
+                </td>
+
+                <td>{{ item.quantity || 0 }}</td>
+                <td>{{ getItemPrice(item) | appCurrency:'1.2-2' }}</td>
+                <td>{{ getItemTotal(item) | appCurrency:'1.2-2' }}</td>
+              </tr>
+
+              <tr *ngIf="getOrderItems().length === 0">
+                <td colspan="4" class="empty-row">No order items available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

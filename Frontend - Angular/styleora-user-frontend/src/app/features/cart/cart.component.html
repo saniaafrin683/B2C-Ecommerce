@@ -1,0 +1,128 @@
+<div class="container py-4" *ngIf="cartItems$ | async as cartItems">
+  <div class="row g-4" *ngIf="cartItems.length; else emptyCart">
+    <div class="col-12 col-lg-8">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+          <h1 class="h3 mb-1">Your Cart</h1>
+          <p class="text-muted mb-0">Review your selected items before checkout.</p>
+        </div>
+        <button class="btn btn-outline-danger rounded-pill px-4" type="button" (click)="clearCart()">Clear Cart</button>
+      </div>
+      <div class="alert alert-danger" *ngIf="hasStockIssues(cartItems)">
+        Some items are out of stock or exceed available stock. Update your cart before checkout.
+      </div>
+      <div class="alert alert-danger" *ngIf="actionErrorMessage">
+        {{ actionErrorMessage }}
+      </div>
+
+      <div class="cart-items-shell">
+        <div class="cart-item-card card border-0 shadow-sm" *ngFor="let item of cartItems">
+          <div class="card-body p-4">
+            <div class="row g-3 align-items-center">
+              <div class="col-12 col-md-6">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="cart-image-wrap">
+                    <img [src]="item.imageUrl" [alt]="item.name" class="rounded cart-item-image">
+                  </div>
+                  <div class="cart-item-copy">
+                    <div class="cart-item-name fw-semibold">{{ item.name }}</div>
+                    <div class="text-muted small" *ngIf="item.discount; else regularCartPrice">
+                      Original Price: <span class="text-decoration-line-through">BDT {{ item.price | number:'1.2-2' }}</span>
+                    </div>
+                    <ng-template #regularCartPrice>
+                      <div class="text-muted small">Unit Price: BDT {{ item.price | number:'1.2-2' }}</div>
+                    </ng-template>
+                    <div class="text-success small" *ngIf="item.discount">
+                      Discounted Price: BDT {{ getDiscountedPrice(item) | number:'1.2-2' }}
+                    </div>
+                    <div class="text-muted small">Selected for checkout</div>
+                    <div class="text-muted small">Available for cart: {{ item.stock }}</div>
+                    <div class="text-danger small" *ngIf="item.stock <= 0">Out of stock</div>
+                    <div class="text-danger small" *ngIf="item.stock > 0 && item.quantity >= item.stock">Max available stock: {{ item.stock }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <div class="cart-label">Quantity</div>
+                <app-quantity-selector
+                  [quantity]="item.quantity"
+                  [min]="1"
+                  [max]="item.stock"
+                  (quantityChange)="updateQuantity(item, $event)"
+                ></app-quantity-selector>
+              </div>
+
+              <div class="col-6 col-md-3">
+                <div class="d-flex flex-column align-items-md-end gap-2">
+                  <div>
+                    <div class="cart-label">Line Total</div>
+                    <div class="text-muted small text-end" *ngIf="item.discount">
+                      Regular: BDT {{ getLineRegularTotal(item) | number:'1.2-2' }}
+                    </div>
+                    <div class="cart-line-total">BDT {{ getLineDiscountedTotal(item) | number:'1.2-2' }}</div>
+                    <div class="text-success small text-end" *ngIf="item.discount">
+                      Saved: -BDT {{ getLineProductDiscountTotal(item) | number:'1.2-2' }}
+                    </div>
+                  </div>
+                  <button class="btn btn-link cart-remove-button p-0" type="button" (click)="removeItem(item)">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm border-0 cart-summary-card">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-4">Order Summary</h2>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Regular Subtotal</span>
+            <strong>BDT {{ ((regularSubtotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3" *ngIf="((productDiscountTotal$ | async) || 0) > 0">
+            <span class="text-muted">Product Discount</span>
+            <strong class="text-success">-BDT {{ ((productDiscountTotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Subtotal After Product Discount</span>
+            <strong>BDT {{ ((cartTotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Items</span>
+            <strong>{{ cartItems.length }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between border-top pt-3 mb-4">
+            <span class="fw-semibold">Total</span>
+            <strong class="h5 mb-0">BDT {{ ((cartTotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="d-grid gap-2">
+            <a class="btn btn-lg rounded-pill checkout-green-btn" routerLink="/checkout" [class.disabled]="hasStockIssues(cartItems)" [attr.aria-disabled]="hasStockIssues(cartItems)">
+              Proceed to Checkout
+            </a>
+            <a class="btn btn-outline-dark rounded-pill" routerLink="/shop">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <div class="container py-4">
+    <app-empty-state message="Your cart is empty. Start exploring products and add your favorites."></app-empty-state>
+    <div class="text-center mt-3">
+      <a class="btn btn-dark" routerLink="/shop">Continue Shopping</a>
+    </div>
+  </div>
+</ng-template>

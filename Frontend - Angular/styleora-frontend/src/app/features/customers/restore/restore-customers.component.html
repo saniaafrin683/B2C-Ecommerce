@@ -1,0 +1,93 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">CRM / Customers</span>
+      <h1 class="admin-page-title">Restore Customers</h1>
+      <p class="admin-page-subtitle">Review deleted customer records and restore them back to the active customer list.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div *ngIf="successMessage" class="page-message success">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading deleted customers...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Customer Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Status</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of paginatedCustomers">
+            <td><strong>{{ item.customerCode }}</strong></td>
+            <td>{{ item.fullName }}</td>
+            <td>{{ item.email || 'No email added' }}</td>
+            <td>{{ item.phone || 'Not set' }}</td>
+            <td>{{ item.city || 'Not set' }}</td>
+            <td class="action-col">
+              <span class="pill-badge" [ngClass]="getStatusClass(item.status)">{{ item.status }}</span>
+            </td>
+            <td>
+              <div class="restore-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn-ui-secondary restore-btn"
+                  (click)="onRestore(item)"
+                  [disabled]="restoringId === item.id || deletingId === item.id">
+                  {{ restoringId === item.id ? 'Restoring...' : 'Restore' }}
+                </button>
+                <button
+                  type="button"
+                  class="btn-ui-ghost"
+                  (click)="onPermanentDelete(item)"
+                  [disabled]="restoringId === item.id || deletingId === item.id">
+                  {{ deletingId === item.id ? 'Removing...' : 'Remove' }}
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="paginatedCustomers.length === 0">
+            <td colspan="7" class="table-empty">
+              <strong>No deleted customers found</strong>
+              Soft-deleted customers will appear here for restore.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && customers.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </section>
+</div>

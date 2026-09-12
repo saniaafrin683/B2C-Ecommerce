@@ -1,0 +1,131 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Inventory / Purchases</span>
+      <h1 class="admin-page-title">Purchase List</h1>
+      <p class="admin-page-subtitle">Track supplier purchases and see which records already increased stock.</p>
+    </div>
+
+    <div class="admin-actions">
+      <select class="admin-select purchase-filter" [ngModel]="selectedFilter" (ngModelChange)="applyFilter($event)" name="purchaseFilter">
+        <option *ngFor="let option of filterOptions" [value]="option">{{ option }}</option>
+      </select>
+
+      <button type="button" class="btn-ui-secondary" (click)="onRefresh()">
+        <i class="bi bi-arrow-clockwise"></i>
+        Refresh
+      </button>
+
+      <button type="button" class="btn-ui" routerLink="/purchases/create">
+        <i class="bi bi-plus-circle"></i>
+        Add Purchase
+      </button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div *ngIf="errorMessage" class="purchase-error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="purchase-loading">
+      Loading purchases...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Purchase ID</th>
+            <th>Supplier</th>
+            <th>Items</th>
+            <th>Status</th>
+            <th>Purchase Date</th>
+            <th>Total Amount</th>
+            <th>Stock Applied</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let purchase of paginatedPurchases">
+            <td><strong>{{ purchase.purchaseId || ('PUR-' + purchase.id) }}</strong></td>
+
+            <td class="order-by-cell">
+              <div class="buyer-cell">
+                <div class="buyer-avatar">{{ getInitials(purchase.supplierName) }}</div>
+                <div class="buyer-copy table-name-cell">
+                  <strong>{{ purchase.supplierName }}</strong>
+                  <span>{{ purchase.supplierEmail || 'No email' }}</span>
+                </div>
+              </div>
+            </td>
+
+            <td class="items-cell">
+              <div class="item-stack">
+                <strong>{{ purchase.items.length }} item{{ purchase.items.length > 1 ? 's' : '' }}</strong>
+                <span>{{ getItemSummary(purchase) }}</span>
+              </div>
+            </td>
+
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(purchase.purchaseStatus)">
+                {{ purchase.purchaseStatus }}
+              </span>
+            </td>
+
+            <td>{{ purchase.purchaseDate | date:'dd MMM yyyy' }}</td>
+            <td><strong>{{ purchase.totalAmount | appCurrency:'1.2-2' }}</strong></td>
+            <td>
+              <span class="pill-badge" [ngClass]="purchase.stockApplied ? 'pill-success' : 'pill-warning'">
+                {{ purchase.stockApplied ? 'Applied' : 'Pending' }}
+              </span>
+            </td>
+
+            <td class="action-col">
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(purchase)">
+                  <i class="bi bi-eye"></i>
+                </button>
+
+                <button type="button" class="icon-action edit" (click)="onEdit(purchase)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button type="button" class="icon-action delete" (click)="onDelete(purchase.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="paginatedPurchases.length === 0">
+            <td colspan="8" class="table-empty">
+              <strong>No purchases found</strong>
+              Create a purchase or adjust the status filter to see records here.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="purchase-pagination">
+      <button type="button" class="btn-ui-ghost pagination-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">
+        Previous
+      </button>
+
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="pagination-number"
+        [class.active]="page === currentPage"
+        (click)="setPage(page)">
+        {{ page }}
+      </button>
+
+      <button type="button" class="btn-ui-ghost pagination-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+  </section>
+</div>

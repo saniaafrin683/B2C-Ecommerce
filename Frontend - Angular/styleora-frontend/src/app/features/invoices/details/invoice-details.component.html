@@ -1,0 +1,115 @@
+<div class="invoice-page">
+  <div class="card invoice-sheet border-0 shadow-sm">
+    <div class="card-body p-4 p-xl-5">
+      <div *ngIf="invoice; else loadingBlock">
+        <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-start gap-3 mb-4 pb-3 border-bottom invoice-header">
+          <div>
+            <span class="text-uppercase fw-bold invoice-label">INVOICE</span>
+            <h2 class="mb-1 invoice-number">{{ invoice?.invoiceNumber }}</h2>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3 gap-xl-4 justify-content-xl-end">
+            <div class="text-xl-end">
+              <div class="invoice-meta-label">Status</div>
+              <span class="badge rounded-pill bg-success" *ngIf="invoice?.paymentStatus === 'Paid' || invoice?.paymentStatus === 'Completed'">
+                {{ invoice?.paymentStatus }}
+              </span>
+              <span class="badge rounded-pill bg-warning text-dark" *ngIf="invoice?.paymentStatus === 'Pending'">
+                {{ invoice?.paymentStatus }}
+              </span>
+              <span class="badge rounded-pill bg-danger" *ngIf="invoice?.paymentStatus === 'Cancelled' || invoice?.paymentStatus === 'Failed' || invoice?.paymentStatus === 'Inactive'">
+                {{ invoice?.paymentStatus }}
+              </span>
+            </div>
+
+            <div class="text-xl-end">
+              <div class="invoice-meta-label">Issue Date</div>
+              <strong>{{ invoice?.issueDate }}</strong>
+            </div>
+
+            <div class="text-xl-end">
+              <div class="invoice-meta-label">Due Date</div>
+              <strong>{{ invoice?.dueDate }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <div class="invoice-block h-100">
+              <div class="invoice-meta-label mb-2">Company Info</div>
+              <h5 class="mb-2">Styleora Fashion Admin</h5>
+              <p class="mb-1 text-muted">Dhaka Bangladesh</p>
+              <a class="invoice-link" href="mailto:support@styleora.com">support@styleora.com</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="invoice-block h-100 text-lg-end">
+              <div class="invoice-meta-label mb-2">Billing Info</div>
+              <h5 class="mb-2">{{ invoice?.customerName }}</h5>
+              <p class="mb-1 text-muted">{{ invoice?.customerEmail || 'Not set' }}</p>
+              <p class="mb-0 text-muted">{{ invoice?.billingAddress || 'Not set' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 align-items-start mb-4">
+          <div class="col-lg-7">
+            <div class="invoice-block">
+              <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <span class="invoice-meta-label">Order ID</span>
+                <strong>#{{ invoice?.orderId }}</strong>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center pt-3">
+                <span class="invoice-meta-label">Payment Method</span>
+                <strong>{{ invoice?.paymentMethod || 'Not set' }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="invoice-block totals-card ms-lg-auto">
+              <div class="d-flex justify-content-between align-items-center py-2">
+                <span>Subtotal</span>
+                <strong>{{ invoice?.subtotal | appCurrency:'1.2-2' }}</strong>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-2">
+                <span>Tax</span>
+                <strong>{{ invoice?.tax | appCurrency:'1.2-2' }}</strong>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-2">
+                <span>Discount</span>
+                <strong>{{ invoice?.discount | appCurrency:'1.2-2' }}</strong>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-2">
+                <span>Shipping</span>
+                <strong>{{ invoice?.shippingCost | appCurrency:'1.2-2' }}</strong>
+              </div>
+              <div class="d-flex justify-content-between align-items-center pt-3 mt-2 border-top total-row">
+                <span>Total Amount</span>
+                <strong>{{ invoice?.totalAmount | appCurrency:'1.2-2' }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="invoice-block mb-4">
+          <div class="invoice-meta-label mb-2">Notes</div>
+          <p class="mb-0 text-muted">{{ invoice?.notes || 'No notes added' }}</p>
+        </div>
+
+        <div class="invoice-footer text-lg-end">
+          <div class="signature-line ms-lg-auto"></div>
+          <h6 class="mb-1">Authorized Signature</h6>
+          <p class="mb-0 text-muted">Thank you for your business</p>
+        </div>
+      </div>
+
+      <ng-template #loadingBlock>
+        <p class="mb-0">Loading invoice details...</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

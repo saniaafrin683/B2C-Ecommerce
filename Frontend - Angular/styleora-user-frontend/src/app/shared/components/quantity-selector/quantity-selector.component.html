@@ -1,0 +1,21 @@
+<div class="btn-group" role="group" aria-label="Quantity selector">
+  <button
+    class="btn btn-outline-secondary"
+    type="button"
+    (click)="decrease()"
+    [disabled]="quantity <= min"
+  >
+    -
+  </button>
+  <button class="btn btn-outline-secondary quantity-value" type="button" disabled>
+    {{ quantity }}
+  </button>
+  <button
+    class="btn btn-outline-secondary"
+    type="button"
+    (click)="increase()"
+    [disabled]="max !== null && quantity >= max"
+  >
+    +
+  </button>
+</div>

@@ -1,0 +1,207 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Inventory / Purchases</span>
+      <h1 class="admin-page-title">Edit Purchase</h1>
+      <p class="admin-page-subtitle">Update purchase information. Item rows lock automatically after stock has been applied.</p>
+    </div>
+  </div>
+
+  <section *ngIf="loading" class="section-card surface-card glass-panel">
+    <p class="section-card-subtitle">Loading purchase...</p>
+  </section>
+
+  <section *ngIf="!loading && errorMessage && !purchase" class="section-card surface-card glass-panel">
+    <p class="purchase-error">{{ errorMessage }}</p>
+  </section>
+
+  <form *ngIf="!loading && purchase" class="admin-form-section form-shell" (ngSubmit)="onSave()">
+    <div *ngIf="errorMessage" class="purchase-error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="itemsLocked" class="purchase-lock-note">
+      Stock has already been applied for this purchase. Item rows are locked to prevent duplicate stock changes.
+    </div>
+
+    <div class="admin-form-grid row">
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Purchase ID</label>
+        <input class="admin-input" type="text" [(ngModel)]="purchase.purchaseId" name="purchaseId">
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier Name</label>
+        <input class="admin-input" type="text" [(ngModel)]="purchase.supplierName" name="supplierName">
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Purchase Status</label>
+        <select class="admin-select" [(ngModel)]="purchase.purchaseStatus" name="purchaseStatus">
+          <option *ngFor="let status of purchaseStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Payment Status</label>
+        <select class="admin-select" [(ngModel)]="purchase.paymentStatus" name="paymentStatus">
+          <option *ngFor="let status of paymentStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Payment Method</label>
+        <select class="admin-select" [(ngModel)]="purchase.paymentMethod" name="paymentMethod">
+          <option *ngFor="let method of paymentMethods" [value]="method">{{ method }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Purchase Date</label>
+        <input class="admin-input" type="date" [(ngModel)]="purchase.purchaseDate" name="purchaseDate">
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Paid Amount</label>
+        <input class="admin-input" type="number" [(ngModel)]="purchase.paidAmount" name="paidAmount" (ngModelChange)="onTotalsChange()">
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Due Amount</label>
+        <input class="admin-input" type="number" [ngModel]="purchase.dueAmount" name="dueAmount" readonly>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier Email</label>
+        <input class="admin-input" type="email" [(ngModel)]="purchase.supplierEmail" name="supplierEmail">
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier Phone</label>
+        <input class="admin-input" type="text" [(ngModel)]="purchase.supplierPhone" name="supplierPhone">
+      </div>
+
+      <div class="col-12 admin-field">
+        <label class="admin-form-label">Supplier Address</label>
+        <textarea class="admin-textarea" rows="3" [(ngModel)]="purchase.supplierAddress" name="supplierAddress"></textarea>
+      </div>
+    </div>
+
+    <div class="items-card">
+      <div class="items-card-header">
+        <div>
+          <h3>Purchase Items</h3>
+          <p>Adjust rows before stock is applied.</p>
+        </div>
+
+        <button type="button" class="btn-ui-secondary" (click)="addItemRow()" [disabled]="itemsLocked">
+          <i class="bi bi-plus-circle"></i>
+          Add Row
+        </button>
+      </div>
+
+      <div class="table-shell">
+        <table class="table-ui">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Current Stock</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Subtotal</th>
+              <th class="action-col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of purchase.items; let index = index; trackBy: trackByIndex">
+              <td>
+                <select
+                  class="admin-select table-select"
+                  [(ngModel)]="item.productId"
+                  [name]="'editProductId' + index"
+                  (ngModelChange)="onProductChange(item)"
+                  [disabled]="itemsLocked">
+                  <option [ngValue]="null">Select product</option>
+                  <option *ngFor="let product of products" [ngValue]="product.id">
+                    {{ product.name }}
+                  </option>
+                </select>
+              </td>
+              <td>{{ item.category || '-' }}</td>
+              <td>{{ item.availableStock ?? 0 }}</td>
+              <td>
+                <input
+                  class="admin-input table-input"
+                  type="number"
+                  min="1"
+                  [(ngModel)]="item.quantity"
+                  [name]="'editQuantity' + index"
+                  (ngModelChange)="onItemValueChange(item)"
+                  [disabled]="itemsLocked">
+              </td>
+              <td>
+                <input
+                  class="admin-input table-input"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  [(ngModel)]="item.unitPrice"
+                  [name]="'editUnitPrice' + index"
+                  (ngModelChange)="onItemValueChange(item)"
+                  [disabled]="itemsLocked">
+              </td>
+              <td><strong>{{ item.subtotal | appCurrency:'1.2-2' }}</strong></td>
+              <td class="action-col">
+                <button type="button" class="icon-action delete" (click)="removeItemRow(index)" [disabled]="itemsLocked">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-form-grid row totals-grid">
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Subtotal</label>
+        <input class="admin-input" type="number" [ngModel]="purchase.subtotal" name="subtotal" readonly>
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Discount</label>
+        <input class="admin-input" type="number" min="0" [(ngModel)]="purchase.discount" name="discount" (ngModelChange)="onTotalsChange()">
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Tax</label>
+        <input class="admin-input" type="number" min="0" [(ngModel)]="purchase.tax" name="tax" (ngModelChange)="onTotalsChange()">
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Shipping Cost</label>
+        <input class="admin-input" type="number" min="0" [(ngModel)]="purchase.shippingCost" name="shippingCost" (ngModelChange)="onTotalsChange()">
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Total Amount</label>
+        <input class="admin-input" type="number" [ngModel]="purchase.totalAmount" name="totalAmount" readonly>
+      </div>
+
+      <div class="col-12 admin-field">
+        <label class="admin-form-label">Notes</label>
+        <textarea class="admin-textarea" rows="4" [(ngModel)]="purchase.notes" name="notes"></textarea>
+      </div>
+    </div>
+
+    <div class="admin-form-actions">
+      <button type="submit" class="btn-ui" [disabled]="submitting">
+        {{ submitting ? 'Saving...' : 'Save' }}
+      </button>
+      <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+      <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

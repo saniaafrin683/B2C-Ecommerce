@@ -1,0 +1,60 @@
+<div class="container py-4" *ngIf="wishlistItems$ | async as wishlistItems">
+  <div class="wishlist-shell bg-white rounded shadow-sm p-4 p-lg-5">
+    <div class="wishlist-toast" *ngIf="toastMessage">
+      {{ toastMessage }}
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div>
+        <h1 class="h3 mb-1">Wishlist</h1>
+        <p class="text-muted mb-0">Save favorites for later and move them into your cart anytime.</p>
+      </div>
+      <a class="btn btn-outline-dark rounded-pill px-4" routerLink="/shop">Continue Shopping</a>
+    </div>
+
+    <ng-container *ngIf="cartItems$ | async as cartItems">
+      <div class="row g-4" *ngIf="wishlistItems.length; else emptyState">
+        <div class="col-12 col-md-6 col-xl-4" *ngFor="let product of wishlistItems">
+          <div class="card wishlist-card border-0 h-100">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="wishlist-image-wrap mb-3">
+                <img [src]="getProductImage(product)" [alt]="product.name" class="wishlist-image">
+              </div>
+
+              <div class="wishlist-meta mb-2">
+                <span class="wishlist-pill">{{ product.category }}</span>
+              </div>
+
+              <h2 class="h5 wishlist-title mb-2">{{ product.name }}</h2>
+              <p class="text-muted small mb-1">{{ product.brand || 'Styleora selection' }}</p>
+              <p class="text-muted small mb-3">{{ product.subCategory || product.subcategory || 'General Collection' }}</p>
+              <p class="wishlist-price fw-semibold mb-4">BDT {{ getProductPrice(product) | number:'1.2-2' }}</p>
+
+              <div class="mt-auto d-grid gap-2">
+                <a class="btn btn-outline-dark rounded-pill" [routerLink]="['/product', product.id]">View Product</a>
+                <button
+                  class="btn btn-dark rounded-pill"
+                  type="button"
+                  [disabled]="isProductInCart(product.id, cartItems)"
+                  (click)="addToCart(product)"
+                >
+                  {{ isProductInCart(product.id, cartItems) ? 'Already in Cart' : 'Add to Cart' }}
+                </button>
+                <button class="btn btn-link wishlist-remove p-0" type="button" (click)="removeFromWishlist(product.id)">
+                  Remove from wishlist
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyState>
+      <div class="wishlist-empty text-center py-4">
+        <app-empty-state message="Your wishlist is empty"></app-empty-state>
+        <a class="btn btn-dark rounded-pill px-4 mt-3" routerLink="/shop">Go to Shop</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

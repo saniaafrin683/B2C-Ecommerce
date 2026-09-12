@@ -1,0 +1,46 @@
+.page-message {
+  margin-bottom: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.page-message.error {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.page-message.info {
+  color: var(--brand);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.value-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.overview-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.88);
+  border: 1px solid rgba(226, 232, 240, 0.92);
+}
+
+.overview-block span:first-child {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.overview-block strong {
+  color: var(--text-strong);
+  font-size: 0.96rem;
+  line-height: 1.5;
+}

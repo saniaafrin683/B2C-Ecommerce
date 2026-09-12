@@ -1,0 +1,149 @@
+<div class="warehouse-page compact-warehouse-page">
+
+  <div class="page-topbar">
+    <div class="page-title-wrap">
+      <h2>WAREHOUSE</h2>
+    </div>
+
+    <div class="page-top-actions">
+      <button class="month-btn" type="button">
+        This Month
+        <i class="bi bi-chevron-down"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="summary-grid compact-summary-grid">
+    <div class="summary-card compact-summary-card">
+      <div class="summary-icon orange">
+        <i class="bi bi-box-seam"></i>
+      </div>
+      <div class="summary-text">
+        <p>Total Product Items</p>
+        <h3>{{ totalProductItems }}</h3>
+      </div>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <div class="summary-icon green">
+        <i class="bi bi-check2-circle"></i>
+      </div>
+      <div class="summary-text">
+        <p>In Stock Product</p>
+        <h3>{{ inStockProduct }}</h3>
+      </div>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <div class="summary-icon red">
+        <i class="bi bi-x-circle"></i>
+      </div>
+      <div class="summary-text">
+        <p>Out Of Stock Product</p>
+        <h3>{{ outOfStockProduct }}</h3>
+      </div>
+    </div>
+
+    <div class="summary-card compact-summary-card">
+      <div class="summary-icon blue">
+        <i class="bi bi-people"></i>
+      </div>
+      <div class="summary-text">
+        <p>Total Received Orders</p>
+        <h3>{{ totalReceivedOrders }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="warehouse-card compact-table-card">
+
+    <div class="warehouse-card-header">
+      <div class="header-left">
+        <h3>All Warehouse List</h3>
+      </div>
+
+      <div class="header-right">
+        <button class="action-outline-btn" type="button" (click)="onRefresh()">
+          <i class="bi bi-arrow-clockwise"></i>
+          Refresh
+        </button>
+
+        <button class="action-fill-btn" type="button" routerLink="/inventory/create-warehouse">
+          <i class="bi bi-plus-lg"></i>
+          Add Warehouse
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mx-3 mt-3 mb-0">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success mx-3 mt-3 mb-0">{{ successMessage }}</div>
+
+    <div class="table-shell">
+      <table class="table table-bordered table-hover card-table table-ui">
+        <thead>
+          <tr>
+            <th>Warehouse ID</th>
+            <th>Warehouse Name</th>
+            <th>Location</th>
+            <th>Manager</th>
+            <th>Contact Number</th>
+            <th>Stock Available</th>
+            <th>Stock Shipping</th>
+            <th>Warehouse Revenue</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="loading">
+            <td colspan="9" class="loading-cell">Loading...</td>
+          </tr>
+
+          <tr *ngFor="let item of paginatedWarehouses">
+            <td>{{ item.warehouseId }}</td>
+            <td class="name-cell">{{ item.warehouseName }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.manager }}</td>
+            <td>{{ item.contactNumber }}</td>
+            <td><span class="stock-badge available">{{ item.stockAvailable }}</span></td>
+            <td><span class="stock-badge shipping">{{ item.stockShipping }}</span></td>
+            <td>$ {{ item.warehouseRevenue | number:'1.0-0' }}</td>
+            <td class="action-col">
+              <div class="action-buttons table-actions">
+                <button class="action-btn action-view" type="button" (click)="onDetails(item.id)" aria-label="View warehouse details">
+                  <i class="bi bi-eye"></i>
+                </button>
+
+                <button class="action-btn action-edit" type="button" (click)="onEdit(item.id)" aria-label="Edit warehouse">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button class="action-btn action-delete" type="button" (click)="onDelete(item.id)" aria-label="Delete warehouse">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="!loading && paginatedWarehouses.length === 0">
+            <td colspan="9" class="loading-cell">No warehouse found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && warehouses.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+
+  </div>
+</div>

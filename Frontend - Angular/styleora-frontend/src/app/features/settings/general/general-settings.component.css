@@ -1,0 +1,36 @@
+.page-message {
+  margin-bottom: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.page-message.error {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.page-message.info {
+  color: var(--brand);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.settings-section-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.settings-section {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.45);
+  border: 1px solid rgba(226, 232, 240, 0.92);
+}
+
+.toggle-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--text-strong);
+  font-weight: 600;
+}

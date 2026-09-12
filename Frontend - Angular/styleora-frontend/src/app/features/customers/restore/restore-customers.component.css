@@ -1,0 +1,28 @@
+.page-message {
+  margin-bottom: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.page-message.error {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.page-message.info {
+  color: var(--brand);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.restore-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+}
+
+.restore-btn {
+  min-width: 6.75rem;
+}

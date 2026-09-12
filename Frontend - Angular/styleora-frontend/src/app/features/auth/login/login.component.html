@@ -1,0 +1,43 @@
+<div class="login-page d-flex align-items-center justify-content-center">
+  <div class="login-card shadow-sm">
+    <div class="login-header text-center">
+      <div class="login-badge">
+        <i class="bi bi-shield-lock-fill"></i>
+      </div>
+      <h1>Admin Login</h1>
+      <p>Sign in to access the Styleora admin panel.</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="email"
+          required
+          autocomplete="username"
+          placeholder="admin@styleora.com">
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="password"
+          required
+          autocomplete="current-password"
+          placeholder="Enter password">
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="submitting">
+        {{ submitting ? 'Signing In...' : 'Login' }}
+      </button>
+    </form>
+  </div>
+</div>

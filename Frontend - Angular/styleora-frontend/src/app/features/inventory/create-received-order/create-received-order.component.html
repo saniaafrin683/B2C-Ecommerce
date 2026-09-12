@@ -1,0 +1,86 @@
+<div class="received-order-form-page">
+
+  <div class="page-topbar">
+    <div class="page-title-wrap">
+      <h2>CREATE RECEIVED ORDER</h2>
+      <p>Add new incoming stock order</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form (ngSubmit)="onSave()">
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Order Number</label>
+          <input type="text" [(ngModel)]="orderForm.orderNo" name="orderNo" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Supplier Name</label>
+          <input type="text" [(ngModel)]="orderForm.supplierName" name="supplierName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Warehouse</label>
+          <select
+            [(ngModel)]="orderForm.warehouseId"
+            (ngModelChange)="onWarehouseChange()"
+            name="warehouseId"
+            class="form-control"
+            required>
+            <option [ngValue]="null">Select Warehouse</option>
+            <option *ngFor="let warehouse of warehouses" [ngValue]="warehouse.id">
+              {{ warehouse.warehouseName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Product</label>
+          <select
+            [(ngModel)]="orderForm.productId"
+            (ngModelChange)="onProductChange()"
+            name="productId"
+            class="form-control"
+            required>
+            <option [ngValue]="null">Select Product</option>
+            <option *ngFor="let product of products" [ngValue]="product.id">
+              {{ product.name }} (Stock: {{ product.stock }})
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" [(ngModel)]="orderForm.quantity" name="quantity" class="form-control" min="1" required>
+        </div>
+
+        <div class="form-group">
+          <label>Received Date</label>
+          <input type="date" [(ngModel)]="orderForm.receivedDate" name="receivedDate" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select [(ngModel)]="orderForm.status" name="status" class="form-control" required>
+            <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Total Amount</label>
+          <input type="number" [(ngModel)]="orderForm.totalAmount" name="totalAmount" class="form-control" min="0" required>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="save-btn" [disabled]="loadingOptions">Save</button>
+        <button type="button" class="reset-btn" (click)="onReset()">Reset</button>
+        <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

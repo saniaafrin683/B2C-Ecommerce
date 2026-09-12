@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .row {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+}

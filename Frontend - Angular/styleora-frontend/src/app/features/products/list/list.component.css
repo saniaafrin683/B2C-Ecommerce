@@ -1,0 +1,143 @@
+.product-list-page {
+  padding: var(--space-1) 0 0;
+}
+
+.product-card {
+  overflow: hidden;
+}
+
+.card-head h2 {
+  margin: 0;
+  color: var(--text-strong);
+  font-size: var(--font-lg);
+  font-weight: 700;
+}
+
+.card-head p {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-md);
+}
+
+.toolbar-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: var(--space-3) 0.95rem;
+  border-radius: var(--radius-sm);
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--brand);
+  font-size: var(--font-sm);
+  font-weight: 700;
+}
+
+.check-col {
+  width: 3.25rem;
+}
+
+.action-col {
+  width: 7.75rem;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.product-image-box {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(248, 250, 252, 0.96);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-text h3 {
+  margin: 0 0 0.25rem;
+  color: var(--text-main);
+  font-size: var(--font-md);
+  font-weight: 700;
+}
+
+.product-text p,
+.category-text {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-md);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-text,
+.product-text h3,
+.category-text {
+  min-width: 0;
+}
+
+.product-text h3,
+.product-text p,
+.category-text {
+  white-space: nowrap;
+}
+
+.price-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.price-current {
+  color: var(--text-main);
+  font-size: var(--font-md);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.price-original {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+  line-height: 1.2;
+  text-decoration: line-through;
+}
+
+.price-discount {
+  color: var(--danger);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stock-pill,
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-sm);
+  font-weight: 700;
+}
+
+.stock-pill {
+  background: rgba(5, 150, 105, 0.12);
+  color: var(--success);
+}
+
+.tag-badge {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--brand);
+}

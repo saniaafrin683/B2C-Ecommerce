@@ -1,0 +1,81 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Coupons / Create</span>
+      <h1 class="admin-page-title">Create Coupon</h1>
+      <p class="admin-page-subtitle">Add a new promotional offer with discount rules, date range, and usage controls.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Coupon Code</label>
+          <input class="admin-input" type="text" [(ngModel)]="couponForm.couponCode" name="couponCode" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Discount Type</label>
+          <select class="admin-select" [(ngModel)]="couponForm.discountType" name="discountType" required>
+            <option *ngFor="let type of discountTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Discount Value</label>
+          <input class="admin-input" type="number" [(ngModel)]="couponForm.discountValue" name="discountValue" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Minimum Order Amount</label>
+          <input class="admin-input" type="number" [(ngModel)]="couponForm.minimumOrderAmount" name="minimumOrderAmount">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Start Date</label>
+          <input class="admin-input" type="date" [(ngModel)]="couponForm.startDate" name="startDate" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">End Date</label>
+          <input class="admin-input" type="date" [(ngModel)]="couponForm.endDate" name="endDate" required>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Usage Limit</label>
+          <input class="admin-input" type="number" [(ngModel)]="couponForm.usageLimit" name="usageLimit">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Used Count</label>
+          <input class="admin-input" type="number" [(ngModel)]="couponForm.usedCount" name="usedCount">
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-select" [(ngModel)]="couponForm.status" name="status" required>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Description</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="couponForm.description" name="description"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

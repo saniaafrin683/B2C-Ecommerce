@@ -1,0 +1,157 @@
+<div class="product-edit-page admin-page form-shell">
+  <div class="page-header admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Catalog workflow</span>
+      <h1 class="admin-page-title">Edit Product</h1>
+      <p class="admin-page-subtitle">Update product content, pricing, and merchandising information without changing the existing flow.</p>
+    </div>
+    <button class="btn-ui-secondary" (click)="onCancel()">
+      <i class="bi bi-arrow-left"></i> Back to List
+    </button>
+  </div>
+
+  <div class="product-form-card admin-form-section" *ngIf="!loading">
+    <form (ngSubmit)="onUpdate()" #editForm="ngForm">
+      <div class="section-card-header">
+        <div>
+          <h2 class="section-card-title">Product Information</h2>
+          <p class="section-card-subtitle">Edit all product fields with consistent label, input, and action spacing.</p>
+        </div>
+      </div>
+
+      <div class="row admin-form-grid">
+        <div class="col-md-6 admin-field">
+          <label>Product Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="productForm.name" required>
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label>Category</label>
+          <select class="form-control" name="category" [(ngModel)]="productForm.category" (ngModelChange)="onCategoryChange()" required>
+            <option value="">Select Category</option>
+            <option *ngFor="let category of categories" [value]="category.categoryTitle">{{ category.categoryTitle }}</option>
+          </select>
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label>Sub Category</label>
+          <select class="form-control" name="subCategoryId" [(ngModel)]="productForm.subCategoryId" (ngModelChange)="onSubCategoryChange()">
+            <option [ngValue]="null">Select Sub Category (Optional)</option>
+            <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory.id">
+              {{ subCategory.subCategoryName }}
+            </option>
+          </select>
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label>Brand</label>
+          <input type="text" class="form-control" name="brand" [(ngModel)]="productForm.brand">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        
+
+        <div class="col-md-6 admin-field">
+          <label>Gender</label>
+          <select class="form-control" name="gender" [(ngModel)]="productForm.gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Unisex">Unisex</option>
+          </select>
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label>SKU / Product Code</label>
+          <input type="text" class="form-control" name="tagNumber" [(ngModel)]="productForm.tagNumber">
+          <small class="form-text text-muted">Internal product identifier. This still saves to the existing <code>tagNumber</code> field.</small>
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label>Stock</label>
+          <input type="number" class="form-control" name="stock" [(ngModel)]="productForm.stock" min="0" step="1">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label>Tag</label>
+          <div class="tag-chip-list">
+            <button
+              *ngFor="let option of productTagOptions"
+              type="button"
+              class="tag-chip"
+              [class.active]="isSelectedProductTag(option)"
+              (click)="onProductTagSelect(option)">
+              {{ option }}
+            </button>
+          </div>
+          <input type="text" class="form-control tag-custom-input" name="tag" [(ngModel)]="productForm.tag" placeholder="Or enter a custom tag">
+          <small class="form-text text-muted">Optional badge label. You can select a suggested tag or keep a custom value.</small>
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label>Price</label>
+          <input type="number" class="form-control" name="price" [(ngModel)]="productForm.price" min="0" step="0.01" inputmode="decimal">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label>Discount</label>
+          <input type="number" class="form-control" name="discount" [(ngModel)]="productForm.discount" min="0" step="0.01" inputmode="decimal">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-4 admin-field">
+          <label>Tax</label>
+          <input type="number" class="form-control" name="tax" [(ngModel)]="productForm.tax" min="0" step="0.01" inputmode="decimal">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-12 admin-field">
+          <label>Image URL</label>
+          <input type="text" class="form-control" name="imageUrl" [(ngModel)]="productForm.imageUrl">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-12 admin-field">
+          <label>Upload New Image</label>
+          <input type="file" class="form-control" accept="image/*" (change)="onFileSelected($event)">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-12 admin-field" *ngIf="imagePreviewUrl || productForm.imageUrl">
+          <label class="d-block">Preview</label>
+          <img [src]="imagePreviewUrl || productForm.imageUrl" alt="Product Image" class="product-preview-img">
+          <div class="admin-validation-msg"></div>
+        </div>
+
+        <div class="col-md-12 admin-field">
+          <label>Description</label>
+          <textarea class="form-control" rows="4" name="description" [(ngModel)]="productForm.description"></textarea>
+          <div class="admin-validation-msg"></div>
+        </div>
+      </div>
+
+      <div class="form-actions admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          <i class="bi bi-save"></i> {{ submitting ? 'Updating...' : 'Update' }}
+        </button>
+
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">
+          <i class="bi bi-arrow-clockwise"></i> Reset
+        </button>
+
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">
+          <i class="bi bi-x-circle"></i> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,146 @@
+<div class="admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Marketing / Coupons</span>
+      <h1 class="admin-page-title">Coupons</h1>
+      <p class="admin-page-subtitle">Manage promotional campaigns, discount plans, and coupon performance in a Larkon-style overview.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        New Coupon
+      </button>
+    </div>
+  </div>
+
+  <div class="summary-grid compact-summary-grid">
+    <section class="summary-card section-card surface-card glass-panel compact-summary-card">
+      <div class="summary-icon primary"><i class="bi bi-ticket-perforated"></i></div>
+      <div>
+        <span class="summary-label">Total Coupons</span>
+        <h3>{{ getTotalCoupons() }}</h3>
+        <p>All available coupon records</p>
+      </div>
+    </section>
+
+    <section class="summary-card section-card surface-card glass-panel compact-summary-card">
+      <div class="summary-icon success"><i class="bi bi-check2-circle"></i></div>
+      <div>
+        <span class="summary-label">Active Coupons</span>
+        <h3>{{ getActiveCoupons() }}</h3>
+        <p>Currently running campaigns</p>
+      </div>
+    </section>
+
+    <section class="summary-card section-card surface-card glass-panel compact-summary-card">
+      <div class="summary-icon danger"><i class="bi bi-clock-history"></i></div>
+      <div>
+        <span class="summary-label">Expired Coupons</span>
+        <h3>{{ getExpiredCoupons() }}</h3>
+        <p>Past validity period</p>
+      </div>
+    </section>
+
+    <section class="summary-card section-card surface-card glass-panel compact-summary-card">
+      <div class="summary-icon warning"><i class="bi bi-pause-circle"></i></div>
+      <div>
+        <span class="summary-label">Draft / Inactive</span>
+        <h3>{{ getInactiveCoupons() }}</h3>
+        <p>Not active for customers</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel compact-table-card">
+    <div class="table-header-bar compact-toolbar">
+      <div>
+        <span class="table-title-label">Coupon Directory</span>
+        <h3 class="table-title">Coupons List</h3>
+      </div>
+      <div class="table-toolbar">
+        <span class="table-meta">{{ coupons.length }} records</span>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading coupons...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Product Name &amp; Type</th>
+            <th>Price</th>
+            <th>Discount Value</th>
+            <th>Code</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th class="action-col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of paginatedCoupons">
+            <td class="action-col">
+              <div class="product-cell">
+                <div class="product-thumb">{{ getThumbnailLabel(item) }}</div>
+                <div class="product-copy">
+                  <strong>{{ getProductName(item) }}</strong>
+                  <span>{{ getProductType(item) }}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{ getPriceLabel(item) }}</td>
+            <td>{{ getDiscountValueLabel(item) }}</td>
+            <td><strong>{{ item.couponCode }}</strong></td>
+            <td>{{ item.startDate | date:'dd MMM yyyy' }}</td>
+            <td>{{ item.endDate | date:'dd MMM yyyy' }}</td>
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(item.status)">{{ item.status }}</span>
+            </td>
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="paginatedCoupons.length === 0">
+            <td colspan="8" class="table-empty">
+              <strong>No coupons found</strong>
+              Add a coupon to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && coupons.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </section>
+</div>

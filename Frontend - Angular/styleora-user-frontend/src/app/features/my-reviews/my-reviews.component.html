@@ -1,0 +1,55 @@
+<section class="my-reviews-page py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="page-card bg-white rounded shadow-sm p-4">
+          <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+            <div>
+              <h2 class="mb-2">My Reviews</h2>
+              <p class="text-muted mb-0">Track your submitted reviews and their moderation status.</p>
+            </div>
+
+            <a class="btn btn-outline-dark" routerLink="/profile">Back to Profile</a>
+          </div>
+
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+          <div *ngIf="isLoading" class="text-muted">Loading your reviews...</div>
+
+          <ng-container *ngIf="!isLoading && !errorMessage">
+            <app-empty-state
+              *ngIf="reviews.length === 0"
+              message="You have not submitted any reviews yet.">
+            </app-empty-state>
+
+            <div *ngIf="reviews.length > 0" class="review-list">
+              <article class="review-card border rounded p-3 mb-3" *ngFor="let review of reviews; trackBy: trackByReview">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+                  <div>
+                    <h5 class="mb-1">{{ review.productName || 'Product review' }}</h5>
+                    <div class="review-rating text-warning">
+                      <i class="bi bi-star-fill" *ngFor="let star of [1, 2, 3, 4, 5]" [class.text-secondary]="star > (review.rating || 0)"></i>
+                    </div>
+                  </div>
+
+                  <div class="text-md-end">
+                    <span class="status-badge" [ngClass]="getStatusClass(review.reviewStatus)">
+                      {{ review.reviewStatus || 'Pending' }}
+                    </span>
+                    <div class="text-muted small mt-2">{{ review.reviewDate || 'Date unavailable' }}</div>
+                  </div>
+                </div>
+
+                <p class="review-comment mb-0">{{ review.reviewMessage || 'No review comment provided.' }}</p>
+
+                <div *ngIf="review.replyMessage" class="admin-reply mt-3">
+                  <div class="admin-reply-label">Admin Reply</div>
+                  <p class="mb-0">{{ review.replyMessage }}</p>
+                </div>
+              </article>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

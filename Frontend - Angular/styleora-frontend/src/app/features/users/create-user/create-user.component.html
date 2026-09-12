@@ -1,0 +1,72 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Users / Create</span>
+      <h1 class="admin-page-title">Create User</h1>
+      <p class="admin-page-subtitle">Add a new admin system user with role and status controls.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">User Code</label>
+          <input class="admin-input" type="text" [(ngModel)]="userForm.userCode" name="userCode" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">First Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="userForm.firstName" name="firstName" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Last Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="userForm.lastName" name="lastName" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Email</label>
+          <input class="admin-input" type="email" [(ngModel)]="userForm.email" name="email" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Phone</label>
+          <input class="admin-input" type="text" [(ngModel)]="userForm.phone" name="phone">
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Password</label>
+          <input class="admin-input" type="password" [(ngModel)]="userForm.password" name="password" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Role</label>
+          <select class="admin-select" [(ngModel)]="userForm.role" name="role" required>
+            <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-select" [(ngModel)]="userForm.status" name="status" required>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Avatar URL</label>
+          <input class="admin-input" type="text" [(ngModel)]="userForm.avatarUrl" name="avatarUrl">
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">{{ submitting ? 'Saving...' : 'Save' }}</button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

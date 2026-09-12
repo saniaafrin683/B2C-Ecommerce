@@ -1,0 +1,130 @@
+<div class="cart-page admin-page">
+  <div class="admin-page-header">
+    <div>
+      <div class="cart-breadcrumb">Orders / Cart</div>
+      <h1 class="admin-page-title">Cart</h1>
+      <p class="admin-page-subtitle">Review cart items, adjust quantities, and verify the order summary before checkout.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onClearCart()" [disabled]="!cartItems.length">
+        <i class="bi bi-x-circle"></i>
+        Clear Cart
+      </button>
+    </div>
+  </div>
+
+  <div class="row g-4 align-items-start">
+    <div class="col-xl-8">
+      <section class="section-card surface-card glass-panel cart-table-card">
+        <div class="cart-card-header">
+          <div>
+            <h2>{{ cartItems.length }} product{{ cartItems.length === 1 ? '' : 's' }} in your cart</h2>
+            <p>Update quantities or remove items before continuing.</p>
+          </div>
+        </div>
+
+        <div *ngIf="cartItems.length === 0" class="cart-empty">
+          <i class="bi bi-bag-x"></i>
+          <h3>Your cart is empty</h3>
+          <p>Add products from the catalog to build an order cart.</p>
+          <button type="button" class="btn-ui" (click)="continueShopping()">
+            <i class="bi bi-arrow-left"></i>
+            Continue Shopping
+          </button>
+        </div>
+
+        <div *ngIf="cartItems.length > 0" class="cart-items">
+          <article class="cart-item" *ngFor="let item of cartItems">
+            <div class="cart-product">
+              <div class="cart-image-box">
+                <img [src]="item.imageUrl" [alt]="item.name">
+              </div>
+
+              <div class="cart-product-copy">
+                <h3>{{ item.name }}</h3>
+                <div class="cart-meta">
+                  <span>Brand : <strong>{{ item.brand || 'N/A' }}</strong></span>
+                  <span>Category : <strong>{{ item.category || 'N/A' }}</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cart-price-block">
+              <span class="cart-label">Unit Price</span>
+              <strong>{{ item.price | appCurrency:'1.2-2' }}</strong>
+            </div>
+
+            <div class="cart-qty-block">
+              <span class="cart-label">Quantity</span>
+              <div class="qty-control">
+                <button type="button" class="qty-btn" (click)="decreaseQuantity(item)">-</button>
+                <span>{{ item.quantity }}</span>
+                <button type="button" class="qty-btn" (click)="increaseQuantity(item)">+</button>
+              </div>
+            </div>
+
+            <div class="cart-subtotal-block">
+              <span class="cart-label">Subtotal</span>
+              <strong>{{ getItemSubtotal(item) | appCurrency:'1.2-2' }}</strong>
+            </div>
+
+            <div class="cart-action-block">
+              <button type="button" class="remove-btn" (click)="removeItem(item.id)">
+                <i class="bi bi-trash3"></i>
+                Remove
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-xl-4">
+      <aside class="section-card surface-card glass-panel summary-card">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Sub Total</span>
+          <strong>{{ subtotal | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Discount</span>
+          <strong class="text-danger">-{{ discountAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping Charge</span>
+          <strong>{{ shippingCharge | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Estimated Tax</span>
+          <strong>{{ taxAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row total-row">
+          <span>Total Amount</span>
+          <strong>{{ grandTotal | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <p class="delivery-note">Estimated delivery by 25 April, 2026</p>
+
+        <div class="summary-actions">
+          <button type="button" class="btn-ui-secondary" (click)="continueShopping()">
+            Continue Shopping
+          </button>
+          <button type="button" class="btn-ui-ghost" (click)="onClearCart()" [disabled]="!cartItems.length">
+            Clear Cart
+          </button>
+          <button type="button" class="btn-ui" [routerLink]="['/orders/checkout']" [disabled]="!cartItems.length">
+            Proceed to Checkout
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>

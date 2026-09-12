@@ -1,0 +1,168 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Shipments / Create</span>
+      <h1 class="admin-page-title">Create Shipment</h1>
+      <p class="admin-page-subtitle">
+        Create a shipment record and start delivery tracking for a confirmed order.
+      </p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loadingOrders" class="page-message info">Loading orders...</div>
+    <div *ngIf="loadingShippingMethods" class="page-message info">Loading shipping methods...</div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Select Order</label>
+
+          <select
+            class="admin-select"
+            [(ngModel)]="shipmentForm.orderId"
+            name="orderId"
+            required
+          >
+            <option [ngValue]="0">Select Order</option>
+
+            <option
+              *ngFor="let order of orders"
+              [ngValue]="order.id"
+            >
+              {{ getOrderLabel(order) }}
+            </option>
+          </select>
+
+          <small class="text-muted">
+            Shows order number, but saves internal order id automatically.
+          </small>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Shipping Method</label>
+
+          <select
+            class="admin-select"
+            [(ngModel)]="shipmentForm.shippingMethodId"
+            name="shippingMethodId"
+            required
+          >
+            <option [ngValue]="0">Select Shipping Method</option>
+
+            <option
+              *ngFor="let shippingMethod of shippingMethods"
+              [ngValue]="shippingMethod.id"
+            >
+              {{ getShippingMethodLabel(shippingMethod) }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Tracking Number</label>
+          <input
+            class="admin-input"
+            type="text"
+            [(ngModel)]="shipmentForm.trackingNumber"
+            name="trackingNumber"
+          >
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Courier Name</label>
+          <input
+            class="admin-input"
+            type="text"
+            [(ngModel)]="shipmentForm.courierName"
+            name="courierName"
+          >
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Status</label>
+
+          <select
+            class="admin-select"
+            [(ngModel)]="shipmentForm.shipmentStatus"
+            name="shipmentStatus"
+            required
+          >
+            <option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Dispatch Date</label>
+          <input
+            class="admin-input"
+            type="datetime-local"
+            [(ngModel)]="shipmentForm.dispatchDate"
+            name="dispatchDate"
+          >
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Estimated Delivery Date</label>
+          <input
+            class="admin-input"
+            type="datetime-local"
+            [(ngModel)]="shipmentForm.estimatedDeliveryDate"
+            name="estimatedDeliveryDate"
+          >
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Delivered Date</label>
+          <input
+            class="admin-input"
+            type="datetime-local"
+            [(ngModel)]="shipmentForm.deliveredDate"
+            name="deliveredDate"
+          >
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Remarks</label>
+          <textarea
+            class="admin-textarea"
+            rows="4"
+            [(ngModel)]="shipmentForm.remarks"
+            name="remarks"
+          ></textarea>
+        </div>
+
+      </div>
+
+      <div class="admin-form-actions">
+        <button
+          type="submit"
+          class="btn-ui"
+          [disabled]="submitting"
+        >
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+
+        <button
+          type="button"
+          class="btn-ui-secondary"
+          (click)="onReset()"
+        >
+          Reset
+        </button>
+
+        <button
+          type="button"
+          class="btn-ui-ghost"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,375 @@
+<div class="container py-4" *ngIf="cartItems$ | async as cartItems">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+        <div>
+          <h1 class="h3 mb-1">Checkout</h1>
+          <p class="text-muted mb-0">Complete your order with customer and shipping information.</p>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row gap-2">
+          <a class="btn btn-outline-dark" routerLink="/cart">Back to Cart</a>
+          <a class="btn btn-outline-secondary" routerLink="/shop">Continue Shopping</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-8">
+      <ng-container *ngIf="cartItems.length; else emptyCheckout">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4 p-lg-5">
+            <div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+              <h2 class="h4 mb-0">Checkout Details</h2>
+              <span class="badge checkout-badge">Fast checkout</span>
+            </div>
+
+            <div class="checkout-message checkout-message-error" *ngIf="errorMessage">
+              {{ errorMessage }}
+            </div>
+
+            <div class="checkout-message checkout-message-error" *ngIf="hasStockIssues(cartItems)">
+              Some cart items are out of stock. Update your cart before placing the order.
+            </div>
+
+            <form #checkoutForm="ngForm" (ngSubmit)="placeOrder(checkoutForm, cartItems)" novalidate>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label" for="name">Full Name</label>
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    [(ngModel)]="formData.name"
+                    #name="ngModel"
+                    required
+                  >
+                  <div class="text-danger small mt-1" *ngIf="name.invalid && name.touched">
+                    Name is required.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="email">Email</label>
+                  <input
+                    id="email"
+                    class="form-control"
+                    type="email"
+                    name="email"
+                    [(ngModel)]="formData.email"
+                    #email="ngModel"
+                    required
+                    email
+                  >
+                  <div class="text-danger small mt-1" *ngIf="email.invalid && email.touched">
+                    A valid email is required.
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="phone">Phone</label>
+                  <input
+                    id="phone"
+                    class="form-control"
+                    type="tel"
+                    name="phone"
+                    [(ngModel)]="formData.phone"
+                    #phone="ngModel"
+                    required
+                  >
+                  <div class="text-danger small mt-1" *ngIf="phone.invalid && phone.touched">
+                    Phone is required.
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="paymentMethod">Payment</label>
+                  <select
+                    id="paymentMethod"
+                    class="form-select"
+                    name="paymentMethod"
+                    [(ngModel)]="formData.paymentMethod"
+                    (ngModelChange)="onPaymentMethodChange()"
+                  >
+                    <option *ngFor="let option of paymentOptions" [value]="option">
+                      {{ option }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="col-12" *ngIf="isMobilePaymentSelected()">
+                  <div class="mobile-payment-box border rounded-3 p-3 bg-light">
+                    <div class="row g-3">
+                      <div class="col-12 col-md-6">
+                        <label class="form-label" for="senderNumber">Sender Number</label>
+                        <input
+                          id="senderNumber"
+                          class="form-control"
+                          type="tel"
+                          name="senderNumber"
+                          [(ngModel)]="formData.senderNumber"
+                          #senderNumber="ngModel"
+                          placeholder="01XXXXXXXXX"
+                          required
+                        >
+                        <div class="text-danger small mt-1" *ngIf="senderNumber.invalid && senderNumber.touched">
+                          Sender number is required.
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <label class="form-label" for="transactionId">Transaction ID</label>
+                        <input
+                          id="transactionId"
+                          class="form-control"
+                          type="text"
+                          name="transactionId"
+                          [(ngModel)]="formData.transactionId"
+                          #transactionId="ngModel"
+                          placeholder="Enter transaction ID"
+                          required
+                        >
+                        <div class="text-danger small mt-1" *ngIf="transactionId.invalid && transactionId.touched">
+                          Transaction ID is required.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="alert alert-warning mt-3 mb-0">
+                      Please complete your {{ formData.paymentMethod }} payment first, then enter the sender number and transaction ID.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="address">Shipping Address</label>
+                  <textarea
+                    id="address"
+                    class="form-control"
+                    name="address"
+                    rows="4"
+                    [(ngModel)]="formData.address"
+                    #address="ngModel"
+                    required
+                  ></textarea>
+                  <div class="text-danger small mt-1" *ngIf="address.invalid && address.touched">
+                    Shipping address is required.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="couponCode">Coupon Code</label>
+                  <div class="d-flex flex-column flex-sm-row gap-2">
+                    <input
+                      id="couponCode"
+                      class="form-control"
+                      type="text"
+                      name="couponCode"
+                      [(ngModel)]="couponCode"
+                      placeholder="Enter coupon code"
+                    >
+
+                    <button
+                      class="btn btn-outline-dark"
+                      type="button"
+                      [disabled]="isApplyingCoupon || !cartItems.length"
+                      (click)="applyCoupon()"
+                    >
+                      {{ isApplyingCoupon ? 'Applying...' : 'Apply Coupon' }}
+                    </button>
+
+                    <button
+                      *ngIf="appliedCoupon"
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="removeCoupon()"
+                    >
+                      Remove Coupon
+                    </button>
+                  </div>
+
+                  <div class="text-danger small mt-1" *ngIf="couponErrorMessage">
+                    {{ couponErrorMessage }}
+                  </div>
+
+                  <div class="text-success small mt-1" *ngIf="couponSuccessMessage">
+                    {{ couponSuccessMessage }}
+                  </div>
+
+                  <div class="coupon-proof-card mt-3" *ngIf="appliedCoupon">
+                    <div class="coupon-proof-header">
+                      <span class="coupon-proof-badge">Applied Coupon</span>
+                      <strong>{{ appliedCoupon.couponCode }}</strong>
+                    </div>
+
+                    <div class="coupon-proof-row">
+                      <span>Regular Subtotal</span>
+                      <strong>BDT {{ appliedCoupon.regularSubtotal | number:'1.2-2' }}</strong>
+                    </div>
+
+                    <div class="coupon-proof-row coupon-proof-row-discount" *ngIf="appliedCoupon.productDiscountTotal > 0">
+                      <span>Product Discount</span>
+                      <strong>-BDT {{ appliedCoupon.productDiscountTotal | number:'1.2-2' }}</strong>
+                    </div>
+
+                    <div class="coupon-proof-row">
+                      <span>Subtotal After Product Discount</span>
+                      <strong>BDT {{ appliedCoupon.subtotalAfterProductDiscount | number:'1.2-2' }}</strong>
+                    </div>
+
+                    <div class="coupon-proof-row coupon-proof-row-discount">
+                      <span>Coupon Discount</span>
+                      <strong>-BDT {{ appliedCoupon.discountAmount | number:'1.2-2' }}</strong>
+                    </div>
+
+                    <div class="coupon-proof-row">
+                      <span>Final Total After Discount</span>
+                      <strong>BDT {{ appliedCoupon.finalTotal | number:'1.2-2' }}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="checkout-note">
+                    Your cart items will be sent to the existing backend order API and you will be redirected to your order history after a successful checkout.
+                  </div>
+                </div>
+
+                <div class="col-12 pt-2">
+                  <div class="d-flex flex-column flex-sm-row gap-2">
+                    <button
+                      class="btn btn-lg checkout-green-btn"
+                      type="submit"
+                      [disabled]="!cartItems.length || isSubmitting || hasStockIssues(cartItems)"
+                    >
+                      {{ isSubmitting ? 'Placing Order...' : 'Place Order' }}
+                    </button>
+
+                    <a class="btn btn-outline-dark btn-lg" routerLink="/cart">Back to Cart</a>
+                    <a class="btn btn-outline-secondary btn-lg" routerLink="/shop">Continue Shopping</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #emptyCheckout>
+        <app-empty-state message="Your cart is empty. Add products before proceeding to checkout."></app-empty-state>
+        <div class="text-center mt-3">
+          <a class="btn btn-dark" routerLink="/shop">Continue Shopping</a>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm border-0 checkout-summary-card">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-4">Order Summary</h2>
+
+          <div class="list-group list-group-flush mb-3" *ngIf="cartItems.length; else emptySummary">
+            <div class="list-group-item px-0 py-3" *ngFor="let item of cartItems">
+              <div class="d-flex align-items-start gap-3">
+                <img [src]="item.imageUrl" [alt]="item.name" class="rounded checkout-item-image">
+
+                <div class="flex-grow-1">
+                  <div class="fw-medium">{{ item.name }}</div>
+                  <div class="text-muted small">Qty: {{ item.quantity }}</div>
+
+                  <div class="text-muted small" *ngIf="item.discount; else checkoutRegularPrice">
+                    Original Price:
+                    <span class="text-decoration-line-through">BDT {{ item.price | number:'1.2-2' }}</span>
+                  </div>
+
+                  <ng-template #checkoutRegularPrice>
+                    <div class="text-muted small">Unit Price: BDT {{ item.price | number:'1.2-2' }}</div>
+                  </ng-template>
+
+                  <div class="text-success small" *ngIf="item.discount">
+                    Discounted Price: BDT {{ getDiscountedPrice(item) | number:'1.2-2' }}
+                  </div>
+
+                  <div class="text-danger small" *ngIf="item.stock <= 0">Out of stock</div>
+                  <div class="text-danger small" *ngIf="item.stock > 0 && item.quantity > item.stock">
+                    Only {{ item.stock }} left in stock
+                  </div>
+                </div>
+
+                <div class="text-end">
+                  <div class="text-muted small" *ngIf="item.discount">
+                    Regular: BDT {{ getLineRegularTotal(item) | number:'1.2-2' }}
+                  </div>
+                  <div class="fw-semibold">BDT {{ getLineDiscountedTotal(item) | number:'1.2-2' }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #emptySummary>
+            <div class="text-muted">No items in cart.</div>
+          </ng-template>
+
+          <div class="d-flex justify-content-between mb-2 border-top pt-3" *ngIf="!appliedCoupon">
+            <span class="text-muted">Regular Subtotal</span>
+            <strong>BDT {{ ((regularSubtotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-2" *ngIf="!appliedCoupon && ((productDiscountTotal$ | async) || 0) > 0">
+            <span class="text-muted">Product Discount</span>
+            <strong class="text-success">-BDT {{ ((productDiscountTotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-2" *ngIf="!appliedCoupon">
+            <span class="text-muted">Subtotal After Product Discount</span>
+            <strong>BDT {{ ((cartTotal$ | async) || 0) | number:'1.2-2' }}</strong>
+          </div>
+
+          <ng-container *ngIf="appliedCoupon">
+            <div class="d-flex justify-content-between mb-2 border-top pt-3">
+              <span class="text-muted">Regular Subtotal</span>
+              <strong>BDT {{ appliedCoupon.regularSubtotal | number:'1.2-2' }}</strong>
+            </div>
+
+            <div class="d-flex justify-content-between mb-2" *ngIf="appliedCoupon.productDiscountTotal > 0">
+              <span class="text-muted">Product Discount</span>
+              <strong class="text-success">-BDT {{ appliedCoupon.productDiscountTotal | number:'1.2-2' }}</strong>
+            </div>
+
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">Subtotal After Product Discount</span>
+              <strong>BDT {{ appliedCoupon.subtotalAfterProductDiscount | number:'1.2-2' }}</strong>
+            </div>
+
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">Coupon Discount ({{ appliedCoupon.couponCode }})</span>
+              <strong class="text-success">-BDT {{ appliedCoupon.discountAmount | number:'1.2-2' }}</strong>
+            </div>
+          </ng-container>
+
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Payment Method</span>
+            <strong>{{ formData.paymentMethod }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-2" *ngIf="isMobilePaymentSelected()">
+            <span class="text-muted">Sender Number</span>
+            <strong>{{ formData.senderNumber || 'Not entered' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between mb-2" *ngIf="isMobilePaymentSelected()">
+            <span class="text-muted">Transaction ID</span>
+            <strong>{{ formData.transactionId || 'Not entered' }}</strong>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <span class="fw-semibold">Final Total</span>
+            <strong class="h5 mb-0">BDT {{ (appliedCoupon?.finalTotal || ((cartTotal$ | async) || 0)) | number:'1.2-2' }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Inventory / Shipments</span>
+      <h1 class="admin-page-title">Shipments</h1>
+      <p class="admin-page-subtitle">
+        Track delivery progress from shipment creation through final delivery or return.
+      </p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="onCreate()">
+        <i class="bi bi-plus-circle"></i>
+        Add Shipment
+      </button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="successMessage" class="page-message success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading shipments...</div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Tracking Number</th>
+            <th>Courier</th>
+            <th>Status</th>
+            <th>Dispatch Date</th>
+            <th>Estimated Delivery</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of shipments">
+            <td>
+              <strong>
+                {{ item.orderNumber || ('#' + item.orderId) }}
+              </strong>
+            </td>
+
+            <td>{{ item.trackingNumber || 'Not assigned' }}</td>
+
+            <td>{{ item.courierName || 'Not set' }}</td>
+
+            <td>
+              <span
+                class="pill-badge"
+                [ngClass]="getStatusClass(item.shipmentStatus || item.status || 'Pending')"
+              >
+                {{ item.shipmentStatus || item.status || 'Pending' }}
+              </span>
+            </td>
+
+            <td>
+              {{ item.dispatchDate ? (item.dispatchDate | date:'dd MMM yyyy, h:mm a') : 'Not set' }}
+            </td>
+
+            <td>
+              {{ item.estimatedDeliveryDate ? (item.estimatedDeliveryDate | date:'dd MMM yyyy, h:mm a') : 'Not set' }}
+            </td>
+
+            <td>
+              <div class="table-actions">
+                <button
+                  type="button"
+                  class="icon-action view"
+                  (click)="onDetails(item)"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="icon-action edit"
+                  (click)="onEdit(item)"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="icon-action delete"
+                  (click)="onDelete(item.id || 0)"
+                  [disabled]="!item.id"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="shipments.length === 0">
+            <td colspan="7" class="table-empty">
+              <strong>No shipments found</strong>
+              Add a shipment record to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

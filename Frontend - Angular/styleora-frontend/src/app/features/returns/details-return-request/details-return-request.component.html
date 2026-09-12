@@ -1,0 +1,64 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Returns / Details</span>
+      <h1 class="admin-page-title">Return Request Details</h1>
+      <p class="admin-page-subtitle">Review the full request, decision timestamps, and refund notes in a read-only view.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Return Request</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">{{ errorMessage }}</div>
+    <div *ngIf="loading" class="page-message info">Loading return request details...</div>
+
+    <div *ngIf="returnRequest && !loading" class="details-grid row">
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Order</span>
+          <strong>{{ returnRequest.orderReference || ('ORD-' + returnRequest.orderId) }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Customer</span>
+          <strong>{{ returnRequest.customerName || ('Customer #' + returnRequest.customerId) }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Status</span>
+          <strong><span class="pill-badge" [ngClass]="getStatusClass(returnRequest.status)">{{ returnRequest.status }}</span></strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Requested Date</span>
+          <strong>{{ returnRequest.requestedAt ? (returnRequest.requestedAt | date:'dd MMM yyyy, h:mm a') : 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-block">
+          <span>Updated Date</span>
+          <strong>{{ returnRequest.updatedAt ? (returnRequest.updatedAt | date:'dd MMM yyyy, h:mm a') : 'Not set' }}</strong>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-block">
+          <span>Reason</span>
+          <strong>{{ returnRequest.reason || 'No reason provided' }}</strong>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-block">
+          <span>Note</span>
+          <strong>{{ returnRequest.note || 'No note added' }}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

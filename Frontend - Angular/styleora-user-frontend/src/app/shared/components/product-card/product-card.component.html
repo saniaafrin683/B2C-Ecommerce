@@ -1,0 +1,62 @@
+<div class="card storefront-card product-card h-100 border-0" [class.storefront-card-home]="variant === 'home'" *ngIf="product">
+  <button
+    class="wishlist-button btn"
+    type="button"
+    [class.active]="isWishlisted"
+    [attr.aria-pressed]="isWishlisted"
+    [attr.aria-label]="isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'"
+    (click)="toggleWishlist()"
+  >
+    <i class="bi" [class.bi-heart]="!isWishlisted" [class.bi-heart-fill]="isWishlisted"></i>
+  </button>
+
+  <a class="product-image-link text-decoration-none text-dark" [routerLink]="['/product', product.id]">
+    <img [src]="productImageUrl" [alt]="product.name" class="card-img-top product-card-image">
+  </a>
+
+  <div class="card-body product-card-body d-flex flex-column">
+    <div class="d-flex align-items-center flex-wrap gap-1 product-meta-row">
+      <span class="product-pill">{{ product.category }}</span>
+      <span class="product-pill product-pill-muted" *ngIf="productSubCategory">{{ productSubCategory }}</span>
+      <span class="product-discount-badge" *ngIf="hasDiscount">{{ product.discount }}% OFF</span>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-start gap-2 product-title-row">
+      <h3 class="h6 card-title product-title mb-0">
+        <a class="text-decoration-none text-dark" [routerLink]="['/product', product.id]">
+          {{ product.name }}
+        </a>
+      </h3>
+    </div>
+
+    <p class="product-brand text-muted mb-0">{{ product.brand || 'Styleora selection' }}</p>
+
+    <p class="product-stock-status mb-0" [ngClass]="stockTone">{{ stockLabel }}</p>
+
+    <div class="product-price-panel mt-3">
+      <p class="product-original-price mb-0" *ngIf="hasDiscount">BDT {{ product.price | number:'1.2-2' }}</p>
+      <p class="product-price fw-semibold mb-0">BDT {{ discountedPrice | number:'1.2-2' }}</p>
+    </div>
+
+    <p class="product-feedback text-success mb-0" *ngIf="addToCartMessage">{{ addToCartMessage }}</p>
+    <p class="product-feedback text-danger mb-0" *ngIf="addToCartErrorMessage">{{ addToCartErrorMessage }}</p>
+
+    <div class="mt-auto product-footer-row">
+      <div class="product-action-row card-actions">
+        <button
+          class="btn btn-sm btn-add-cart add-cart-btn rounded-pill"
+          type="button"
+          [disabled]="adding || availableStock <= 0"
+          (click)="addToCart()"
+        >
+          <i class="bi bi-cart-plus"></i>
+          {{ availableStock <= 0 ? 'Out of Stock' : (adding ? 'Adding...' : 'Add to Cart') }}
+        </button>
+
+        <a class="btn btn-sm rounded-pill product-view-button view-btn" [routerLink]="['/product', product.id]">
+          View
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

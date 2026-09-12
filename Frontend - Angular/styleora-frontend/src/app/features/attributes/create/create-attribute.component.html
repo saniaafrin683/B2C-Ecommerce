@@ -1,0 +1,62 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Attributes / Create</span>
+      <h1 class="admin-page-title">Create Attribute</h1>
+      <p class="admin-page-subtitle">Add a new attribute group and value set to the product catalog.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Attribute ID</label>
+          <input class="admin-input" type="text" [(ngModel)]="attributeForm.attributeId" name="attributeId" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Attribute Name</label>
+          <input class="admin-input" type="text" [(ngModel)]="attributeForm.attributeName" name="attributeName" required>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Attribute Type</label>
+          <select class="admin-select" [(ngModel)]="attributeForm.attributeType" name="attributeType" required>
+            <option *ngFor="let type of attributeTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-select" [(ngModel)]="attributeForm.status" name="status" required>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Values</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="attributeForm.values" name="values"
+            placeholder="Examples: S, M, L, XL or Red, Blue, Black or Cotton, Denim, Leather"></textarea>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Notes</label>
+          <textarea class="admin-textarea" rows="4" [(ngModel)]="attributeForm.notes" name="notes"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

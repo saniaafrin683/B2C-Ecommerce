@@ -1,0 +1,131 @@
+<div class="current-stock-page compact-current-stock-page">
+  <div class="page-topbar">
+    <div class="page-title-wrap">
+      <h2>CURRENT STOCK</h2>
+      <p>Product-wise stock summary from live products and real order history.</p>
+    </div>
+
+    <div class="page-top-actions">
+      <button class="action-outline-btn" type="button" (click)="onRefresh()">
+        <i class="bi bi-arrow-clockwise"></i>
+        Refresh
+      </button>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-icon blue">
+        <i class="bi bi-box-seam"></i>
+      </div>
+      <div class="summary-text">
+        <p>Total Products</p>
+        <h3>{{ totalProducts }}</h3>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon green">
+        <i class="bi bi-boxes"></i>
+      </div>
+      <div class="summary-text">
+        <p>Total Units In Stock</p>
+        <h3>{{ totalUnitsInStock }}</h3>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon orange">
+        <i class="bi bi-exclamation-triangle"></i>
+      </div>
+      <div class="summary-text">
+        <p>Low Stock</p>
+        <h3>{{ lowStockCount }}</h3>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon red">
+        <i class="bi bi-x-octagon"></i>
+      </div>
+      <div class="summary-text">
+        <p>Out of Stock</p>
+        <h3>{{ outOfStockCount }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="header-left">
+        <h3>Product Stock Summary</h3>
+      </div>
+
+      <div class="header-right">
+        <div class="filter-field search-field">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            placeholder="Search by product or category"
+            [(ngModel)]="searchTerm"
+            (ngModelChange)="applyFilters()">
+        </div>
+
+        <select class="filter-select" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
+          <option value="all">All Categories</option>
+          <option *ngFor="let category of categories" [value]="category.toLowerCase()">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mx-3 mt-3 mb-0">{{ errorMessage }}</div>
+
+    <div *ngIf="!loading && stockItems.length === 0" class="empty-state">
+      <div class="empty-state-icon">
+        <i class="bi bi-inboxes"></i>
+      </div>
+      <h4>No products found</h4>
+      <p>Current stock will appear here after products are added.</p>
+    </div>
+
+    <div *ngIf="loading || stockItems.length > 0" class="table-shell">
+      <table class="table table-bordered table-hover card-table table-ui">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Current Stock</th>
+            <th>Total Sold</th>
+            <th>Total Purchased</th>
+            <th>Stock Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="loading">
+            <td colspan="6" class="loading-cell">Loading current stock...</td>
+          </tr>
+
+          <tr *ngFor="let item of filteredStockItems">
+            <td class="name-cell">{{ item.productName || 'Unnamed Product' }}</td>
+            <td>{{ item.category || 'Uncategorized' }}</td>
+            <td>{{ item.currentStock }}</td>
+            <td>{{ item.totalSold }}</td>
+            <td>{{ item.totalPurchased }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(item.stockStatus)">
+                {{ item.stockStatus }}
+              </span>
+            </td>
+          </tr>
+
+          <tr *ngIf="!loading && stockItems.length > 0 && filteredStockItems.length === 0">
+            <td colspan="6" class="loading-cell">No stock records match the current filters.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

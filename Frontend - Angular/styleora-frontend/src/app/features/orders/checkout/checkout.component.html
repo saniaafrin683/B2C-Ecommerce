@@ -1,0 +1,148 @@
+<div class="checkout-page admin-page">
+  <div class="admin-page-header">
+    <div>
+      <div class="checkout-breadcrumb">Orders / Checkout</div>
+      <h1 class="admin-page-title">Checkout</h1>
+      <p class="admin-page-subtitle">Capture customer and shipping information, review the summary, and place the order.</p>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="checkout-state error-state">
+    {{ errorMessage }}
+  </div>
+
+  <div class="row g-4 align-items-start">
+    <div class="col-xl-8">
+      <form class="checkout-form" (ngSubmit)="onPlaceOrder()">
+        <section class="section-card surface-card glass-panel checkout-card">
+          <h2>Customer Information</h2>
+          <div class="checkout-grid two-col">
+            <div class="checkout-field">
+              <label>Customer Name</label>
+              <input type="text" [(ngModel)]="form.customerName" name="customerName" required>
+            </div>
+            <div class="checkout-field">
+              <label>Customer Email</label>
+              <input type="email" [(ngModel)]="form.customerEmail" name="customerEmail" required>
+            </div>
+            <div class="checkout-field">
+              <label>Customer Phone / Delivery Number</label>
+              <input type="text" [(ngModel)]="form.customerPhone" name="customerPhone" required>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel checkout-card">
+          <h2>Shipping & Billing</h2>
+          <div class="checkout-grid two-col">
+            <div class="checkout-field">
+              <label>Shipping Address</label>
+              <textarea rows="4" [(ngModel)]="form.shippingAddress" name="shippingAddress" required></textarea>
+            </div>
+            <div class="checkout-field">
+              <label>Billing Address</label>
+              <textarea rows="4" [(ngModel)]="form.billingAddress" name="billingAddress" required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel checkout-card">
+          <h2>Payment & Order Settings</h2>
+          <div class="checkout-grid two-col">
+            <div class="checkout-field">
+              <label>Payment Method</label>
+              <select [(ngModel)]="form.paymentMethod" name="paymentMethod">
+                <option *ngFor="let method of paymentMethods" [value]="method">{{ method }}</option>
+              </select>
+            </div>
+            <div class="checkout-field">
+              <label>Payment Status</label>
+              <select [(ngModel)]="form.paymentStatus" name="paymentStatus">
+                <option *ngFor="let status of paymentStatuses" [value]="status">{{ status }}</option>
+              </select>
+            </div>
+            <div class="checkout-field">
+              <label>Priority</label>
+              <select [(ngModel)]="form.priority" name="priority">
+                <option *ngFor="let item of priorities" [value]="item">{{ item }}</option>
+              </select>
+            </div>
+            <div class="checkout-field">
+              <label>Order Status</label>
+              <select [(ngModel)]="form.orderStatus" name="orderStatus">
+                <option *ngFor="let status of orderStatuses" [value]="status">{{ status }}</option>
+              </select>
+            </div>
+            <div class="checkout-field">
+              <label>Tracking Number</label>
+              <input type="text" [(ngModel)]="form.trackingNumber" name="trackingNumber">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel checkout-card">
+          <h2>Actions</h2>
+          <div class="checkout-actions">
+            <button type="submit" class="btn-ui" [disabled]="submitting || !checkoutItems.length">
+              {{ submitting ? 'Placing Order...' : 'Place Order' }}
+            </button>
+            <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+            <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <div class="col-xl-4">
+      <aside class="section-card surface-card glass-panel checkout-summary">
+        <h2>Order Summary</h2>
+
+        <div *ngIf="!checkoutItems.length" class="checkout-state">
+          No cart items found. Add products from the product grid before placing an order.
+        </div>
+
+        <div class="summary-items">
+          <article class="summary-item" *ngFor="let item of checkoutItems">
+            <div class="summary-thumb">
+              <img [src]="item.imageUrl" [alt]="item.name">
+            </div>
+            <div class="summary-copy">
+              <h3>{{ item.name }}</h3>
+              <p>Brand : {{ item.brand || 'N/A' }}</p>
+              <p>Q. {{ item.quantity | number:'2.0-0' }}</p>
+            </div>
+            <strong>{{ getItemSubtotal(item) | appCurrency:'1.2-2' }}</strong>
+          </article>
+        </div>
+
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <strong>{{ subtotal | appCurrency:'1.2-2' }}</strong>
+        </div>
+        <div class="summary-line">
+          <span>Tax</span>
+          <strong>{{ tax | appCurrency:'1.2-2' }}</strong>
+        </div>
+        <div class="summary-line">
+          <span>Discount</span>
+          <strong class="text-danger">-{{ discount | appCurrency:'1.2-2' }}</strong>
+        </div>
+        <div class="summary-line">
+          <span>Shipping Cost</span>
+          <strong>{{ shippingCost | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-line total-line">
+          <span>Total Amount</span>
+          <strong>{{ totalAmount | appCurrency:'1.2-2' }}</strong>
+        </div>
+
+        <button type="button" class="btn-ui-secondary back-cart-btn" [routerLink]="['/orders/cart']">
+          Back To Cart
+        </button>
+      </aside>
+    </div>
+  </div>
+</div>

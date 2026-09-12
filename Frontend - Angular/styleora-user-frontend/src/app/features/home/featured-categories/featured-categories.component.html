@@ -1,0 +1,24 @@
+<section class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-kicker">Featured Categories</span>
+      <h2>Shop by mood, fit, and lifestyle.</h2>
+      <p>Five quick entry points built around the categories shoppers use most often.</p>
+    </div>
+    <a class="btn btn-outline-dark rounded-pill px-4" routerLink="/shop">Browse Catalog</a>
+  </div>
+
+  <div class="category-grid">
+    <a
+      *ngFor="let category of categories; trackBy: trackByLabel"
+      class="category-card text-decoration-none"
+      [routerLink]="category.route"
+    >
+      <img [src]="category.image" [alt]="category.label">
+      <div class="category-overlay">
+        <h3>{{ category.label }}</h3>
+        <p>{{ category.description }}</p>
+      </div>
+    </a>
+  </div>
+</section>

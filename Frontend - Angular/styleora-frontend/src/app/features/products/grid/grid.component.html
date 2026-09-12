@@ -1,0 +1,115 @@
+<div class="product-grid-page">
+  <div *ngIf="errorMessage" class="alert alert-danger mb-3">{{ errorMessage }}</div>
+
+  <div class="product-grid-compact-toolbar">
+    <div>
+      <p class="product-count mb-1">
+        Showing <strong>{{ pageStart }}</strong> - <strong>{{ pageEnd }}</strong> of <strong>{{ filteredProducts.length }}</strong> products.
+      </p>
+      <p class="product-subcount mb-0">Total catalog items: {{ allProducts.length }}</p>
+    </div>
+
+    <button class="btn btn-primary product-new-btn" type="button" routerLink="/products/create">
+      <i class="bi bi-plus-lg"></i>
+      New Product
+    </button>
+  </div>
+
+  <div class="product-grid-filters section-card surface-card glass-panel">
+    <div class="row g-3 align-items-end">
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Search Products</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="applyFilters()"
+          placeholder="Search by name, brand, category, or tag">
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <label class="form-label">Category</label>
+        <select
+          class="form-select"
+          [(ngModel)]="selectedCategory"
+          (ngModelChange)="selectCategory(selectedCategory)">
+          <option *ngFor="let category of categories" [ngValue]="category">{{ category }}</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-secondary w-100" (click)="clearFilters()">Reset Filters</button>
+          <button type="button" class="btn btn-outline-dark w-100" (click)="goToCreate()">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-grid-layout">
+    <div *ngIf="!loading && filteredProducts.length === 0" class="state-card empty-state section-card surface-card glass-panel">
+      <i class="bi bi-grid-3x3-gap"></i>
+      <h5>No products found for selected filters.</h5>
+      <p>Try resetting filters or add a new product.</p>
+      <button type="button" class="btn-ui" (click)="goToCreate()">
+        <i class="bi bi-plus-lg"></i>
+        New Product
+      </button>
+    </div>
+
+    <div *ngIf="!loading && filteredProducts.length > 0" class="product-picker-panel">
+      <div class="product-picker-grid">
+        <article
+          class="product-picker-card"
+          *ngFor="let product of paginatedProducts; trackBy: trackByProduct">
+          <div class="product-picker-image-wrap">
+            <img
+              [src]="product.displayImage"
+              [alt]="product.name || 'product image'"
+              class="product-card-image"
+              (error)="onImageError($event)">
+          </div>
+
+          <div class="product-picker-copy">
+            <h5 class="product-picker-title" [title]="product.name">{{ product.name }}</h5>
+            <p class="product-picker-meta mb-0">{{ product.category || 'Uncategorized' }} <span *ngIf="product.brand">| {{ product.brand }}</span></p>
+            <p class="product-picker-price">{{ product.newPrice | appCurrency:'1.2-2' }}</p>
+            <p class="product-picker-stock">Stock: {{ product.stock || 0 }}</p>
+          </div>
+
+          <div class="product-picker-actions">
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="goToDetails(product.id)">
+              <i class="bi bi-eye"></i>
+              View Details
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" (click)="goToEdit(product.id)">
+              <i class="bi bi-pencil-square"></i>
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-sm"
+              (click)="onDelete(product.id)"
+              [disabled]="deletingId === product.id">
+              <i class="bi bi-trash"></i>
+              {{ deletingId === product.id ? 'Deleting...' : 'Delete' }}
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="pagination-bar">
+        <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+        <button
+          *ngFor="let page of pages"
+          type="button"
+          class="page-link-btn"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)">
+          {{ page }}
+        </button>
+        <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

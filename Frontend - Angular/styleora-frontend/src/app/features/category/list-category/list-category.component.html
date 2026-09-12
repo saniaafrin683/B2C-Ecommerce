@@ -1,0 +1,97 @@
+<div class="category-list-page admin-page compact-admin-page">
+  <div class="admin-page-header compact-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Taxonomy control</span>
+      <h1 class="admin-page-title">Category List</h1>
+      <p class="admin-page-subtitle">Keep category metadata, ownership, and stock counts organized in one modern table.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button class="btn-ui" routerLink="/category/create">
+        <i class="bi bi-plus-lg"></i>
+        Add Category
+      </button>
+    </div>
+  </div>
+
+  <div class="category-card section-card surface-card glass-panel compact-table-card">
+    <div class="card-head toolbar-card compact-toolbar">
+      <div>
+        <h2>All Categories</h2>
+        <p>{{ loading ? 'Fetching category data...' : (categories.length + ' active categories') }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mx-3 mt-3 mb-0">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success mx-3 mt-3 mb-0">{{ successMessage }}</div>
+
+    <div class="table-shell">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th class="check-col">
+              <input type="checkbox">
+            </th>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th class="action-col">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="loading">
+            <td colspan="4" class="table-empty"><strong>Loading categories</strong>Fetching category records and metadata.</td>
+          </tr>
+
+          <tr *ngFor="let category of paginatedCategories">
+            <td class="check-col">
+              <input type="checkbox">
+            </td>
+
+            <td class="category-id-text">{{ category.id }}</td>
+            <td class="category-name-text">{{ category.categoryTitle }}</td>
+
+            <td class="action-col">
+              <div class="action-buttons table-actions">
+                <button
+                  class="icon-action view"
+                  (click)="onEdit(category.id)"
+                  type="button"
+                  aria-label="Edit category">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button
+                  class="icon-action delete"
+                  (click)="onDelete(category.id)"
+                  type="button"
+                  aria-label="Delete category"
+                  [disabled]="isDeleteDisabled(category)"
+                  [title]="getDeleteDisabledMessage(category)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="!loading && paginatedCategories.length === 0">
+            <td colspan="4" class="table-empty"><strong>No categories found</strong>Create a category to populate this table.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-bar" *ngIf="!loading && categories.length > 0">
+      <button type="button" class="page-link-btn" (click)="goToPrevious()" [disabled]="currentPage === 1">Previous</button>
+      <button
+        *ngFor="let page of pages"
+        type="button"
+        class="page-link-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      <button type="button" class="page-link-btn" (click)="goToNext()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+</div>

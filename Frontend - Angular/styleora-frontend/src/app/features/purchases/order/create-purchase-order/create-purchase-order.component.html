@@ -1,0 +1,139 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Purchases / Order / Create</span>
+      <h1 class="admin-page-title">Add Purchase Order</h1>
+      <p class="admin-page-subtitle">Create a new purchase order in a dedicated form page.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
+        Back to Purchase Order
+      </button>
+    </div>
+  </div>
+
+  <form class="admin-form-section form-shell" (ngSubmit)="onSave()">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div class="admin-form-grid row">
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Purchase Order ID</label>
+        <input class="admin-input" type="text" [(ngModel)]="orderForm.purchaseOrderId" name="purchaseOrderId" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier Name</label>
+        <input class="admin-input" type="text" [(ngModel)]="orderForm.supplierName" name="supplierName" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier Email</label>
+        <input class="admin-input" type="email" [(ngModel)]="orderForm.supplierEmail" name="supplierEmail">
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Supplier Phone</label>
+        <input class="admin-input" type="text" [(ngModel)]="orderForm.supplierPhone" name="supplierPhone">
+      </div>
+
+      <div class="col-12 admin-field">
+        <label class="admin-form-label">Supplier Address</label>
+        <textarea class="admin-textarea" rows="3" [(ngModel)]="orderForm.supplierAddress" name="supplierAddress"></textarea>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Order Date</label>
+        <input class="admin-input" type="date" [(ngModel)]="orderForm.orderDate" name="orderDate" required>
+      </div>
+
+      <div class="col-md-6 admin-field">
+        <label class="admin-form-label">Expected Delivery Date</label>
+        <input class="admin-input" type="date" [(ngModel)]="orderForm.expectedDeliveryDate" name="expectedDeliveryDate">
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Order Status</label>
+        <select class="admin-select" [(ngModel)]="orderForm.orderStatus" name="orderStatus" required>
+          <option *ngFor="let status of orderStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Payment Status</label>
+        <select class="admin-select" [(ngModel)]="orderForm.paymentStatus" name="paymentStatus" required>
+          <option *ngFor="let status of paymentStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Payment Method</label>
+        <select class="admin-select" [(ngModel)]="orderForm.paymentMethod" name="paymentMethod">
+          <option *ngFor="let method of paymentMethods" [value]="method">{{ method }}</option>
+        </select>
+      </div>
+
+      <div class="col-12 admin-field">
+        <label class="admin-form-label">Items</label>
+        <textarea
+          class="admin-textarea"
+          rows="5"
+          [(ngModel)]="itemsInput"
+          name="itemsInput"
+          placeholder='Enter JSON array like [{"product":"Premium Satin Shirt","sku":"SAT-1001","quantity":3,"unitCost":520,"discount":40,"tax":60,"total":1580}] or plain text lines.'></textarea>
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Subtotal</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.subtotal" name="subtotal">
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Discount</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.discount" name="discount">
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Tax</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.tax" name="tax">
+      </div>
+
+      <div class="col-md-3 admin-field">
+        <label class="admin-form-label">Shipping Cost</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.shippingCost" name="shippingCost">
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Total Amount</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.totalAmount" name="totalAmount" required>
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Paid Amount</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.paidAmount" name="paidAmount">
+      </div>
+
+      <div class="col-md-4 admin-field">
+        <label class="admin-form-label">Due Amount</label>
+        <input class="admin-input" type="number" [(ngModel)]="orderForm.dueAmount" name="dueAmount">
+      </div>
+
+      <div class="col-12 admin-field">
+        <label class="admin-form-label">Notes</label>
+        <textarea class="admin-textarea" rows="4" [(ngModel)]="orderForm.notes" name="notes"></textarea>
+      </div>
+    </div>
+
+    <div class="admin-form-actions">
+      <button type="submit" class="btn-ui" [disabled]="submitting">
+        {{ submitting ? 'Saving...' : 'Save' }}
+      </button>
+      <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+      <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      <button type="button" class="btn-ui-ghost" (click)="goBack()">Back to Purchase Order</button>
+    </div>
+  </form>
+</div>

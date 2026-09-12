@@ -1,0 +1,78 @@
+<div class="container py-4">
+
+  <div class="orders-shell bg-white rounded shadow-sm p-4 p-lg-5">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div>
+        <h1 class="h3 mb-1">My Orders</h1>
+        <p class="text-muted mb-0">Track every order you place from checkout.</p>
+      </div>
+
+      <a class="btn btn-outline-dark" routerLink="/shop">
+        Continue Shopping
+      </a>
+    </div>
+
+    <div class="orders-message orders-message-error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="orders-loading" *ngIf="isLoading">
+      <div class="spinner-border text-dark mb-3" role="status" aria-hidden="true"></div>
+      <div>Loading your orders...</div>
+    </div>
+
+    <div class="table-responsive" *ngIf="!isLoading && orders.length; else emptyState">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Order No</th>
+            <th scope="col">Date</th>
+            <th scope="col">Total</th>
+            <th scope="col">Status</th>
+            <th scope="col">Payment</th>
+            <th scope="col" class="text-end">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let order of orders; trackBy: trackByOrderId">
+            <td>{{ order.orderId || ('#' + order.id) }}</td>
+            <td>{{ order.createdAt | date:'mediumDate' }}</td>
+            <td>BDT {{ order.totalAmount | number:'1.2-2' }}</td>
+
+            <td>
+              <span class="status-pill">
+                {{ order.orderStatus || 'Pending' }}
+              </span>
+            </td>
+
+            <td>
+              <span class="payment-pill">
+                {{ order.paymentMethod || 'Cash On Delivery' }}
+              </span>
+              <div class="text-muted small mt-1">{{ order.paymentStatus || 'Pending' }}</div>
+            </td>
+
+            <td class="text-end">
+              <a
+                class="btn btn-outline-dark btn-sm rounded-pill"
+                [routerLink]="['/my-orders', order.id]"
+              >
+                View Details
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #emptyState>
+      <app-empty-state
+        *ngIf="!isLoading && !errorMessage"
+        message="No orders yet. Once you complete checkout, your order history will appear here."
+      ></app-empty-state>
+    </ng-template>
+
+  </div>
+</div>

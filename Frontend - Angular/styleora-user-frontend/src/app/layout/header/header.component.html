@@ -1,0 +1,259 @@
+<nav class="site-header navbar navbar-expand-lg navbar-light border-bottom">
+  <div class="container">
+    <div class="header-container w-100">
+
+      <!-- Logo -->
+      <a class="navbar-brand logo-section d-flex flex-column py-0" routerLink="/">
+        <span class="brand-name fw-bold text-uppercase">Styleora</span>
+        <span class="brand-tagline text-muted">Everyday fashion</span>
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#styleoraNavbar"
+        aria-controls="styleoraNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar -->
+      <div class="collapse navbar-collapse" id="styleoraNavbar">
+
+        <!-- Center Menu -->
+        <ul class="navbar-nav nav-menu mx-auto align-items-lg-center mb-3 mb-lg-0">
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/shop"
+              [class.active]="isShopActive()"
+            >
+              Shop
+            </a>
+          </li>
+
+          <li class="nav-item nav-category-item" [class.menu-open]="mobileCategoryMenuOpen">
+            <button
+              class="nav-link nav-category-toggle category-trigger-button"
+              type="button"
+              [class.active]="isCategoryActive()"
+              [attr.aria-expanded]="mobileCategoryMenuOpen"
+              (click)="toggleMobileCategoryMenu()"
+            >
+              Category
+            </button>
+
+            <div class="nav-dropdown-menu nav-mega-menu">
+              <div class="nav-mega-desktop">
+                <div class="mega-menu-header">
+                  <a
+                    class="mega-all-link"
+                    [routerLink]="allProductsLink.route"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    Shop Everything
+                  </a>
+                  <span class="mega-menu-copy">Browse categories and jump straight to focused subcategory pages.</span>
+                </div>
+
+                <div class="mega-menu-grid">
+                  <div class="mega-category-column" *ngFor="let category of categoryMenu">
+                    <a
+                      class="mega-category-link"
+                      [routerLink]="category.route"
+                      routerLinkActive="active"
+                      (click)="closeMobileMenus()"
+                    >
+                      {{ category.label }}
+                    </a>
+
+                    <a
+                      class="mega-subcategory-link"
+                      *ngFor="let subCategory of category.subCategories"
+                      [routerLink]="subCategory.route"
+                      [queryParams]="subCategory.queryParams"
+                      [class.active]="isSubCategoryActive(category.slug, subCategory.slug)"
+                      (click)="closeMobileMenus()"
+                    >
+                      {{ subCategory.label }}
+                    </a>
+
+                    <span class="mega-subcategory-empty" *ngIf="!category.subCategories.length">
+                      New additions coming soon
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nav-mega-mobile" *ngIf="mobileCategoryMenuOpen">
+                <a
+                  class="mobile-menu-link mobile-menu-link-all"
+                  [routerLink]="allProductsLink.route"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="closeMobileMenus()"
+                >
+                  All Products
+                </a>
+
+                <div class="mobile-category-group" *ngFor="let category of categoryMenu">
+                  <div class="mobile-category-head">
+                    <a
+                      class="mobile-menu-link"
+                      [routerLink]="category.route"
+                      routerLinkActive="active"
+                      (click)="closeMobileMenus()"
+                    >
+                      {{ category.label }}
+                    </a>
+
+                    <button
+                      *ngIf="category.subCategories.length"
+                      class="mobile-category-toggle"
+                      type="button"
+                      (click)="toggleMobileCategorySection(category.id)"
+                    >
+                      <i class="bi" [ngClass]="expandedMobileCategoryId === category.id ? 'bi-dash-lg' : 'bi-plus-lg'"></i>
+                    </button>
+                  </div>
+
+                  <div class="mobile-subcategory-list" *ngIf="expandedMobileCategoryId === category.id">
+                    <a
+                      class="mobile-subcategory-link"
+                      *ngFor="let subCategory of category.subCategories"
+                      [routerLink]="subCategory.route"
+                      [queryParams]="subCategory.queryParams"
+                      (click)="closeMobileMenus()"
+                    >
+                      {{ subCategory.label }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/blog"
+              routerLinkActive="active"
+            >
+              Blog
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/contact"
+              routerLinkActive="active"
+            >
+              Contact
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link hot-deal-link"
+              routerLink="/hot-deal"
+              routerLinkActive="active"
+            >
+              Hot Deal
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="header-actions">
+
+          <form class="header-search" (ngSubmit)="goToShopSearch()" novalidate>
+            <button
+              class="header-search-icon"
+              type="submit"
+              aria-label="Search products"
+            >
+              <i class="bi bi-search"></i>
+            </button>
+            <input
+              class="header-search-input"
+              type="search"
+              name="headerSearch"
+              [(ngModel)]="searchTerm"
+              placeholder="Search products"
+              aria-label="Search products"
+            >
+          </form>
+
+          <a
+            class="icon-btn action-icon-btn btn btn-outline-dark position-relative"
+            routerLink="/wishlist"
+            [class.active]="isWishlistActive()"
+            aria-label="Wishlist"
+          >
+            <i class="bi bi-heart action-icon" aria-hidden="true"></i>
+            <span class="count-badge badge rounded-pill bg-danger">
+              {{ wishlistCount$ | async }}
+            </span>
+          </a>
+
+          <a
+            class="icon-btn action-icon-btn btn btn-outline-dark position-relative"
+            routerLink="/cart"
+            aria-label="Cart"
+          >
+            <i class="bi bi-bag action-icon" aria-hidden="true"></i>
+            <span class="count-badge badge rounded-pill bg-danger">
+              {{ cartCount$ | async }}
+            </span>
+          </a>
+
+          <a
+            class="btn btn-outline-dark action-link account-action-btn"
+            routerLink="/profile"
+            [class.active]="isProfileActive()"
+          >
+            Profile
+          </a>
+
+          <a
+            *ngIf="!isLoggedIn()"
+            class="btn btn-dark action-link login-btn account-action-btn"
+            routerLink="/login"
+          >
+            Login
+          </a>
+
+          <button
+            *ngIf="isLoggedIn()"
+            class="btn btn-dark action-link login-btn account-action-btn"
+            type="button"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>

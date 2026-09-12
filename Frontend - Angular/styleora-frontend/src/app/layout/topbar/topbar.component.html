@@ -1,0 +1,102 @@
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="menu-toggle-btn" type="button" (click)="toggleSidebar()" aria-label="Toggle navigation">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <ng-container *ngIf="settings$ | async as settings">
+      <ng-container *ngIf="trackLogoState(settings)"></ng-container>
+      <div class="topbar-brand">
+        <ng-container *ngIf="shouldShowLogoImage(settings); else defaultTopbarLogo">
+          <img
+            class="topbar-logo"
+            [src]="settings.logoUrl"
+            [alt]="settings.storeName || 'Store logo'"
+            (load)="onLogoLoad()"
+            (error)="onLogoError($event)">
+        </ng-container>
+
+        <ng-template #defaultTopbarLogo>
+          <i class="bi bi-handbag-fill"></i>
+        </ng-template>
+
+        <div class="topbar-title-group">
+          <span class="topbar-overline">{{ settings.storeName || 'StyleOra' }}</span>
+          <span class="topbar-subtitle">{{ settings.storeTagline || 'Admin workspace' }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input type="text" placeholder="Search products, categories, reports" />
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <button class="topbar-chip-btn" type="button" (click)="onLogout()">
+      <i class="bi bi-box-arrow-right"></i>
+      Logout
+    </button>
+
+    <div class="notification-shell" (click)="$event.stopPropagation()">
+      <button
+        class="topbar-icon-btn notification-btn"
+        type="button"
+        (click)="toggleNotifications($event)"
+        aria-label="Open notifications">
+        <i class="bi bi-bell"></i>
+        <span class="notification-badge" *ngIf="(unreadCount$ | async) as unreadCount" [class.has-unread]="unreadCount > 0">
+          <span *ngIf="unreadCount > 0">{{ getNotificationBadgeLabel(unreadCount) }}</span>
+        </span>
+      </button>
+
+      <div class="notification-dropdown" *ngIf="notificationsOpen">
+        <div class="notification-dropdown-header">
+          <div>
+            <h6>Notifications</h6>
+            <p>Admin updates from recent activity</p>
+          </div>
+          <button class="notification-mark-btn" type="button" (click)="markAllNotificationsAsRead($event)">
+            Mark all read
+          </button>
+        </div>
+
+        <ng-container *ngIf="adminNotifications$ | async as notifications">
+          <button
+            class="notification-item"
+            type="button"
+            *ngFor="let notification of notifications"
+            [class.unread]="isUnread(notification)"
+            (click)="openNotification(notification, $event)">
+            <div class="notification-item-icon">
+              <i class="bi bi-bell-fill"></i>
+            </div>
+            <div class="notification-item-copy">
+              <div class="notification-item-topline">
+                <strong>{{ notification.title }}</strong>
+                <span>{{ formatNotificationTime(notification.createdAt) }}</span>
+              </div>
+              <p>{{ notification.message }}</p>
+            </div>
+          </button>
+
+          <div class="notification-empty" *ngIf="notifications.length === 0">
+            No notifications right now.
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="profile-box">
+      <img
+        src="https://ui-avatars.com/api/?name=Admin&background=2563eb&color=fff"
+        alt="Admin"
+      />
+      <div class="profile-info">
+        <h6>{{ getAdminName() }}</h6>
+      </div>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+  </div>
+</header>

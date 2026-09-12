@@ -1,0 +1,51 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Attributes / Values / Create</span>
+      <h1 class="admin-page-title">Create Attribute Value</h1>
+      <p class="admin-page-subtitle">Add a structured value to one of the existing product attributes.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loadingAttributes" class="page-message info">
+      Loading attributes...
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()">
+      <div class="admin-form-grid row">
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Attribute</label>
+          <select class="admin-select" [(ngModel)]="valueForm.attributeId" name="attributeId" required>
+            <option [ngValue]="0" disabled>Select attribute</option>
+            <option *ngFor="let attribute of attributes" [ngValue]="attribute.id">{{ attribute.attributeName }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 admin-field">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-select" [(ngModel)]="valueForm.status" name="status" required>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="col-12 admin-field">
+          <label class="admin-form-label">Value</label>
+          <input class="admin-input" type="text" [(ngModel)]="valueForm.value" name="value" required>
+        </div>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

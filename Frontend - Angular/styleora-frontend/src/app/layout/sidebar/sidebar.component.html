@@ -1,0 +1,130 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-header">
+    <ng-container *ngIf="settings$ | async as settings">
+      <ng-container *ngIf="trackLogoState(settings)"></ng-container>
+      <div class="sidebar-logo">
+        <ng-container *ngIf="shouldShowLogoImage(settings); else defaultSidebarLogo">
+          <img
+            class="brand-logo-image"
+            [src]="settings.logoUrl"
+            [alt]="settings.storeName || 'Store logo'"
+            (load)="onLogoLoad()"
+            (error)="onLogoError($event)">
+        </ng-container>
+
+        <ng-template #defaultSidebarLogo>
+          <div class="logo-mark" aria-hidden="true">
+            <span class="logo-orb"></span>
+            <i class="bi bi-handbag-fill logo-icon"></i>
+          </div>
+        </ng-template>
+
+        <div class="logo-copy" *ngIf="!collapsed">
+          <span class="logo-text">{{ settings.storeName || 'StyleOra' }}</span>
+          <span class="logo-subtext">{{ settings.storeTagline || 'Fashion Commerce' }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="sidebar-nav">
+    <ul class="sidebar-menu">
+      <li class="sidebar-item" *ngFor="let item of visiblePrimaryItems">
+        <a
+          *ngIf="!item.children"
+          class="sidebar-link"
+          [routerLink]="item.route"
+          routerLinkActive="active">
+          <div class="sidebar-link-left">
+            <i [class]="item.icon"></i>
+            <span class="menu-text" *ngIf="!collapsed">{{ item.title }}</span>
+          </div>
+        </a>
+
+        <div
+          *ngIf="item.children"
+          class="sidebar-link has-submenu"
+          [class.active-parent]="item.expanded"
+          [class.collapsed-parent]="collapsed"
+          (click)="toggleMenu(item)">
+          <div class="sidebar-link-left">
+            <i [class]="item.icon"></i>
+            <span class="menu-text" *ngIf="!collapsed">{{ item.title }}</span>
+          </div>
+
+          <i
+            *ngIf="!collapsed"
+            class="bi menu-arrow"
+            [ngClass]="item.expanded ? 'bi-chevron-down' : 'bi-chevron-right'">
+          </i>
+        </div>
+
+        <ul class="submenu" *ngIf="item.children && item.expanded && !collapsed">
+          <li class="submenu-item" *ngFor="let child of getVisibleChildren(item)">
+            <a
+              class="submenu-link"
+              [routerLink]="child.route"
+              routerLinkActive="active">
+              {{ child.title }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ng-container *ngFor="let section of visibleMenuSections">
+      <div class="sidebar-section-label" *ngIf="!collapsed">{{ section.title }}</div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-item" *ngFor="let item of section.items">
+          <a
+            *ngIf="!item.children"
+            class="sidebar-link"
+            [routerLink]="item.route"
+            routerLinkActive="active">
+            <div class="sidebar-link-left">
+              <i [class]="item.icon"></i>
+              <span class="menu-text" *ngIf="!collapsed">{{ item.title }}</span>
+            </div>
+          </a>
+
+          <div
+            *ngIf="item.children"
+            class="sidebar-link has-submenu"
+            [class.active-parent]="item.expanded"
+            [class.collapsed-parent]="collapsed"
+            (click)="toggleMenu(item)">
+            <div class="sidebar-link-left">
+              <i [class]="item.icon"></i>
+              <span class="menu-text" *ngIf="!collapsed">{{ item.title }}</span>
+            </div>
+
+            <i
+              *ngIf="!collapsed"
+              class="bi menu-arrow"
+              [ngClass]="item.expanded ? 'bi-chevron-down' : 'bi-chevron-right'">
+            </i>
+          </div>
+
+          <ul class="submenu" *ngIf="item.children && item.expanded && !collapsed">
+            <li class="submenu-item" *ngFor="let child of getVisibleChildren(item)">
+              <a
+                class="submenu-link"
+                [routerLink]="child.route"
+                routerLinkActive="active">
+                {{ child.title }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <div class="sidebar-footer">
+    <button class="sidebar-logout-btn" type="button" (click)="onLogout()">
+      <i class="bi bi-box-arrow-right"></i>
+      <span *ngIf="!collapsed">Logout</span>
+    </button>
+  </div>
+</div>

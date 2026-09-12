@@ -1,0 +1,155 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Settings / General</span>
+      <h1 class="admin-page-title">General Settings</h1>
+      <p class="admin-page-subtitle">Manage store identity, finance defaults, document prefixes, branding assets, and maintenance controls.</p>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading current settings...
+    </div>
+
+    <form class="form-shell" (ngSubmit)="onSave()" *ngIf="!loading">
+      <div class="settings-section-grid">
+        <section class="settings-section">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Store Information</h2>
+            </div>
+          </div>
+
+          <div class="admin-form-grid row">
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Store Name</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.storeName" name="storeName" required>
+            </div>
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Store Tagline</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.storeTagline" name="storeTagline">
+            </div>
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Support Email</label>
+              <input class="admin-input" type="email" [(ngModel)]="settingForm.supportEmail" name="supportEmail" required>
+            </div>
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Support Phone</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.supportPhone" name="supportPhone">
+            </div>
+            <div class="col-12 admin-field">
+              <label class="admin-form-label">Business Address</label>
+              <textarea class="admin-textarea" rows="3" [(ngModel)]="settingForm.businessAddress" name="businessAddress"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Financial Settings</h2>
+            </div>
+          </div>
+
+          <div class="admin-form-grid row">
+            <div class="col-md-4 admin-field">
+              <label class="admin-form-label">Currency</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.currency" name="currency" required>
+            </div>
+            <div class="col-md-4 admin-field">
+              <label class="admin-form-label">Tax Rate</label>
+              <input class="admin-input" type="number" [(ngModel)]="settingForm.taxRate" name="taxRate">
+            </div>
+            <div class="col-md-4 admin-field">
+              <label class="admin-form-label">Shipping Charge</label>
+              <input class="admin-input" type="number" [(ngModel)]="settingForm.shippingCharge" name="shippingCharge">
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Document Prefix Settings</h2>
+            </div>
+          </div>
+
+          <div class="admin-form-grid row">
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Order Prefix</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.orderPrefix" name="orderPrefix">
+            </div>
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Invoice Prefix</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.invoicePrefix" name="invoicePrefix">
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Payment Settings</h2>
+            </div>
+          </div>
+
+          <div class="admin-form-grid row">
+            <div class="col-12 admin-field">
+              <label class="admin-form-label">Payment Methods</label>
+              <textarea class="admin-textarea" rows="3" [(ngModel)]="settingForm.paymentMethods" name="paymentMethods"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Branding</h2>
+            </div>
+          </div>
+
+          <div class="admin-form-grid row">
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Logo URL</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.logoUrl" name="logoUrl">
+            </div>
+            <div class="col-md-6 admin-field">
+              <label class="admin-form-label">Favicon URL</label>
+              <input class="admin-input" type="text" [(ngModel)]="settingForm.faviconUrl" name="faviconUrl">
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">System</h2>
+            </div>
+          </div>
+
+          <div class="admin-form-grid row">
+            <div class="col-12 admin-field">
+              <label class="toggle-row">
+                <input type="checkbox" [(ngModel)]="settingForm.maintenanceMode" name="maintenanceMode">
+                <span>Maintenance Mode</span>
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn-ui" [disabled]="submitting">
+          {{ submitting ? 'Saving...' : 'Save' }}
+        </button>
+        <button type="button" class="btn-ui-secondary" (click)="onReset()">Reset</button>
+        <button type="button" class="btn-ui-ghost" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </section>
+</div>

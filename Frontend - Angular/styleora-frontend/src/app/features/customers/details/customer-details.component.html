@@ -1,0 +1,166 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Customers / Details</span>
+      <h1 class="admin-page-title">Customer Details</h1>
+      <p class="admin-page-subtitle">Review profile summary, contact records, address data, order statistics, and notes.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Customer</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading customer details...
+    </div>
+
+    <div *ngIf="customer && !loading" class="customer-profile-shell">
+      <div class="customer-profile-card">
+        <div class="profile-avatar">{{ getInitials(customer.fullName) }}</div>
+        <div class="profile-copy">
+          <h2>{{ customer.fullName }}</h2>
+          <p>{{ customer.customerCode }} · {{ customer.email || 'No email added' }}</p>
+          <div class="profile-meta">
+            <span class="pill-badge" [ngClass]="getStatusClass(customer.status)">{{ customer.status }}</span>
+            <span class="meta-chip">{{ customer.gender || 'Gender not set' }}</span>
+            <span class="meta-chip">{{ customer.registeredAt ? (customer.registeredAt | date:'dd MMM yyyy') : 'No join date' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="customer-stats-strip">
+        <div class="stats-tile">
+          <span>Total Orders</span>
+          <strong>{{ customer.totalOrders }}</strong>
+        </div>
+        <div class="stats-tile">
+          <span>Total Spend</span>
+          <strong>{{ customer.totalSpend | appCurrency:'1.2-2' }}</strong>
+        </div>
+        <div class="stats-tile">
+          <span>Registered</span>
+          <strong>{{ customer.registeredAt ? (customer.registeredAt | date:'dd MMM yyyy') : 'Not set' }}</strong>
+        </div>
+        <div class="stats-tile">
+          <span>Date of Birth</span>
+          <strong>{{ customer.dateOfBirth ? (customer.dateOfBirth | date:'dd MMM yyyy') : 'Not set' }}</strong>
+        </div>
+      </div>
+
+      <div class="details-sections-grid">
+        <section class="section-card surface-card glass-panel detail-card">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Contact Information</h2>
+              <p class="section-card-subtitle">Primary communication details.</p>
+            </div>
+          </div>
+
+          <div class="customer-details-grid">
+            <div class="overview-block">
+              <span>Email</span>
+              <strong>{{ customer.email || 'Not set' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Phone</span>
+              <strong>{{ customer.phone || 'Not set' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Gender</span>
+              <strong>{{ customer.gender || 'Not set' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Customer Code</span>
+              <strong>{{ customer.customerCode }}</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel detail-card">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Address Information</h2>
+              <p class="section-card-subtitle">Stored customer location details.</p>
+            </div>
+          </div>
+
+          <div class="customer-details-grid">
+            <div class="overview-block overview-wide">
+              <span>Address</span>
+              <strong>{{ customer.address || 'Not set' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>City</span>
+              <strong>{{ customer.city || 'Not set' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Country</span>
+              <strong>{{ customer.country || 'Not set' }}</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel detail-card">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Order Statistics</h2>
+              <p class="section-card-subtitle">Available purchase metrics from the current backend.</p>
+            </div>
+          </div>
+
+          <div class="customer-details-grid">
+            <div class="overview-block">
+              <span>Total Orders</span>
+              <strong>{{ customer.totalOrders }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Total Spend</span>
+              <strong>{{ customer.totalSpend | appCurrency:'1.2-2' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Registered At</span>
+              <strong>{{ customer.registeredAt ? (customer.registeredAt | date:'dd MMM yyyy') : 'Not set' }}</strong>
+            </div>
+            <div class="overview-block">
+              <span>Account Status</span>
+              <span class="pill-badge" [ngClass]="getStatusClass(customer.status)">{{ customer.status }}</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel detail-card">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Notes</h2>
+              <p class="section-card-subtitle">Internal account remarks.</p>
+            </div>
+          </div>
+
+          <div class="notes-card">
+            {{ customer.notes || 'No notes added' }}
+          </div>
+        </section>
+
+        <section class="section-card surface-card glass-panel detail-card unsupported-card">
+          <div class="section-card-header compact">
+            <div>
+              <h2 class="section-card-title">Recent Orders</h2>
+              <p class="section-card-subtitle">This section can be enabled once customer-order history is exposed by the backend.</p>
+            </div>
+          </div>
+
+          <div class="placeholder-panel">
+            Recent order rows are not available in the current customer API.
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>

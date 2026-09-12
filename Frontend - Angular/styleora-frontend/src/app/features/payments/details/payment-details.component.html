@@ -1,0 +1,107 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Payments / Details</span>
+      <h1 class="admin-page-title">Payment Details</h1>
+      <p class="admin-page-subtitle">Review transaction metadata, linked invoice and order references, and internal notes.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui-secondary" (click)="onBack()">Back to List</button>
+      <button type="button" class="btn-ui" (click)="onEdit()">Edit Payment</button>
+    </div>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading payment details...
+    </div>
+
+    <div *ngIf="payment && !loading" class="payment-details-grid">
+      <section class="section-card surface-card glass-panel detail-card hero-card">
+        <div class="hero-copy">
+          <span class="detail-kicker">Transaction</span>
+          <h2>{{ payment.transactionId || 'N/A' }}</h2>
+          <p>{{ payment.customerName || 'Unknown customer' }}</p>
+        </div>
+        <div class="hero-meta">
+          <span class="pill-badge" [ngClass]="getStatusClass(payment.paymentStatus)">{{ payment.paymentStatus }}</span>
+          <strong>{{ payment.amount | appCurrency:'1.2-2' }}</strong>
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Transaction Overview</h2>
+            <p class="section-card-subtitle">Core finance reference data.</p>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <div class="overview-block">
+            <span>Invoice ID</span>
+            <strong>#{{ payment.invoiceId || 'N/A' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Order ID</span>
+            <strong>#{{ payment.orderId || 'N/A' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Payment Method</span>
+            <strong>{{ payment.paymentMethod || 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Payment Date</span>
+            <strong>{{ payment.paymentDate ? (payment.paymentDate | date:'dd MMM yyyy') : 'Not set' }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Audit Trail</h2>
+            <p class="section-card-subtitle">Creation and last update dates from the backend.</p>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <div class="overview-block">
+            <span>Created At</span>
+            <strong>{{ payment.createdAt ? (payment.createdAt | date:'dd MMM yyyy') : 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Updated At</span>
+            <strong>{{ payment.updatedAt ? (payment.updatedAt | date:'dd MMM yyyy') : 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Customer</span>
+            <strong>{{ payment.customerName || 'Not set' }}</strong>
+          </div>
+          <div class="overview-block">
+            <span>Amount</span>
+            <strong>{{ payment.amount | appCurrency:'1.2-2' }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card surface-card glass-panel detail-card">
+        <div class="section-card-header compact">
+          <div>
+            <h2 class="section-card-title">Notes</h2>
+            <p class="section-card-subtitle">Internal transaction notes and remarks.</p>
+          </div>
+        </div>
+
+        <div class="notes-card">
+          {{ payment.notes || 'No notes added' }}
+        </div>
+      </section>
+    </div>
+  </section>
+</div>

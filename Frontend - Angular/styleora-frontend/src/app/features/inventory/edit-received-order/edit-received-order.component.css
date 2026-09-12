@@ -1,0 +1,11 @@
+@import '../create-received-order/create-received-order.component.css';
+
+.loading-box {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #475569;
+}

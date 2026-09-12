@@ -1,0 +1,163 @@
+<div class="admin-page">
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-page-eyebrow">Purchases / Returns</span>
+      <h1 class="admin-page-title">Purchase Returns</h1>
+      <p class="admin-page-subtitle">Track supplier purchase return requests, statuses, and refunds with the existing purchase return list.</p>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-ui" (click)="openCreateForm()">
+        <i class="bi bi-plus-circle"></i>
+        Create Purchase Return
+      </button>
+    </div>
+  </div>
+
+  <div class="return-summary-grid">
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Total Returns</span>
+      <strong>{{ totalReturns }}</strong>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Pending Returns</span>
+      <strong>{{ pendingReturns }}</strong>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Completed Returns</span>
+      <strong>{{ completedReturns }}</strong>
+    </section>
+
+    <section class="section-card surface-card glass-panel summary-card">
+      <span>Refunded Returns</span>
+      <strong>{{ refundedReturns }}</strong>
+    </section>
+  </div>
+
+  <section class="section-card surface-card glass-panel">
+    <div *ngIf="errorMessage" class="page-message error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading" class="page-message info">
+      Loading purchase returns...
+    </div>
+
+    <div class="table-shell" *ngIf="!loading">
+      <table class="table-ui">
+        <thead>
+          <tr>
+            <th>Return ID</th>
+            <th>Purchase Order ID</th>
+            <th>Supplier</th>
+            <th>Items</th>
+            <th>Return Date</th>
+            <th>Return Status</th>
+            <th>Refund Status</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of purchaseReturns">
+            <td><strong>{{ item.returnId }}</strong></td>
+            <td>{{ item.purchaseOrderId }}</td>
+
+            <td>
+              <div class="supplier-cell">
+                <div class="supplier-avatar">{{ item.supplierName.slice(0, 2).toUpperCase() }}</div>
+                <div class="supplier-copy">
+                  <strong>{{ item.supplierName }}</strong>
+                  <span>{{ item.paymentMethod || 'Not Set' }}</span>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <div class="item-stack">
+                <strong>{{ getItemCount(item) }} item{{ getItemCount(item) !== 1 ? 's' : '' }}</strong>
+                <span>{{ getItemSummary(item) || 'No items added' }}</span>
+              </div>
+            </td>
+
+            <td>{{ item.returnDate | date:'dd MMM yyyy' }}</td>
+
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(item.returnStatus)">
+                {{ item.returnStatus }}
+              </span>
+            </td>
+
+            <td>
+              <span class="pill-badge" [ngClass]="getStatusClass(item.refundStatus)">
+                {{ item.refundStatus }}
+              </span>
+            </td>
+
+            <td><strong>{{ item.totalAmount | appCurrency:'1.2-2' }}</strong></td>
+
+            <td>
+              <div class="table-actions">
+                <button type="button" class="icon-action view" (click)="onView(item)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="icon-action edit" (click)="onEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="icon-action delete" (click)="onDelete(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="purchaseReturns.length === 0">
+            <td colspan="9" class="table-empty">
+              <strong>No purchase returns found</strong>
+              Create a purchase return to populate this table.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-card surface-card glass-panel" *ngIf="selectedReturn">
+    <div class="section-card-header">
+      <div>
+        <h2 class="section-card-title">Return Overview</h2>
+        <p class="section-card-subtitle">Selected purchase return details and refund summary.</p>
+      </div>
+    </div>
+
+    <div class="selected-return-grid">
+      <div class="overview-block">
+        <span>Return ID</span>
+        <strong>{{ selectedReturn.returnId }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Purchase Order ID</span>
+        <strong>{{ selectedReturn.purchaseOrderId }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Supplier</span>
+        <strong>{{ selectedReturn.supplierName }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Return Date</span>
+        <strong>{{ selectedReturn.returnDate | date:'dd MMM yyyy' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Total Amount</span>
+        <strong>{{ selectedReturn.totalAmount | appCurrency:'1.2-2' }}</strong>
+      </div>
+      <div class="overview-block">
+        <span>Refund Status</span>
+        <span class="pill-badge" [ngClass]="getStatusClass(selectedReturn.refundStatus)">{{ selectedReturn.refundStatus }}</span>
+      </div>
+    </div>
+  </section>
+</div>
