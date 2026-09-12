@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/surface"
+        android:elevation="3dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
+
+        <TextView
+            android:id="@+id/blogBackButton"
+            style="@style/HomeTopIcon"
+            android:text="Back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="Blog"
+            android:textColor="@color/primary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/blogCartButton"
+            style="@style/HomeTopIcon"
+            android:text="Bag" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/blogRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="@color/surface"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/navHome"
+            style="@style/HomeBottomNavItem"
+            android:text="Home" />
+
+        <TextView
+            android:id="@+id/navBrands"
+            style="@style/HomeBottomNavItem"
+            android:text="Brands" />
+
+        <TextView
+            android:id="@+id/navCategories"
+            style="@style/HomeBottomNavItem"
+            android:text="Categories" />
+
+        <TextView
+            android:id="@+id/navBlog"
+            style="@style/HomeBottomNavItem"
+            android:text="Blog" />
+    </LinearLayout>
+</LinearLayout>

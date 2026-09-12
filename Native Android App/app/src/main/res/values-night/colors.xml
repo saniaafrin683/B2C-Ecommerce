@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF171419</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#FF121014</color>
+    <color name="surface">#FF1D1920</color>
+    <color name="surface_variant">#FF262129</color>
+    <color name="surface_pressed">#FF332A34</color>
+    <color name="primary">#FFFF9FC9</color>
+    <color name="primary_dark">#FFFF7AB5</color>
+    <color name="accent">#FFD9A7B8</color>
+    <color name="text_primary">#FFF8EDF2</color>
+    <color name="text_secondary">#FFCDBDC5</color>
+    <color name="border">#FF3A3038</color>
+    <color name="danger">#FFFF8A80</color>
+    <color name="nav_icon">#FFCDBDC5</color>
+    <color name="profile_section">#FF1D1920</color>
+    <color name="profile_section_header">#FF262129</color>
+    <color name="skeleton">#FF302832</color>
+</resources>

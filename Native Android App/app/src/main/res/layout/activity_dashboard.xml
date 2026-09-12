@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MYSHOP"
+            android:textColor="@color/primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Welcome to MyShop"
+            android:textColor="@color/text_primary"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="What would you like to explore?"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/productsCard"
+                style="@style/DashboardCard"
+                android:layout_marginEnd="7dp"
+                android:text="@string/products" />
+
+            <TextView
+                android:id="@+id/categoriesCard"
+                style="@style/DashboardCard"
+                android:layout_marginStart="7dp"
+                android:text="@string/categories" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/hotDealsCard"
+                style="@style/DashboardCard"
+                android:layout_marginEnd="7dp"
+                android:text="Hot Deals" />
+
+            <TextView
+                android:id="@+id/wishlistCard"
+                style="@style/DashboardCard"
+                android:layout_marginStart="7dp"
+                android:text="Wishlist" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cartCard"
+                style="@style/DashboardCard"
+                android:layout_marginEnd="7dp"
+                android:text="@string/cart" />
+
+            <TextView
+                android:id="@+id/ordersCard"
+                style="@style/DashboardCard"
+                android:layout_marginStart="7dp"
+                android:text="@string/orders" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/profileCard"
+                style="@style/DashboardCard"
+                android:layout_marginEnd="7dp"
+                android:text="@string/profile" />
+
+            <TextView
+                android:id="@+id/logoutCard"
+                style="@style/DashboardCard"
+                android:layout_marginStart="7dp"
+                android:text="@string/logout"
+                android:textColor="@color/danger" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

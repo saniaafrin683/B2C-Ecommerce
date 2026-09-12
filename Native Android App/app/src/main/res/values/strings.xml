@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyShop</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="full_name">Full name</string>
+    <string name="phone_optional">Phone (optional)</string>
+    <string name="address_optional">Address (optional)</string>
+    <string name="city_optional">City (optional)</string>
+    <string name="country_optional">Country (optional)</string>
+    <string name="products">Products</string>
+    <string name="categories">Categories</string>
+    <string name="cart">Cart</string>
+    <string name="orders">Orders</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+</resources>
